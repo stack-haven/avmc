@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "name": "@backend-service",
+      "path": "backend-service"
+    },
+    {
+      "name": "@frontend-service",
+      "path": "frontend-service"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+[submodule "frontend-service"]
+	path = frontend-service
+	url = git@github.com:stack-haven/avmc-frontend-service.git
+[submodule "backend-service"]
+	path = backend-service
+	url = git@github.com:stack-haven/avmc-backend-service.git
