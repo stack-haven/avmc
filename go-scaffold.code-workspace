@@ -1,11 +1,11 @@
 {
   "folders": [
     {
-      "name": "@backend-service",
+      "name": "AVMC项目后端Golang服务",
       "path": "backend-service"
     },
     {
-      "name": "@frontend-service",
+      "name": "AVMC项目前端后台服务",
       "path": "frontend-service"
     }
   ]
