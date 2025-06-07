@@ -1,0 +1,59 @@
+# 身份认证模块配置示例
+
+# 身份验证配置
+authn:
+  # 默认身份验证提供者
+  default: jwt
+  # 身份验证提供者配置
+  providers:
+    # JWT 提供者配置
+    jwt:
+      # JWT 密钥（对称加密）
+      secret: "your-jwt-secret-key"
+      # JWT 算法（如 HS256、RS256、ES256 等）
+      algorithm: "HS256"
+      # JWT 签发者
+      issuer: "go-auth"
+      # JWT 接收者
+      audience: ["api-client"]
+      # JWT 有效期（秒）
+      expires_in: 3600
+      # 刷新令牌有效期（秒）
+      refresh_expires_in: 86400
+      # 令牌查找位置（如 header:Authorization、query:token、cookie:jwt 等）
+      token_lookup: "header:Authorization"
+      # 令牌头名称（如 Bearer）
+      token_head_name: "Bearer"
+    
+    # OIDC 提供者配置（预留）
+    oidc:
+      client_id: "your-client-id"
+      client_secret: "your-client-secret"
+      issuer: "https://your-oidc-provider.com"
+      redirect_url: "https://your-app.com/callback"
+      scopes: ["openid", "profile", "email"]
+
+# 身份鉴权配置
+authz:
+  # 默认身份鉴权提供者
+  default: casbin
+  # 身份鉴权提供者配置
+  providers:
+    # Casbin 提供者配置
+    casbin:
+      # 模型文件路径
+      model_path: "configs/casbin/model.conf"
+      # 策略文件路径
+      policy_path: "configs/casbin/policy.csv"
+      # 适配器类型（如 file、mysql、redis 等）
+      adapter: "file"
+      # 是否自动保存策略
+      auto_save: true
+      # 是否自动加载策略
+      auto_load_policy: true
+    
+    # OPA 提供者配置（预留）
+    opa:
+      url: "http://localhost:8181"
+      policy_path: "/v1/data/authz/allow"
+      authorization_query: "data.authz.allow"

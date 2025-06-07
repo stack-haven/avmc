@@ -1,0 +1,25 @@
+# Casbin 策略配置示例
+
+# 策略规则
+# p = {sub}, {obj}, {act}
+# 含义：主体 sub 可以对资源 obj 执行操作 act
+
+# 管理员可以执行所有操作
+p, admin, *, *
+
+# 用户可以读取文章
+p, user, article, read
+
+# 编辑可以创建和更新文章
+p, editor, article, create
+p, editor, article, update
+
+# 角色继承关系
+# g = {role}, {role}
+# 含义：角色 role1 继承角色 role2 的权限
+
+# 编辑继承用户的权限
+g, editor, user
+
+# 管理员继承编辑的权限
+g, admin, editor
