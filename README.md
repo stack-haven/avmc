@@ -26,7 +26,7 @@
 avmc/
 ├── backend-service       # 后端服务（git 子模块 - Go + go-kratos，大仓模式微服务架构）
 ├── frontend-service      # 前端管理后台（git 子模块 - 基于 vue-vben-admin）
-├── doc/product           # 产品文档、设计资料等
+├── docs/product           # 产品文档、设计资料等
 ├── .gitmodules           # 子模块配置
 └── README.md             # 项目说明文档
 
@@ -101,17 +101,17 @@ git clone --recurse-submodules https://github.com/stack-haven/avmc.git
 
 1.  **安装 Go 环境**：确保已安装 Go 1.18+。
 2.  **进入后端目录**：`cd avmc/backend-service`
-3.  **下载依赖**：`go mod tidy`
-4.  **配置数据库**：修改 `configs/config.yaml` 文件，配置 MySQL/PostgreSQL 连接信息。
-5.  **运行服务**：`go run ./cmd/avmc`  # 或 `make run`
+3.  **下载依赖**：`go mod download`
+4.  **选择服务并配置**：按具体服务 README/Makefile 配置，例如 `app/avmc/admin/configs/config.yaml`、`app/avmc/ai/configs/config.yaml` 或 `app/version/service/configs/config.yaml`。
+5.  **运行服务**：进入对应服务目录后优先使用该服务 `Makefile`/README 中的命令。
 
 ### 🖥️ 前端服务部署
 
-1.  **安装 Node.js 环境**：确保已安装 Node.js 16+。
+1.  **安装 Node.js 与 pnpm**：Node.js `>=20.19.0`，pnpm `>=10.0.0`。
 2.  **进入前端目录**：`cd ../frontend-service`
-3.  **安装依赖**：`pnpm install`  # 或 `npm install`
-4.  **配置 API 地址**：修改 `.env` 文件，配置后端 API 地址。
-5.  **运行服务**：`pnpm dev`      # 或 `npm run dev`
+3.  **安装依赖**：`pnpm install`
+4.  **配置 API 地址**：修改 `apps/admin-antd-avmc/.env*`，配置后端 API 地址。
+5.  **运行管理后台**：`pnpm -F @vben/admin-antd-avmc run dev`
 
 ### 🌐 访问系统
 
@@ -122,7 +122,7 @@ git clone --recurse-submodules https://github.com/stack-haven/avmc.git
 
 ## 📸 系统界面预览
 
-> 示例图请参考 `doc/product` 目录，或访问项目 Wiki（未来补充预览图链接）。
+> 示例图请参考 `docs/product` 目录，或访问项目 Wiki（未来补充预览图链接）。
 
 **版本管理**
 
@@ -168,3 +168,22 @@ git clone --recurse-submodules https://github.com/stack-haven/avmc.git
 ## 📝 许可证
 
 本项目基于 [MIT License](LICENSE) 开源，欢迎自由使用与修改。
+
+## 🎨 代码规范
+
+本项目采用 **Vibe Coding** 代码规范体系，确保代码质量和团队协作效率：
+
+- **基础规范**：统一的代码风格、命名规范、目录结构等基础规则
+- **前端规范**：Vue 3 + TypeScript + Vben Admin 开发规范与最佳实践
+- **后端规范**：Go + go-kratos 微服务开发规范与最佳实践
+
+**规范文档位置**：`docs/vibe-coding/`
+
+- [Vibe Coding 基础规范](docs/vibe-coding/base/README.md)
+- [前端 Vibe Coding 实践指南](docs/vibe-coding/frontend/README.md)
+- [后端 Vibe Coding 实践指南](docs/vibe-coding/backend/README.md)
+
+**贡献者须知**：
+- 请遵循 Vibe Coding 规范编写代码
+- 提交代码前运行 lint 和测试
+- 使用规范的提交信息格式
