@@ -1,0 +1,4 @@
+interface:
+  display_name: "AVMC 功能交付"
+  short_description: "将 AVMC 产品需求转化为可追踪、可验证的完整功能交付"
+  default_prompt: "使用 $avmc-feature-delivery 分析并完整交付这个 AVMC 功能。"

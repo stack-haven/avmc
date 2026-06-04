@@ -1,0 +1,4 @@
+interface:
+  display_name: "AVMC 契约优先后端开发"
+  short_description: "保证 AVMC 后端契约、分层实现、权限和测试完整一致"
+  default_prompt: "使用 $avmc-contract-first-backend 按契约优先方式实现并验证这个 AVMC 后端需求。"
