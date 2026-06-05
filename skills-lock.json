@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "code-review-checklist": {
+      "source": "sickn33/antigravity-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/code-review-checklist/SKILL.md",
+      "computedHash": "9bd8c2a4865d5bf86196192b73fe9658cdf38c90c4590545f2c7636b65a34b22"
+    },
+    "go-testing-code-review": {
+      "source": "existential-birds/beagle",
+      "sourceType": "github",
+      "skillPath": "plugins/beagle-go/skills/go-testing-code-review/SKILL.md",
+      "computedHash": "9eded1ed1888d5d728eaac47f3c9d84372ae55d5f9752cc072586a2aeae685d6"
+    },
+    "kratos-skills": {
+      "source": "lwx-cloud/kratos-skills",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "3993ceb5c0f515fb1e3187914c374f9ae59babd0dccd5c1eae9d725ef75db719"
+    },
+    "vben": {
+      "source": "vbenjs/skills",
+      "sourceType": "github",
+      "skillPath": "skills/SKILL.md",
+      "computedHash": "f16333f70dd30504f16aee4f6d74563f4259559186cdf6ace3e1840fe7dfe2ed"
+    }
+  }
+}

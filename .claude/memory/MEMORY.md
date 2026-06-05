@@ -1,0 +1,5 @@
+- [project-overview](project-overview.md) — AVMC 项目基本信息和仓库结构
+- [tech-stack](tech-stack.md) — AVMC 技术栈和工具链
+- [dev-conventions](dev-conventions.md) — AVMC 开发规则和约束
+- [iteration-plan](iteration-plan.md) — AVMC 迭代开发规划当前进度
+- [codex-migration](codex-migration.md) — 从 Codex 迁移到 Claude Code 的注意事项
