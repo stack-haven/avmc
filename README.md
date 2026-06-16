@@ -1,12 +1,14 @@
-# 应用版本管理中心（App Version Management Center, AVMC）
+# 项目开发底座
 
-> 多项目、智能化、可扩展的版本发布与灰度管理平台。
+> 面向多业务项目服务的 SaaS 开发底座，当前内置应用版本管理中心（AVMC）服务。
 
 ---
 
 ## 📌 项目简介
 
-**AVMC（App Version Management Center）** 是一套为多项目应用提供全面版本控制、灰度发布、用户反馈、推送通知与用户管理的开源系统平台。通过统一的管理后台和服务接口，它帮助企业与开发团队实现稳定、安全、高效的应用更新与运营管理。
+当前仓库是一个项目开发底座，用于沉淀 Go + go-kratos 后端大仓、Vue Vben Admin 前端 monorepo、认证授权、项目边界、代码生成、服务分层和文档规范等基础能力。
+
+**应用版本管理中心（App Version Management Center, AVMC）** 是当前底座上的第一个项目服务。它为多项目应用提供版本控制、灰度发布、用户反馈、推送通知与用户管理能力，通过统一的管理后台和服务接口，帮助团队实现稳定、安全、高效的应用更新与运营管理。
 
 平台支持多个项目的独立管理及跨项目统一监控，并计划未来升级为 **SAMP（Smart Application Management Platform）**，引入 AI 大模型，提供自动推送、智能版本控制和故障预测等功能。
 
@@ -42,10 +44,11 @@ avmc/
 
 ---
 
-## 🌟 为什么选择 AVMC？
+## 🌟 为什么选择这个底座？
 
-- ✅ **多项目集中管理**：支持多个项目独立配置版本策略，统一监控维护。
-- ✅ **灰度更新机制完善**：支持用户ID、设备标签等精细化规则灰度发布。
+- ✅ **项目服务可扩展**：底座优先沉淀认证、权限、项目边界、前后端规范和代码生成能力。
+- ✅ **当前 AVMC 服务可用**：支持多个项目独立配置版本策略，统一监控维护。
+- ✅ **灰度更新机制可演进**：当前 AVMC 服务支持用户 ID、设备标签等精细化规则灰度发布规划。
 - ✅ **前后端开源框架成熟可靠**：
     - 后端基于 [go-kratos](https://github.com/go-kratos/kratos)，采用大仓模式构建模块化微服务架构。
     - 前端采用 [vue-vben-admin](https://github.com/vbenjs/vue-vben-admin)，Star 数超过 20k，界面美观、组件丰富。
@@ -54,7 +57,7 @@ avmc/
 
 ---
 
-## 🛠️ 核心功能模块
+## 🛠️ 当前项目服务：应用版本管理中心
 
 1. **版本管理**
     - 多项目独立版本控制、资源包与整包支持
@@ -102,7 +105,7 @@ git clone --recurse-submodules https://github.com/stack-haven/avmc.git
 1.  **安装 Go 环境**：确保已安装 Go 1.18+。
 2.  **进入后端目录**：`cd avmc/backend-service`
 3.  **下载依赖**：`go mod download`
-4.  **选择服务并配置**：按具体服务 README/Makefile 配置，例如 `app/avmc/admin/configs/config.yaml`、`app/avmc/ai/configs/config.yaml` 或 `app/version/service/configs/config.yaml`。
+4.  **选择服务并配置**：底座管理后台基础服务配置 `app/platform/admin/configs/config.yaml`；AI/chat 通用能力配置 `app/ai/service/configs/config.yaml`；`app/version/service` 是已存在雏形，当前冻结。
 5.  **运行服务**：进入对应服务目录后优先使用该服务 `Makefile`/README 中的命令。
 
 ### 🖥️ 前端服务部署

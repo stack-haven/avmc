@@ -1,6 +1,10 @@
-# AVMC 结构与开发规则
+# 项目开发底座结构与开发规则
 
 本文件描述当前仓库的真实结构。如果这里的规则和较早的产品文档存在冲突，以这里和当前代码为准。
+
+## 顶层定义
+
+当前仓库是项目开发底座，不等同于单一业务系统。应用版本管理中心（AVMC）是当前底座上的一个项目服务，后续可以继续承载其他业务服务。
 
 ## 仓库结构
 
@@ -8,7 +12,9 @@
 avmc/
 ├── backend-service/          # Go + go-kratos 后端工作区
 ├── frontend-service/         # Vue Vben Admin pnpm monorepo
-├── docs/product/             # 当前产品需求和迭代开发主文档
+├── docs/architecture/        # 当前架构决策、服务边界和冻结清单
+├── docs/services/            # 项目服务目录和服务资料入口
+├── docs/product/             # 当前项目服务产品需求和迭代开发主文档
 ├── docs/vibe-coding/         # 代码规范与架构约定
 ├── docs/archive/             # 历史文档归档，不作为默认实现依据
 ├── backend-service-pkg-bakup/# 备份/参考包，不作为活跃开发目标
@@ -43,14 +49,15 @@ avmc/
 
 后端开发优先使用以下服务根目录：
 
-- `backend-service/app/avmc/admin`：AVMC 管理后台和核心管理 API。
-- `backend-service/app/avmc/ai`：AVMC AI/chat 相关服务。
-- `backend-service/app/version/service`：版本发布服务。
+- `backend-service/app/platform/admin`：项目开发底座管理后台基础服务，负责认证、用户、角色、菜单、权限、中台基础配置和项目服务配置入口。
+- `backend-service/app/ai/service`：项目开发底座 AI/chat 能力服务。
+- `backend-service/app/version/service`：已存在的版本发布服务雏形，当前冻结，迭代 3 前不继续扩展。
 
 当前阶段采用“大仓 + 模块化单服务优先”策略：
 
 - `backend-service` 保持 go-kratos 大仓模式，`app` 下保留未来微服务拆分能力。
-- 迭代 1 和迭代 2 的项目管理、版本管理等核心业务默认落在 `backend-service/app/avmc/admin`。
+- `backend-service/app/platform/admin` 只承接底座管理后台基础能力，不再继续承接 AVMC 版本、Release、灰度、下载页、反馈、协议、推送等业务能力。
+- AVMC 业务服务需要另行定义后端落点；在服务边界确认前，不把新业务继续写入 `app/platform/admin`。
 - 不要因为新增业务模块就默认创建新的 Kratos service。
 - 只有模块需要独立部署、独立扩缩容、独立公共 API，或已经形成清晰业务域时，才考虑拆出独立服务。
 - `backend-service/app/version/service` 暂时保留，Release 和客户端版本检查的最终边界在迭代 3 前重新确认。
@@ -111,7 +118,7 @@ backend-service/proto
 
 ### 活跃前端应用
 
-`frontend-service/apps/admin-antd-avmc` 是当前 AVMC 业务管理后台。它使用：
+`frontend-service/apps/admin-antd-avmc` 当前作为底座管理后台前端。它使用：
 
 - Vue 3 + TypeScript
 - Vite
@@ -146,7 +153,7 @@ views/         # pages and page-local modules
 
 规则：
 
-- AVMC 业务页面放在 `src/views/<module>`。
+- 底座管理后台页面放在 `src/views/<module>`。项目服务业务页面在服务边界确认后再确定是否进入该应用、独立应用或独立模块包。
 - 路由模块放在 `src/router/routes/modules`。
 - 页面局部 table/form schema 放在 `data.ts`。
 - 抽屉/弹窗表单组件放在 `modules/`。
@@ -173,7 +180,7 @@ Page
 - Node.js：`>=20.19.0`
 - pnpm：`>=10.0.0`
 - package manager：`pnpm@10.28.1`
-- AVMC 主应用包名：`@vben/admin-antd-avmc`
+- 当前 AVMC 服务主应用包名：`@vben/admin-antd-avmc`
 
 在 `frontend-service` 中常用命令：
 

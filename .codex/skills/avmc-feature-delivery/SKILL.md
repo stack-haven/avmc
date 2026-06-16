@@ -1,11 +1,11 @@
 ---
 name: avmc-feature-delivery
-description: 分析、规划、实现并验证 AVMC 产品功能，确保需求与 API 契约、数据模型、前端行为、权限、测试、文档和子仓库交付之间可追踪。处理 AVMC 功能需求、需求澄清、实施规划、前后端联动改动、验收审查，或任务涉及 backend-service、frontend-service、docs/product 时使用。
+description: 分析、规划、实现并验证项目开发底座上的项目服务功能，当前默认覆盖应用版本管理中心（AVMC）服务，确保需求与 API 契约、数据模型、前端行为、权限、测试、文档和子仓库交付之间可追踪。处理项目服务功能需求、需求澄清、实施规划、前后端联动改动、验收审查，或任务涉及 backend-service、frontend-service、docs/product 时使用。
 ---
 
-# AVMC 功能交付
+# 项目服务功能交付
 
-通过需求优先、契约驱动的工作流交付 AVMC 功能。保证实现符合仓库当前规则，并为每一项验收标准提供验证证据。
+通过需求优先、契约驱动的工作流交付项目服务功能。当前主要项目服务是应用版本管理中心（AVMC）。保证实现符合仓库当前规则，并为每一项验收标准提供验证证据。
 
 ## 加载项目上下文
 
@@ -14,12 +14,17 @@ description: 分析、规划、实现并验证 AVMC 产品功能，确保需求�
 1. `.codex/AGENTS.md`
 2. `.codex/RULES.md`
 3. `.codex/DESIGN.md`
-4. 活跃服务或应用中最接近的现有实现
-5. `docs/product/README.md`
-6. `docs/product` 下与任务相关的当前文档
-7. 相关的 `docs/vibe-coding/*/README.md`
+4. `docs/architecture/README.md`
+5. `docs/architecture/00-AVMC-后端底座架构决策.md`
+6. `docs/services/README.md`
+7. `docs/services/app-version-management/README.md`
+8. 活跃服务或应用中最接近的现有实现
+9. `docs/product/README.md`
+10. `docs/product/modules/README.md`
+11. `docs/product` 下与任务相关的当前文档
+12. 相关的 `docs/vibe-coding/*/README.md`
 
-以当前代码、`.codex` 和当前 `docs/product` 文档为事实来源。`docs/archive` 仅用于追溯历史需求意图。
+以当前代码、`.codex`、`docs/architecture`、`docs/services` 和当前 `docs/product` 文档为事实来源。`docs/archive` 仅用于追溯历史需求意图。
 
 ## 选择交付模式
 
@@ -136,8 +141,8 @@ pnpm run test:unit
 
 ## 强制约束
 
-- 除非当前架构决策明确要求其他位置，迭代 1 和迭代 2 的核心业务默认放在 `backend-service/app/avmc/admin`。
-- AVMC 前端业务默认放在 `frontend-service/apps/admin-antd-avmc`。
+- `backend-service/app/platform/admin` 当前只承接底座管理后台基础能力，不再默认承接 AVMC 业务模块。
+- 当前 `frontend-service/apps/admin-antd-avmc` 暂作为底座管理后台前端；AVMC 业务前端落点待确认。
 - 后端 API 修改必须从 `backend-service/proto` 开始；不得手工修改生成的 API 或 Ent 文件。
 - 优先复用现有 Vben CRUD 模式和公共消息，再考虑新增抽象。
 - 新增可见 UI 文案时，同时添加中文和英文 locale。

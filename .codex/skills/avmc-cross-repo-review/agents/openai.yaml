@@ -1,4 +1,4 @@
 interface:
-  display_name: "AVMC 跨仓库交付审查"
-  short_description: "审查 AVMC 前后端、根仓库和子模块交付是否完整"
-  default_prompt: "使用 $avmc-cross-repo-review 审查这个 AVMC 功能的跨仓库交付完整性。"
+  display_name: "项目服务跨仓库交付审查"
+  short_description: "审查项目服务前后端、根仓库和子模块交付是否完整"
+  default_prompt: "使用 $avmc-cross-repo-review 审查这个项目服务功能的跨仓库交付完整性。"

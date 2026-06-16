@@ -1,11 +1,11 @@
 ---
 name: avmc-cross-repo-review
-description: 审查 AVMC 根仓库、backend-service 和 frontend-service 的跨仓库功能交付完整性，检查需求追踪、前后端契约一致性、测试、生成文件、文档、Git 状态、子模块提交和根仓库指针。处理跨前后端代码审查、功能验收、提交前检查或子模块交付检查时使用。
+description: 审查项目开发底座根仓库、backend-service 和 frontend-service 的跨仓库功能交付完整性，当前默认覆盖应用版本管理中心（AVMC）服务，检查需求追踪、前后端契约一致性、测试、生成文件、文档、Git 状态、子模块提交和根仓库指针。处理跨前后端代码审查、功能验收、提交前检查或子模块交付检查时使用。
 ---
 
-# AVMC 跨仓库交付审查
+# 项目开发底座跨仓库交付审查
 
-从产品行为到三个 Git 仓库审查 AVMC 功能是否真正完整交付。
+从产品行为到三个 Git 仓库审查项目服务功能是否真正完整交付。当前主要项目服务是应用版本管理中心（AVMC）。
 
 ## 审查原则
 
@@ -21,9 +21,11 @@ description: 审查 AVMC 根仓库、backend-service 和 frontend-service 的跨
 1. `.codex/AGENTS.md`
 2. `.codex/RULES.md`
 3. `.codex/DESIGN.md`
-4. 相关 `docs/product` 当前需求
-5. 目标功能的后端 Proto 和实现
-6. 目标功能的前端 API、页面、路由和 locales
+4. `docs/architecture/README.md`
+5. `docs/services/README.md`
+6. 相关 `docs/product` 当前需求
+7. 目标功能的后端 Proto 和实现
+8. 目标功能的前端 API、页面、路由和 locales
 
 历史文档仅用于追溯，不作为当前实现事实来源。
 

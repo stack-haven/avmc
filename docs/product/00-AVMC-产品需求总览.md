@@ -1,18 +1,18 @@
-# AVMC 产品需求总览
+# 应用版本管理中心服务产品需求总览
 
 版本：v1.0  
 日期：2026-06-03  
-适用范围：AVMC 管理后台、后端 API、客户端版本检查能力、后续 AI 扩展能力
+适用范围：项目开发底座内置的应用版本管理中心（AVMC）服务管理后台、后端 API、客户端版本检查能力、后续 AI 扩展能力
 
 ## 1. 文档定位
 
-本文档基于 `docs/archive/product-202501` 下历史需求、需求分析、项目规划、产品功能设计、UI 原型与 UI 功能说明重新整理，是后续产品讨论、功能拆分和 Codex 开发任务的产品侧主入口。
+本文档基于 `docs/archive/product-202501` 下历史需求、需求分析、项目规划、产品功能设计、UI 原型与 UI 功能说明重新整理，是应用版本管理中心服务后续产品讨论、功能拆分和 Codex 开发任务的产品侧主入口。
 
 旧文档已归档为历史资料。若旧文档中的技术栈、目录、实现方式与当前代码或 `.codex` 规则冲突，以当前代码和 `.codex` 为准。
 
 ## 2. 产品目标
 
-AVMC 是面向多项目应用的版本发布与运营管理平台，目标是统一管理多个应用项目的版本、Release、灰度发布、下载页、反馈、协议、用户权限和推送通知。
+应用版本管理中心（AVMC）是项目开发底座上的一个业务服务，面向多项目应用的版本发布与运营管理，目标是统一管理多个应用项目的版本、Release、灰度发布、下载页、反馈、协议、用户权限和推送通知。
 
 核心价值：
 
@@ -372,7 +372,7 @@ AVMC 是面向多项目应用的版本发布与运营管理平台，目标是统
 - API 契约以 `backend-service/proto` 为源头。
 - 生成代码位于 `backend-service/api`。
 - 业务实现按 `service -> biz/usecase -> data/repo -> ent schema` 分层。
-- 活跃服务优先为 `backend-service/app/avmc/admin`、`backend-service/app/avmc/ai`、`backend-service/app/version/service`。
+- 底座活跃服务为 `backend-service/app/platform/admin` 和 `backend-service/app/ai/service`；AVMC 业务服务后端落点待定义；`backend-service/app/version/service` 当前冻结，只作为迭代 3 服务边界复审候选。
 - 不手工修改生成代码、Ent gen、Swagger UI bundle。
 
 ## 8. 非功能需求

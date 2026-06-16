@@ -4,7 +4,7 @@
 
 ## 📋 文档概述
 
-Vibe Coding 是一套为 AVMC 项目定制的代码风格和开发规范体系，旨在：
+Vibe Coding 是一套为项目开发底座定制的代码风格和开发规范体系，旨在：
 
 - **统一代码风格**：确保团队成员编写的代码风格一致，提高代码可读性
 - **规范开发流程**：定义清晰的开发流程和最佳实践，减少错误和重复工作
@@ -13,7 +13,7 @@ Vibe Coding 是一套为 AVMC 项目定制的代码风格和开发规范体系�
 
 ## 🎯 适用范围
 
-本规范适用于 AVMC 项目的所有代码：
+本规范适用于项目开发底座及其项目服务的所有代码：
 
 - **后端服务**：Go + go-kratos 微服务
 - **前端服务**：Vue 3 + TypeScript + Vben Admin
@@ -169,8 +169,8 @@ Vibe Coding 是一套为 AVMC 项目定制的代码风格和开发规范体系�
 
 - 产品与设计资料位于 `docs/product`。
 - Vibe Coding 规范位于 `docs/vibe-coding`。
-- 后端业务优先落在 `backend-service/app/avmc/admin`、`backend-service/app/avmc/ai`、`backend-service/app/version/service`。
-- 前端 AVMC 管理后台优先落在 `frontend-service/apps/admin-antd-avmc`。
+- 后端底座管理后台基础能力优先落在 `backend-service/app/platform/admin`；AI/chat 通用能力落在 `backend-service/app/ai/service`；AVMC 业务服务落点待定义；`backend-service/app/version/service` 当前冻结，仅保留为迭代 3 复审候选。
+- 前端底座管理后台当前优先落在 `frontend-service/apps/admin-antd-avmc`，后续是否改名另行确认。
 - `backend-service-pkg-bakup` 是备份/参考目录，不作为默认开发目标。
 
 
@@ -180,7 +180,7 @@ Vibe Coding 是一套为 AVMC 项目定制的代码风格和开发规范体系�
 backend-service/
 ├── api/                 # 生成的 API 代码
 ├── app/                 # 应用服务
-│   ├── avmc/admin/      # AVMC 管理服务
+│   ├── avmc/admin/      # 底座管理后台基础服务，当前路径待复审
 │   │   ├── cmd/         # 命令行入口
 │   │   ├── configs/     # 配置文件
 │   │   ├── internal/    # 内部实现
@@ -189,8 +189,8 @@ backend-service/
 │   │   │   ├── server/   # 服务器配置
 │   │   │   └── service/  # 服务实现
 │   │   └── proto/        # Protobuf 定义
-│   ├── avmc/ai/         # AVMC AI 服务
-│   └── version/service/ # 版本管理服务
+│   ├── ai/service/      # 底座 AI/chat 通用能力
+│   └── version/service/ # 版本发布服务雏形，当前冻结
 ├── pkg/                 # 公共包
 │   ├── auth/            # 认证授权
 │   ├── bootstrap/       # 启动配置
@@ -204,7 +204,7 @@ backend-service/
 ```
 frontend-service/
 ├── apps/                # 应用
-│   ├── admin-antd-avmc/ # AVMC 管理后台
+│   ├── admin-antd-avmc/ # AVMC 项目服务管理后台
 │   │   ├── public/      # 静态资源
 │   │   ├── src/         # 源代码
 │   │   │   ├── adapter/ # 适配器

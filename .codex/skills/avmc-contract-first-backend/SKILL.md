@@ -1,9 +1,9 @@
 ---
 name: avmc-contract-first-backend
-description: 按照契约优先方式分析、实现和审查 AVMC 后端功能，保证 Protobuf、生成 API、Kratos service、biz/usecase、data/repository、Ent schema、Wire、权限和测试完整一致。处理 backend-service 的新增接口、接口修改、数据模型变化、后端缺陷修复或后端代码审查时使用。
+description: 按照契约优先方式分析、实现和审查项目开发底座后端功能，当前默认覆盖应用版本管理中心（AVMC）服务，保证 Protobuf、生成 API、Kratos service、biz/usecase、data/repository、Ent schema、Wire、权限和测试完整一致。处理 backend-service 的新增接口、接口修改、数据模型变化、后端缺陷修复或后端代码审查时使用。
 ---
 
-# AVMC 契约优先后端开发
+# 项目开发底座契约优先后端开发
 
 以后端 API 契约作为实现起点，确保所有受影响分层同步修改并通过验证。
 
@@ -12,11 +12,17 @@ description: 按照契约优先方式分析、实现和审查 AVMC 后端功能�
 开始前读取：
 
 1. 根仓库 `.codex/AGENTS.md` 和 `.codex/RULES.md`
-2. `docs/vibe-coding/backend/README.md`
-3. 目标服务中最接近的现有实现
-4. 相关 `docs/product` 当前需求文档
+2. `docs/architecture/README.md`
+3. `docs/architecture/00-AVMC-后端底座架构决策.md`
+4. `docs/services/README.md`
+5. `docs/services/app-version-management/README.md`
+6. `docs/vibe-coding/backend/README.md`
+7. 目标服务中最接近的现有实现
+8. 相关 `docs/product` 当前需求文档
 
 不得将 `backend-service-pkg-bakup` 作为活跃实现目标。不得手工修改 `backend-service/api`、`internal/conf` 或 `internal/data/ent/gen` 中的生成文件。
+
+`backend-service/app/platform/admin` 当前是底座管理后台基础服务。除认证、用户、角色、菜单、权限、中台基础配置、项目服务配置入口、操作日志等底座能力外，不得继续把 AVMC 版本、Release、灰度、下载页、反馈、协议、推送等业务模块写入该服务。
 
 ## 契约分析
 

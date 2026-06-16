@@ -1,17 +1,19 @@
-# AVMC 模块划分与工具分析
+# 应用版本管理中心服务模块划分与工具分析
 
 版本：v1.0  
 日期：2026-06-03  
-依据：`docs/product/00-AVMC-产品需求总览.md`、`docs/product/00-AVMC-迭代开发规划.md`、`.codex` 项目规则、当前代码结构
+依据：`docs/product/00-AVMC-产品需求总览.md`、`docs/product/00-AVMC-迭代开发规划.md`、`docs/architecture/00-AVMC-后端底座架构决策.md`、`.codex` 项目规则、当前代码结构
 
 ## 1. 文档定位
 
-本文档用于把 AVMC 的后续开发拆成稳定模块，并明确每个模块的当前代码基础、主要开发目标、推荐工具链和验证方式。
+本文档用于把应用版本管理中心（AVMC）服务的后续开发拆成稳定模块，并明确每个模块的当前代码基础、主要开发目标、推荐工具链和验证方式。
 
 本文档不替代产品需求总览和迭代开发规划：
 
 - 产品范围、字段和验收标准以 `00-AVMC-产品需求总览.md` 为准。
 - 迭代顺序和开发流程以 `00-AVMC-迭代开发规划.md` 为准。
+- 架构决策、服务边界和冻结清单以 `docs/architecture` 为准。
+- 模块归类和入口状态以 `docs/product/modules/README.md` 为准。
 - 代码实现规则以 `.codex/RULES.md` 和 `.codex/DESIGN.md` 为准。
 
 ## 2. 当前代码现状
@@ -23,16 +25,17 @@
 架构判断：
 
 - 后端采用 go-kratos 大仓模式，`backend-service/app` 下保留多服务拆分能力。
-- 当前阶段不按业务模块过早拆成多个微服务，AVMC 核心管理能力优先集中在 `backend-service/app/avmc/admin`。
+- `backend-service/app/platform/admin` 当前升级为底座管理后台基础服务，不再继续承接 AVMC 新业务模块。
 - 微服务拆分作为后续演进方向，而不是早期每新增一个模块就新建一个服务。
 
 已具备基础：
 
-- `backend-service/app/avmc/admin` 已有认证、用户、角色、菜单、部门、岗位等基础管理能力。
+- `backend-service/app/platform/admin` 已有认证、用户、角色、菜单、部门、岗位等基础管理能力，归入底座管理后台。
 - `backend-service/proto/avmc/admin/v1` 已有 `i_auth.proto`、`i_user.proto`、`i_role.proto`、`i_menu.proto`、`i_dept.proto`、`i_post.proto`、`i_project.proto`。
-- 项目管理后端 MVP 已在 `backend-service/app/avmc/admin` 内实现，包含 proto、Ent schema、repo、usecase、service、HTTP/gRPC 注册和项目成员关系基础。
+- 项目管理后端 MVP 已在 `backend-service/app/platform/admin` 内实现，后续作为底座项目服务边界能力继续收敛。
 - `backend-service/app/version/service` 已有 `ReleaseService` 雏形。
 - `backend-service/proto/version/service/v1/release.proto` 已有基础 Release proto，但字段还不满足当前产品 Release 发布需求。
+- `backend-service/app/version/service` 当前冻结，不能作为迭代 1/2 的新增业务落点。
 
 明显缺口：
 
@@ -142,16 +145,18 @@
 
 开发目标：
 
-- 明确 Release 是否继续归属 `backend-service/app/version/service`。
+- Release 管理后台不再归属 `backend-service/app/platform/admin`，需等待 AVMC 业务服务边界确认。
 - 将 Release 绑定项目和版本。
 - 补齐发布状态和发布动作。
 - 前端新增 Release 管理页面。
+- 迭代 3 前再复审客户端版本检查 API 是否需要独立服务边界。
 
 默认决策：
 
-- 迭代 1 和迭代 2 优先在 `backend-service/app/avmc/admin` 内实现项目管理和版本管理。
+- 迭代 1 优先在 `backend-service/app/platform/admin` 内补齐底座管理后台基础能力；版本管理等待 AVMC 业务服务边界确认。
 - `backend-service/app/version/service` 暂时保留，不做删除或重构。
-- 迭代 3 开始 Release 和客户端版本检查时，再判断 Release 主链路继续留在 `version/service`，还是合并进 `avmc/admin`。
+- Release 管理后台契约和实现不再进入 `backend-service/app/platform/admin`。
+- 迭代 3 开始客户端版本检查时，再判断公开检查 API 和 Release 主链路继续留在 `avmc/admin`，还是升级 `version/service` 为独立服务。
 
 ### 3.5 灰度发布模块
 
@@ -263,9 +268,9 @@
 使用范围：
 
 - `backend-service`
-- `backend-service/app/avmc/admin`
-- `backend-service/app/version/service`
-- `backend-service/app/avmc/ai`
+- `backend-service/app/platform/admin`
+- `backend-service/app/ai/service`
+- `backend-service/app/version/service` 仅用于迭代 3 服务边界复审，不作为当前新增业务开发范围。
 
 核心工具：
 
@@ -288,17 +293,13 @@ go test ./...
 服务级命令：
 
 ```bash
-cd backend-service/app/avmc/admin
+cd backend-service/app/platform/admin
 make config
 make doc
 make ts
 ```
 
-```bash
-cd backend-service/app/version/service
-make config
-make doc
-```
+`backend-service/app/version/service` 当前冻结，除非执行迭代 3 服务边界复审，不运行该服务的生成或开发命令。
 
 使用规则：
 
@@ -306,7 +307,7 @@ make doc
 - 生成代码只通过 Makefile 或 Buf 生成。
 - 不手工修改 `backend-service/api`、`internal/conf`、`internal/data/ent/gen` 等生成结果。
 - 新增实体时先建 Ent schema，再生成 Ent 代码。
-- 早期业务模块默认进入 `backend-service/app/avmc/admin`，不要因为新增项目、版本、下载页、反馈等模块就默认新建 Kratos service。
+- 底座基础模块默认进入 `backend-service/app/platform/admin`；AVMC 业务模块需要先确认服务边界，不再默认写入 admin。
 
 ### 4.1.1 后端阶段性架构决策
 
@@ -316,7 +317,7 @@ make doc
 
 - `backend-service` 保持 go-kratos 大仓结构。
 - `backend-service/app` 保留未来微服务拆分空间。
-- `backend-service/app/avmc/admin` 是迭代 1 到迭代 2 的主要后端落点。
+- `backend-service/app/platform/admin` 是底座管理后台基础能力的主要后端落点。
 - 新增业务先在 `admin` 服务内部按 proto、service、biz、data、ent schema 建立模块边界。
 - 不在早期为了目录看起来更像微服务而拆分运行进程。
 
@@ -332,9 +333,9 @@ make doc
 
 | 服务 | 当前定位 | 当前策略 |
 |---|---|---|
-| `backend-service/app/avmc/admin` | 后台管理与 AVMC 核心业务主服务 | 迭代 1-2 默认开发入口 |
-| `backend-service/app/version/service` | 已有 ReleaseService 雏形 | 保留，迭代 3 前重新确认边界 |
-| `backend-service/app/avmc/ai` | AI/chat 能力 | 主链路稳定后再扩展 |
+| `backend-service/app/platform/admin` | 底座管理后台基础服务 | 认证、用户、角色、菜单、权限、中台基础配置、项目服务配置入口 |
+| `backend-service/app/version/service` | 已有 ReleaseService 雏形 | frozen，迭代 3 前只做边界复审 |
+| `backend-service/app/ai/service` | 底座 AI/chat 能力 | 业务接入时定义边界 |
 | 新 Kratos service | 后续微服务演进点 | 早期不主动新增 |
 
 ### 4.2 前端工具链
@@ -495,7 +496,7 @@ cd frontend-service && git status
 
 - 从“迭代 1：基础权限与项目管理”开始开发。
 - 早期采用“大仓 + 模块化单服务优先”策略。
-- `backend-service/app/avmc/admin` 承载后台管理类 API 和早期 AVMC 核心业务。
-- `backend-service/app/version/service` 保留为版本发布服务候选边界，迭代 3 前重新确认。
+- `backend-service/app/platform/admin` 承载底座管理后台基础 API，不再继续承接 AVMC 业务模块。
+- `backend-service/app/version/service` 保留为版本发布服务候选边界，当前冻结，迭代 3 前只做边界复审。
 - `frontend-service/apps/admin-antd-avmc` 是唯一默认后台开发目标。
 - `docs/archive` 只作为历史资料，不作为默认实现依据。

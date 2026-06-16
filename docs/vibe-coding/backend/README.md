@@ -4,7 +4,7 @@
 
 ## 📋 文档概述
 
-本指南基于 Vibe Coding 基础规范，针对 AVMC 项目的后端开发提供详细的实践指导。主要涵盖：
+本指南基于 Vibe Coding 基础规范，针对项目开发底座及其项目服务的后端开发提供详细的实践指导。主要涵盖：
 
 - **Go 语言开发规范**
 - **go-kratos 框架使用最佳实践**
@@ -22,7 +22,7 @@
 - 当前后端实现是 Go + go-kratos v2，不使用旧产品文档中出现的 Spring Boot、Django 等泛化方案。
 - API 契约以 `backend-service/proto` 为源头，生成到 `backend-service/api`。
 - 业务实现按 `service -> biz/usecase -> data/repo -> ent schema` 分层。
-- 活跃服务为 `backend-service/app/avmc/admin`、`backend-service/app/avmc/ai`、`backend-service/app/version/service`。
+- 活跃基础服务为 `backend-service/app/platform/admin` 和 `backend-service/app/ai/service`；`backend-service/app/platform/admin` 当前作为底座管理后台基础服务；`backend-service/app/version/service` 是已存在版本发布服务雏形，当前冻结，迭代 3 前不作为新增业务落点。
 - 生成代码、Swagger UI bundle、Ent gen 目录不手工修改。
 
 ## 🎯 技术栈
@@ -41,12 +41,12 @@
 ```
 backend-service/
 ├── api/                 # 生成的 API 代码
-│   ├── avmc/            # AVMC 服务 API
-│   │   └── admin/v1/     # AVMC 管理接口
+│   ├── avmc/            # AVMC 项目服务 API
+│   │   └── admin/v1/     # AVMC 项目服务管理接口
 │   ├── common/          # 公共 API 定义
 │   └── core/            # 核心服务 API
 ├── app/                 # 应用服务
-│   ├── avmc/admin/      # AVMC 管理服务
+│   ├── avmc/admin/      # 底座管理后台基础服务，当前路径待复审
 │   │   ├── cmd/         # 命令行入口
 │   │   │   └── server/  # 服务器启动
 │   │   ├── configs/     # 配置文件
@@ -57,8 +57,8 @@ backend-service/
 │   │   │   └── service/  # 服务实现
 │   │   ├── proto/        # Protobuf 定义
 │   │   └── README.md     # 服务说明
-│   ├── avmc/ai/         # AVMC AI 服务
-│   └── version/service/ # 版本管理服务
+│   ├── ai/service/      # 底座 AI/chat 通用能力
+│   └── version/service/ # 版本发布服务雏形，当前冻结
 ├── pkg/                 # 公共包
 │   ├── auth/            # 认证授权
 │   │   ├── authn/        # 认证
@@ -78,7 +78,7 @@ backend-service/
 │   │   └── trans/         # 翻译
 │   └── viewer/          # 视图工具
 ├── proto/               # Protobuf 定义文件
-│   ├── avmc/            # AVMC 服务
+│   ├── avmc/            # 当前包含底座管理后台历史路径和 AVMC proto
 │   │   └── admin/v1/      # 管理接口
 │   ├── common/          # 公共定义
 │   │   ├── conf/          # 配置
@@ -318,10 +318,10 @@ backend-service/
   
   import (
     "github.com/google/wire"
-    "backend-service/app/avmc/admin/internal/biz"
-    "backend-service/app/avmc/admin/internal/data"
-    "backend-service/app/avmc/admin/internal/service"
-    "backend-service/app/avmc/admin/internal/server"
+    "backend-service/app/platform/admin/internal/biz"
+    "backend-service/app/platform/admin/internal/data"
+    "backend-service/app/platform/admin/internal/service"
+    "backend-service/app/platform/admin/internal/server"
   )
   
   func initApp() (*App, error) {

@@ -1,12 +1,12 @@
-# AVMC 迭代开发规划
+# 应用版本管理中心服务迭代开发规划
 
 版本：v1.0  
 日期：2026-06-03  
-依据：`docs/archive/product-202501` 历史文档、`docs/vibe-coding` 规范、`.codex` 项目规则、当前前后端代码结构
+依据：`docs/archive/product-202501` 历史文档、`docs/architecture` 架构决策、`docs/vibe-coding` 规范、`.codex` 项目规则、当前前后端代码结构
 
 ## 1. 文档定位
 
-本文档用于指导 AVMC 后续迭代开发。它不是一次性排期表，而是把产品能力按依赖顺序拆成可持续推进的迭代路线。
+本文档用于指导应用版本管理中心（AVMC）服务后续迭代开发。它不是一次性排期表，而是把该服务的产品能力按依赖顺序拆成可持续推进的迭代路线。
 
 后续每个功能进入开发前，应基于本文档拆成更小的任务卡，并补充具体 API、数据模型、页面原型和验收用例。
 
@@ -15,7 +15,10 @@
 - 先打通项目、权限、版本、Release 主链路，再扩展下载页、反馈、协议、推送和 AI。
 - 每个迭代都要保证前后端主路径可运行，不做只存在于文档里的功能。
 - 后端以 `backend-service/proto` 为契约源头，按 `service -> biz/usecase -> data/repo -> ent schema` 实现。
-- 后端当前采用“大仓 + 模块化单服务优先”策略，迭代 1 和迭代 2 的新业务默认落在 `backend-service/app/avmc/admin`。
+- 后端当前采用“大仓 + 模块化服务边界优先”策略，`backend-service/app/platform/admin` 升级为底座管理后台基础服务。
+- AVMC 版本、Release、灰度、下载页、反馈、协议、推送等业务能力不再继续落入 `backend-service/app/platform/admin`。
+- Release 管理后台和客户端版本检查 API 的服务边界需要在 AVMC 业务服务落点确认后再推进。
+- `backend-service/app/version/service` 当前冻结，不作为迭代 1/2 新增业务落点。
 - 不因为新增业务模块就默认创建新的 Kratos service；只有出现独立部署、独立扩缩容、独立公共 API 或清晰业务域边界时，才考虑拆成独立服务。
 - 前端以 `frontend-service/apps/admin-antd-avmc` 为主应用，按 `Page + useVbenVxeGrid + useVbenDrawer + useVbenForm` 实现管理页。
 - 生成代码必须由源文件生成，不手工修改 `backend-service/api`、`internal/data/ent/gen` 等生成目录。
@@ -27,14 +30,14 @@
 
 范围：
 
-- 确认 `.codex`、`docs/product`、`docs/vibe-coding` 的主次关系。
+- 确认 `.codex`、`docs/architecture`、`docs/services`、`docs/product`、`docs/vibe-coding` 的主次关系。
 - 明确当前技术栈：Go + go-kratos + Protobuf + Ent + Wire，Vue 3 + Vben Admin + Ant Design Vue。
-- 明确主开发目标：`backend-service/app/avmc/admin`、`backend-service/app/avmc/ai`、`backend-service/app/version/service`、`frontend-service/apps/admin-antd-avmc`。
+- 明确主开发目标：`backend-service/app/platform/admin` 作为底座管理后台基础服务，`backend-service/app/ai/service` 作为底座 AI/chat 能力服务，`frontend-service/apps/admin-antd-avmc` 暂作为底座管理后台前端；`backend-service/app/version/service` 当前冻结，只作为复审候选。
 - 旧产品文档归档到 `docs/archive/product-202501`，只作为历史资料。
 
 完成标准：
 
-- 新产品需求总览和迭代开发规划已建立。
+- AVMC 服务产品需求总览和迭代开发规划已建立。
 - Codex 代理能通过 `.codex` 文档判断默认开发路径。
 - README 和 Vibe Coding 文档不再误导到旧目录。
 
@@ -52,7 +55,7 @@
 
 - 梳理现有用户、角色、菜单、部门 API。
 - 补齐项目管理 API 契约。
-- 在 `backend-service/app/avmc/admin` 内建立项目数据模型和项目成员/权限关系。
+- 在 `backend-service/app/platform/admin` 内建立项目数据模型和项目成员/权限关系。
 - 增加项目状态控制。
 - 增加关键操作日志能力的基础结构。
 
@@ -77,7 +80,7 @@
 后端任务：
 
 - 定义版本管理 Protobuf 契约。
-- 在 `backend-service/app/avmc/admin` 内建立版本 Ent schema。
+- 在新的 AVMC 业务服务边界内建立版本 Ent schema。
 - 实现版本创建、编辑、详情、列表、删除、状态变更。
 - 实现文件上传后的下载地址、文件大小、校验值记录。
 - 实现基础回滚记录。
@@ -105,7 +108,8 @@
 
 - 定义 Release Protobuf 契约。
 - 建立 Release 数据模型。
-- 在迭代 3 开始前确认 Release 主链路继续留在 `backend-service/app/version/service`，还是合并进 `backend-service/app/avmc/admin`。
+- Release 管理后台契约和数据模型在新的 AVMC 业务服务边界内实现。
+- 在迭代 3 开始前确认客户端版本检查 API 是否需要升级 `backend-service/app/version/service` 为独立服务，或进入新的 AVMC 业务服务。
 - 支持草稿、待发布、已发布、已撤回状态。
 - 支持灰度发布和全量发布类型。
 - 实现客户端版本检查 API。
@@ -305,4 +309,4 @@
 2. 迭代 2：版本管理 MVP。
 3. 迭代 3：Release 发布与客户端版本检查。
 
-这三步完成后，AVMC 才具备最小可用的版本发布主链路。
+这三步完成后，应用版本管理中心服务才具备最小可用的版本发布主链路。

@@ -1,16 +1,20 @@
-# AVMC Codex 代理指南
+# 项目开发底座 Codex 代理指南
 
-本文件是 Codex 代理进入 AVMC 项目后的第一份项目指南。修改代码或文档前应先阅读本文件。
+本文件是 Codex 代理进入项目开发底座后的第一份项目指南。修改代码或文档前应先阅读本文件。
 
 ## 项目定位
 
-AVMC 是 App Version Management Center（应用版本管理中心）。它是一个面向多项目的管理平台，用于移动应用版本发布、Release 发布、灰度发布、下载页配置、用户反馈、协议文档、用户、角色、权限、推送通知，以及后续 AI 辅助运营能力。
+当前仓库的顶层定位是“项目开发底座”：在基础 SaaS 架构、认证授权、项目边界、前后端工程规范、代码生成和模块化服务能力之上，承载多个可扩展的业务项目服务。
+
+“应用版本管理中心（App Version Management Center, AVMC）”不是顶层项目定义，而是当前底座内置的第一个项目服务。它面向多项目应用版本发布、Release 发布、灰度发布、下载页配置、用户反馈、协议文档、推送通知和后续 AI 辅助运营能力。
 
 当前仓库是一个前后端一体工作区：
 
 - `backend-service`：Go、go-kratos v2、gRPC + HTTP、Protobuf、Buf、Ent、Wire。
 - `frontend-service`：Vue 3、TypeScript、Vben Admin monorepo、pnpm、Vite。
-- `docs/product`：当前产品需求和迭代开发主文档。
+- `docs/architecture`：当前架构决策、服务边界和冻结清单。
+- `docs/services`：项目服务目录，用于定义每个业务服务的定位、资料入口和落点。
+- `docs/product`：当前项目服务的产品需求和迭代开发主文档，目前主要归档 AVMC 服务资料。
 - `docs/archive`：历史产品、规划和 UI 资料归档。
 - `docs/vibe-coding`：项目代码规范与结构约定。
 - `.codex`：面向 Codex 代理的项目规则。
@@ -22,28 +26,33 @@ AVMC 是 App Version Management Center（应用版本管理中心）。它是一
 1. `.codex/AGENTS.md`
 2. `.codex/RULES.md`
 3. `.codex/DESIGN.md`
-4. 同一后端服务或前端应用中最接近的现有代码。
-5. `docs/product/README.md`
-6. `docs/product/00-AVMC-产品需求总览.md`
-7. `docs/product/00-AVMC-迭代开发规划.md`
-8. `docs/vibe-coding/*/README.md`
-9. `docs/archive/*` 仅用于追溯历史需求来源。
+4. `docs/architecture/README.md`
+5. `docs/architecture/00-AVMC-后端底座架构决策.md`
+6. `docs/services/README.md`
+7. `docs/services/app-version-management/README.md`
+8. 同一后端服务或前端应用中最接近的现有代码。
+9. `docs/product/README.md`
+10. `docs/product/modules/README.md`
+11. `docs/product/00-AVMC-产品需求总览.md`
+12. `docs/product/00-AVMC-迭代开发规划.md`
+13. `docs/vibe-coding/*/README.md`
+14. `docs/archive/*` 仅用于追溯历史需求来源。
 
-`docs/archive` 里的历史产品文档可能包含较早期的通用架构描述。当前代码、`.codex` 和 `docs/product` 当前主文档才是框架、目录和 API 实现规则的事实来源。
+`docs/archive` 里的历史产品文档可能包含较早期的通用架构描述。当前代码、`.codex`、`docs/architecture`、`docs/services` 和 `docs/product` 当前主文档才是框架、目录、项目服务和 API 实现规则的事实来源。
 
 ## 默认工作目标
 
-后端业务开发通常优先落在以下服务中：
+后端基础服务开发通常优先落在以下服务中：
 
-- `backend-service/app/avmc/admin`
-- `backend-service/app/avmc/ai`
-- `backend-service/app/version/service`
+- `backend-service/app/platform/admin`：当前作为项目开发底座的管理后台基础服务，负责认证、用户、角色、菜单、权限、中台基础配置和项目服务配置入口。
+- `backend-service/app/ai/service`：当前作为底座 AI/chat 能力服务。
+- `backend-service/app/version/service` 仅保留为已存在雏形，当前冻结，不作为迭代 1/2 默认开发落点。
 
-前端 AVMC 业务开发通常优先落在：
+前端当前管理后台开发通常优先落在：
 
-- `frontend-service/apps/admin-antd-avmc`
+- `frontend-service/apps/admin-antd-avmc`：当前管理后台应用路径暂未改名，目标身份调整为底座管理后台前端。
 
-`frontend-service/packages` 下的共享前端包只用于跨应用的 Vben 公共能力。不要把一次性的 AVMC 页面逻辑放进去。
+`frontend-service/packages` 下的共享前端包只用于跨应用的 Vben 公共能力。不要把一次性的项目服务页面逻辑放进去。
 
 ## 默认避免修改的区域
 
@@ -79,7 +88,7 @@ AVMC 是 App Version Management Center（应用版本管理中心）。它是一
 
 ## 前端事实来源
 
-`frontend-service/apps/admin-antd-avmc` 是 AVMC 管理后台。使用该应用已有的 Vben 模式：
+`frontend-service/apps/admin-antd-avmc` 当前作为底座管理后台前端使用。使用该应用已有的 Vben 模式：
 
 - 路由放在 `src/router/routes/modules`
 - 页面放在 `src/views`
@@ -109,8 +118,10 @@ AVMC 是 App Version Management Center（应用版本管理中心）。它是一
 
 ```bash
 rg "doc/vibe-coding|doc/product|Spring Boot|Django|React/Vue" README.md docs/vibe-coding .codex
-rg "admin-antd-avmc|backend-service/app/avmc/admin|service -> biz -> data" .codex docs/vibe-coding README.md
-git diff -- .codex README.md docs/vibe-coding
+rg "admin-antd-avmc|backend-service/app/platform/admin|service -> biz -> data" .codex docs README.md
+rg "项目开发底座|应用版本管理中心|项目服务" .codex docs README.md
+rg "version/service|当前冻结|迭代 3" docs/architecture docs/product .codex README.md
+git diff -- .codex README.md docs
 ```
 
 代码改动使用最近的服务或应用检查。优先使用：

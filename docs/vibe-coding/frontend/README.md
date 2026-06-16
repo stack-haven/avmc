@@ -4,7 +4,7 @@
 
 ## 📋 文档概述
 
-本指南基于 Vibe Coding 基础规范，针对 AVMC 项目的前端开发提供详细的实践指导。主要涵盖：
+本指南基于 Vibe Coding 基础规范，针对项目开发底座及其项目服务的前端开发提供详细的实践指导。主要涵盖：
 
 - **Vue 3 + TypeScript 开发规范**
 - **Vben Admin 框架使用最佳实践**
@@ -16,7 +16,7 @@
 
 ## 当前实现基线
 
-- 当前 AVMC 定制管理端是 `frontend-service/apps/admin-antd-avmc`，包名为 `@vben/admin-antd-avmc`。
+- 当前 `frontend-service/apps/admin-antd-avmc` 暂作为底座管理后台前端，包名仍为 `@vben/admin-antd-avmc`，是否改名另行确认。
 - `web-antd`、`web-ele`、`web-naive`、`web-tdesign` 和 `playground` 主要作为 Vben 示例或参考，除非任务明确指定，否则不要作为业务实现目标。
 - Node.js 要求 `>=20.19.0`，pnpm 要求 `>=10.0.0`，仓库 packageManager 为 `pnpm@10.28.1`。
 - 业务页面优先使用现有 `Page + useVbenVxeGrid + useVbenDrawer + useVbenForm` 模式。
