@@ -46,10 +46,10 @@
 
 | 模块 | 默认后端落点 | 默认前端落点 | 备注 |
 | --- | --- | --- | --- |
-| 认证、用户、角色、菜单、部门、岗位 | `app/platform/admin` | `apps/admin-antd-avmc` | 底座管理后台基础能力 |
-| 中台权限菜单分配 | `app/platform/admin` | `apps/admin-antd-avmc` | 底座管理后台基础能力 |
-| 业务中台基础配置 | `app/platform/admin` | `apps/admin-antd-avmc` | 底座管理后台基础能力 |
-| 项目服务注册/配置入口 | `app/platform/admin` | `apps/admin-antd-avmc` | 底座管理后台基础能力 |
+| 认证、用户、角色、菜单、部门、岗位 | `app/platform/admin` | `apps/web-antd-admin` | 底座管理后台基础能力 |
+| 中台权限菜单分配 | `app/platform/admin` | `apps/web-antd-admin` | 底座管理后台基础能力 |
+| 业务中台基础配置 | `app/platform/admin` | `apps/web-antd-admin` | 底座管理后台基础能力 |
+| 项目服务注册/配置入口 | `app/platform/admin` | `apps/web-antd-admin` | 底座管理后台基础能力 |
 | AVMC 版本管理 MVP | 待定义 AVMC 业务服务边界 | 待定义 | 不再进入 `app/platform/admin` |
 | AVMC Release 管理后台 | 待定义 AVMC 业务服务边界 | 待定义 | 不再进入 `app/platform/admin` |
 | AVMC 客户端版本检查 API | 迭代 3 复审 | 按需 | 可能成为 `version/service` 或新 AVMC 服务 |

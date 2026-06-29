@@ -20,7 +20,7 @@
 - Release 管理后台和客户端版本检查 API 的服务边界需要在 AVMC 业务服务落点确认后再推进。
 - `backend-service/app/version/service` 当前冻结，不作为迭代 1/2 新增业务落点。
 - 不因为新增业务模块就默认创建新的 Kratos service；只有出现独立部署、独立扩缩容、独立公共 API 或清晰业务域边界时，才考虑拆成独立服务。
-- 前端以 `frontend-service/apps/admin-antd-avmc` 为主应用，按 `Page + useVbenVxeGrid + useVbenDrawer + useVbenForm` 实现管理页。
+- 前端底座管理后台以 `frontend-service/apps/web-antd-admin` 为主应用，按 `Page + useVbenVxeGrid + useVbenDrawer + useVbenForm` 实现管理页。
 - 生成代码必须由源文件生成，不手工修改 `backend-service/api`、`internal/data/ent/gen` 等生成目录。
 - 新增可见文案同时补中文和英文 locale key。
 
@@ -32,7 +32,7 @@
 
 - 确认 `.codex`、`docs/architecture`、`docs/services`、`docs/product`、`docs/vibe-coding` 的主次关系。
 - 明确当前技术栈：Go + go-kratos + Protobuf + Ent + Wire，Vue 3 + Vben Admin + Ant Design Vue。
-- 明确主开发目标：`backend-service/app/platform/admin` 作为底座管理后台基础服务，`backend-service/app/ai/service` 作为底座 AI/chat 能力服务，`frontend-service/apps/admin-antd-avmc` 暂作为底座管理后台前端；`backend-service/app/version/service` 当前冻结，只作为复审候选。
+- 明确主开发目标：`backend-service/app/platform/admin` 作为底座管理后台基础服务，`backend-service/app/ai/service` 作为底座 AI/chat 能力服务，`frontend-service/apps/web-antd-admin` 作为底座管理后台前端；`backend-service/app/version/service` 当前冻结，只作为复审候选。
 - 旧产品文档归档到 `docs/archive/product-202501`，只作为历史资料。
 
 完成标准：

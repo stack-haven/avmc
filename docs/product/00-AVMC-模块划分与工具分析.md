@@ -46,7 +46,7 @@
 
 ### 2.2 前端现状
 
-当前后台主应用为 `frontend-service/apps/admin-antd-avmc`。
+当前底座管理后台主应用为 `frontend-service/apps/web-antd-admin`。
 
 已具备基础：
 
@@ -342,7 +342,7 @@ make ts
 
 使用范围：
 
-- `frontend-service/apps/admin-antd-avmc`
+- `frontend-service/apps/web-antd-admin`
 
 核心工具：
 
@@ -360,9 +360,9 @@ make ts
 ```bash
 cd frontend-service
 pnpm install
-pnpm -F @vben/admin-antd-avmc run dev
-pnpm -F @vben/admin-antd-avmc run typecheck
-pnpm -F @vben/admin-antd-avmc run build
+pnpm -F @vben/web-antd-admin run dev
+pnpm -F @vben/web-antd-admin run typecheck
+pnpm -F @vben/web-antd-admin run build
 ```
 
 页面开发规则：
@@ -498,5 +498,5 @@ cd frontend-service && git status
 - 早期采用“大仓 + 模块化单服务优先”策略。
 - `backend-service/app/platform/admin` 承载底座管理后台基础 API，不再继续承接 AVMC 业务模块。
 - `backend-service/app/version/service` 保留为版本发布服务候选边界，当前冻结，迭代 3 前只做边界复审。
-- `frontend-service/apps/admin-antd-avmc` 是唯一默认后台开发目标。
+- `frontend-service/apps/web-antd-admin` 是当前底座管理后台默认开发目标。
 - `docs/archive` 只作为历史资料，不作为默认实现依据。

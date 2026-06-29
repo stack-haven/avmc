@@ -22,7 +22,7 @@
 
 前端：
 
-- `frontend-service/apps/admin-antd-avmc`：历史上承载 AVMC 管理后台，当前目标调整为底座管理后台前端；AVMC 业务前端落点待定义。
+- `frontend-service/apps/web-antd-admin`：当前承载底座管理后台前端；AVMC 业务前端落点待定义。
 
 ## 资料入口
 

@@ -14,7 +14,7 @@ name: avmc-frontend-page
 
 # AVMC 前端管理页面生成
 
-生成标准 Vben Admin CRUD 页面骨架。所有文件生成在 `frontend-service/apps/admin-antd-avmc` 下。
+生成标准 Vben Admin CRUD 页面骨架。底座管理后台页面生成在 `frontend-service/apps/web-antd-admin` 下；AVMC 业务页面需先确认前端服务边界。
 
 ## 输入要求
 

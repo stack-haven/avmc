@@ -50,7 +50,7 @@
 
 前端当前管理后台开发通常优先落在：
 
-- `frontend-service/apps/admin-antd-avmc`：当前管理后台应用路径暂未改名，目标身份调整为底座管理后台前端。
+- `frontend-service/apps/web-antd-admin`：当前底座管理后台前端应用。
 
 `frontend-service/packages` 下的共享前端包只用于跨应用的 Vben 公共能力。不要把一次性的项目服务页面逻辑放进去。
 
@@ -88,7 +88,7 @@
 
 ## 前端事实来源
 
-`frontend-service/apps/admin-antd-avmc` 当前作为底座管理后台前端使用。使用该应用已有的 Vben 模式：
+`frontend-service/apps/web-antd-admin` 当前作为底座管理后台前端使用。使用该应用已有的 Vben 模式：
 
 - 路由放在 `src/router/routes/modules`
 - 页面放在 `src/views`
@@ -118,7 +118,7 @@
 
 ```bash
 rg "doc/vibe-coding|doc/product|Spring Boot|Django|React/Vue" README.md docs/vibe-coding .codex
-rg "admin-antd-avmc|backend-service/app/platform/admin|service -> biz -> data" .codex docs README.md
+rg "web-antd-admin|backend-service/app/platform/admin|service -> biz -> data" .codex docs README.md
 rg "项目开发底座|应用版本管理中心|项目服务" .codex docs README.md
 rg "version/service|当前冻结|迭代 3" docs/architecture docs/product .codex README.md
 git diff -- .codex README.md docs
@@ -127,4 +127,4 @@ git diff -- .codex README.md docs
 代码改动使用最近的服务或应用检查。优先使用：
 
 - 后端：在 `backend-service` 或具体服务目录运行 `go test ./...`。
-- 前端：在 `frontend-service` 运行 `pnpm -F @vben/admin-antd-avmc run typecheck`，以及相关 lint/build 命令。
+- 前端：在 `frontend-service` 运行 `pnpm -F @vben/web-antd-admin run typecheck`，以及相关 lint/build 命令。

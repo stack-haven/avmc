@@ -31,28 +31,29 @@ avmc/
 
 | 层级 | 技术 |
 |------|------|
-| 后端 | Go + go-kratos v2（大仓 + 微服务模式） |
+| 后端 | Go 1.24.6 + go-kratos v2（大仓 + 微服务模式） |
 | API | Protobuf + gRPC + HTTP (Google HTTP annotations) + Buf |
-| ORM | Ent |
-| DI | Wire |
-| 前端 | Vue 3 + TypeScript + Vben Admin + Ant Design Vue |
-| 构建 | Vite + pnpm workspace |
+| ORM | Ent v0.14.5 |
+| DI | Wire v0.7.0 |
+| 前端 | Vue 3 + TypeScript + Vben Admin 5.7 + Ant Design Vue |
+| 构建 | Vite + pnpm 11.5.2 workspace + Turbo |
 | 状态管理 | Pinia |
 | 数据库 | MySQL / PostgreSQL |
 | 缓存 | Redis（可选） |
 | 认证 | JWT + Casbin |
+| Node.js | ^22.18.0 |
 
 ## 活跃开发区域
 
 ### 后端
-- `backend-service/app/avmc/admin` — AVMC 管理后台和核心管理 API（迭代 1、2 的默认目标）
-- `backend-service/app/avmc/ai` — AI/chat 相关服务
-- `backend-service/app/version/service` — 版本发布服务
+- `backend-service/app/platform/admin` — 底座管理后台基础服务（认证、用户、角色、菜单、权限、项目管理；迭代 1、2 的默认目标）
+- `backend-service/app/ai/service` — AI/chat 相关服务
+- `backend-service/app/version/service` — 版本发布服务（当前冻结，不作为迭代 1/2 默认开发落点）
 
 当前阶段采用"大仓 + 模块化单服务优先"策略，不要因为新增业务模块就默认创建新的 Kratos service。
 
 ### 前端
-- `frontend-service/apps/admin-antd-avmc` — AVMC 业务管理后台（默认开发目标）
+- `frontend-service/apps/web-antd-admin` — 底座管理后台前端（当前默认开发目标）
 - 其他 Vben 应用 (`web-antd`, `web-ele`, `web-naive`, `web-tdesign`, `playground`) 只作为示例或参考
 
 ## 后端开发规则
@@ -136,20 +137,35 @@ Page
 
 ## 验证命令
 
-### 后端
+### 后端（根目录 `backend-service/`）
+
 ```bash
-cd backend-service
-go test ./...
-buf lint                          # 契约变更时
-buf breaking --against '<基准>'    # breaking change 检查
+# 根 Makefile 目标
+make check              # fmt-check + go vet + go test + git diff-check（质量门禁）
+make fmt-check          # gofmt 格式检查
+make build              # 编译所有包到 bin/
+make generate           # go generate ./... + go mod tidy
+make proto              # buf 生成 protobuf Go 代码
+make proto-lint         # buf lint 检查
+make contract-check     # proto-lint + generate-check（CI 契约检查）
+make admin-migrate      # 运行 admin 数据库迁移
+make ai-migrate         # 运行 ai 数据库迁移
+make admin-policy       # 注入 admin Casbin 策略
+
+# 通用 Go 命令
+go test ./...           # 运行所有测试
+go vet ./...            # 静态分析
+go mod tidy             # 整理依赖
+buf lint                # protobuf lint（契约变更时）
+buf breaking --against '<基准>'  # breaking change 检查
 ```
 
 ### 前端
 ```bash
 cd frontend-service
-pnpm -F @vben/admin-antd-avmc run dev       # 启动开发服务器
-pnpm -F @vben/admin-antd-avmc run typecheck # 类型检查
-pnpm -F @vben/admin-antd-avmc run build     # 构建
+pnpm -F @vben/web-antd-admin run dev       # 启动开发服务器
+pnpm -F @vben/web-antd-admin run typecheck # 类型检查
+pnpm -F @vben/web-antd-admin run build     # 构建
 ```
 
 ## 迭代开发进度（当前）

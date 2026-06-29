@@ -85,7 +85,7 @@ router -> views -> data.ts -> modules -> api -> locales
 - 生成文件（`backend-service/api`、`internal/conf`、`ent/gen`）不手工编辑
 
 ### 前端实现要求
-- AVMC 业务页面默认放在 `frontend-service/apps/admin-antd-avmc`
+- 底座管理后台页面默认放在 `frontend-service/apps/web-antd-admin`；AVMC 业务页面落点需先确认服务边界
 - 优先使用 `Page + useVbenVxeGrid + useVbenDrawer + useVbenForm` 模式
 - 新增可见 UI 文案同时添加中文和英文 locale key
 - 破坏性操作（删除、发布、撤回、回滚）必须二次确认
@@ -103,8 +103,8 @@ cd proto && buf lint && buf breaking --against '.git'
 ### 前端检查
 ```bash
 cd frontend-service
-pnpm -F @vben/admin-antd-avmc run typecheck
-pnpm -F @vben/admin-antd-avmc run build
+pnpm -F @vben/web-antd-admin run typecheck
+pnpm -F @vben/web-antd-admin run build
 ```
 
 ### 子仓库审计

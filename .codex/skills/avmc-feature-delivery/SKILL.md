@@ -114,8 +114,8 @@ buf breaking
 前端常用检查：
 
 ```bash
-pnpm -F @vben/admin-antd-avmc run typecheck
-pnpm -F @vben/admin-antd-avmc run build
+pnpm -F @vben/web-antd-admin run typecheck
+pnpm -F @vben/web-antd-admin run build
 pnpm run test:unit
 ```
 
@@ -142,7 +142,7 @@ pnpm run test:unit
 ## 强制约束
 
 - `backend-service/app/platform/admin` 当前只承接底座管理后台基础能力，不再默认承接 AVMC 业务模块。
-- 当前 `frontend-service/apps/admin-antd-avmc` 暂作为底座管理后台前端；AVMC 业务前端落点待确认。
+- 当前 `frontend-service/apps/web-antd-admin` 作为底座管理后台前端；AVMC 业务前端落点待确认。
 - 后端 API 修改必须从 `backend-service/proto` 开始；不得手工修改生成的 API 或 Ent 文件。
 - 优先复用现有 Vben CRUD 模式和公共消息，再考虑新增抽象。
 - 新增可见 UI 文案时，同时添加中文和英文 locale。

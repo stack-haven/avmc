@@ -170,7 +170,7 @@ Vibe Coding 是一套为项目开发底座定制的代码风格和开发规范�
 - 产品与设计资料位于 `docs/product`。
 - Vibe Coding 规范位于 `docs/vibe-coding`。
 - 后端底座管理后台基础能力优先落在 `backend-service/app/platform/admin`；AI/chat 通用能力落在 `backend-service/app/ai/service`；AVMC 业务服务落点待定义；`backend-service/app/version/service` 当前冻结，仅保留为迭代 3 复审候选。
-- 前端底座管理后台当前优先落在 `frontend-service/apps/admin-antd-avmc`，后续是否改名另行确认。
+- 前端底座管理后台当前优先落在 `frontend-service/apps/web-antd-admin`。
 - `backend-service-pkg-bakup` 是备份/参考目录，不作为默认开发目标。
 
 
@@ -204,7 +204,7 @@ backend-service/
 ```
 frontend-service/
 ├── apps/                # 应用
-│   ├── admin-antd-avmc/ # AVMC 项目服务管理后台
+│   ├── web-antd-admin/  # 底座管理后台前端
 │   │   ├── public/      # 静态资源
 │   │   ├── src/         # 源代码
 │   │   │   ├── adapter/ # 适配器

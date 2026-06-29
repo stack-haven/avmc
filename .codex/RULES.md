@@ -118,7 +118,7 @@ backend-service/proto
 
 ### 活跃前端应用
 
-`frontend-service/apps/admin-antd-avmc` 当前作为底座管理后台前端。它使用：
+`frontend-service/apps/web-antd-admin` 当前作为底座管理后台前端。它使用：
 
 - Vue 3 + TypeScript
 - Vite
@@ -139,7 +139,7 @@ backend-service/proto
 
 ### 前端目录规则
 
-`apps/admin-antd-avmc/src` 内部结构：
+`apps/web-antd-admin/src` 内部结构：
 
 ```text
 adapter/       # Vben form/table/component adapters
@@ -180,15 +180,15 @@ Page
 - Node.js：`>=20.19.0`
 - pnpm：`>=10.0.0`
 - package manager：`pnpm@10.28.1`
-- 当前 AVMC 服务主应用包名：`@vben/admin-antd-avmc`
+- 当前底座管理后台前端应用包名：`@vben/web-antd-admin`
 
 在 `frontend-service` 中常用命令：
 
 ```bash
 pnpm install
-pnpm -F @vben/admin-antd-avmc run dev
-pnpm -F @vben/admin-antd-avmc run typecheck
-pnpm -F @vben/admin-antd-avmc run build
+pnpm -F @vben/web-antd-admin run dev
+pnpm -F @vben/web-antd-admin run typecheck
+pnpm -F @vben/web-antd-admin run build
 ```
 
 ## 命名与生成输出

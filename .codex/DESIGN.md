@@ -28,7 +28,7 @@ AVMC 服务是运营管理后台。页面应安静、紧凑，适合高频重复
 
 ## 标准管理页模式
 
-使用 `frontend-service/apps/admin-antd-avmc` 中现有的 Vben Ant Design 实现风格：
+使用 `frontend-service/apps/web-antd-admin` 中现有的 Vben Ant Design 实现风格：
 
 ```text
 list.vue      # 页面壳、表格、工具栏、行操作

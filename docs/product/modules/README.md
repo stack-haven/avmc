@@ -13,9 +13,9 @@
 
 | 模块组 | 模块 | 状态 | 默认后端落点 | 默认前端落点 | 下一步入口 |
 | --- | --- | --- | --- | --- | --- |
-| 底座与权限 | 认证、用户、角色、菜单、部门、岗位 | active | `backend-service/app/platform/admin` | `frontend-service/apps/admin-antd-avmc` | 作为底座管理后台基础能力继续收敛 |
-| 底座配置 | 中台权限菜单分配、业务中台基础配置、项目服务配置入口 | planned | `backend-service/app/platform/admin` | `frontend-service/apps/admin-antd-avmc` | 补菜单权限分配、基础配置、操作日志 |
-| 项目管理能力 | 项目管理、项目成员、项目权限 | active | `backend-service/app/platform/admin` | `frontend-service/apps/admin-antd-avmc` | 作为底座项目服务边界能力继续收敛 |
+| 底座与权限 | 认证、用户、角色、菜单、部门、岗位 | active | `backend-service/app/platform/admin` | `frontend-service/apps/web-antd-admin` | 作为底座管理后台基础能力继续收敛 |
+| 底座配置 | 中台权限菜单分配、业务中台基础配置、项目服务配置入口 | planned | `backend-service/app/platform/admin` | `frontend-service/apps/web-antd-admin` | 补菜单权限分配、基础配置、操作日志 |
+| 项目管理能力 | 项目管理、项目成员、项目权限 | active | `backend-service/app/platform/admin` | `frontend-service/apps/web-antd-admin` | 作为底座项目服务边界能力继续收敛 |
 | 版本主链路 | 版本管理 MVP | planned | 待定义 AVMC 业务服务 | 待定义 | 不再进入 `app/platform/admin` |
 | 发布主链路 | Release 管理后台 | planned | 待定义 AVMC 业务服务 | 待定义 | 不再进入 `app/platform/admin` |
 | 发布主链路 | 客户端版本检查 API | planned | 迭代 3 复审 | 按需 | 决定是否升级 `version/service` |
@@ -37,7 +37,7 @@
 
 ## 新模块落点规则
 
-- 底座基础能力默认落在 `backend-service/app/platform/admin` 和 `frontend-service/apps/admin-antd-avmc`。
+- 底座基础能力默认落在 `backend-service/app/platform/admin` 和 `frontend-service/apps/web-antd-admin`。
 - AVMC 业务能力不再默认落入 `backend-service/app/platform/admin`。
 - 只有 `docs/architecture/00-AVMC-后端底座架构决策.md` 中的拆分条件满足时，才提出新服务。
 - 后端新增 API 必须从 `backend-service/proto` 开始。

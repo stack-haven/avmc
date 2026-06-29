@@ -16,7 +16,7 @@
 
 ## 当前实现基线
 
-- 当前 `frontend-service/apps/admin-antd-avmc` 暂作为底座管理后台前端，包名仍为 `@vben/admin-antd-avmc`，是否改名另行确认。
+- 当前 `frontend-service/apps/web-antd-admin` 作为底座管理后台前端，包名为 `@vben/web-antd-admin`。
 - `web-antd`、`web-ele`、`web-naive`、`web-tdesign` 和 `playground` 主要作为 Vben 示例或参考，除非任务明确指定，否则不要作为业务实现目标。
 - Node.js 要求 `>=20.19.0`，pnpm 要求 `>=10.0.0`，仓库 packageManager 为 `pnpm@10.28.1`。
 - 业务页面优先使用现有 `Page + useVbenVxeGrid + useVbenDrawer + useVbenForm` 模式。
@@ -26,7 +26,7 @@
 - **框架**：Vue 3 + TypeScript
 - **构建工具**：Vite
 - **UI 框架**：
-  - Ant Design Vue（admin-antd-avmc）
+  - Ant Design Vue（web-antd-admin）
   - Element Plus（web-ele）
   - Naive UI（web-naive）
   - TDesign（web-tdesign）
@@ -39,7 +39,7 @@
 ## 📁 前端项目结构
 
 ```
-frontend-service/apps/admin-antd-avmc/
+frontend-service/apps/web-antd-admin/
 ├── public/              # 静态资源
 ├── src/                 # 源代码
 │   ├── adapter/         # 适配器

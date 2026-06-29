@@ -113,8 +113,8 @@ git clone --recurse-submodules https://github.com/stack-haven/avmc.git
 1.  **安装 Node.js 与 pnpm**：Node.js `>=20.19.0`，pnpm `>=10.0.0`。
 2.  **进入前端目录**：`cd ../frontend-service`
 3.  **安装依赖**：`pnpm install`
-4.  **配置 API 地址**：修改 `apps/admin-antd-avmc/.env*`，配置后端 API 地址。
-5.  **运行管理后台**：`pnpm -F @vben/admin-antd-avmc run dev`
+4.  **配置 API 地址**：修改 `apps/web-antd-admin/.env*`，配置后端 API 地址。
+5.  **运行管理后台**：`pnpm -F @vben/web-antd-admin run dev`
 
 ### 🌐 访问系统
 

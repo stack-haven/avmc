@@ -348,7 +348,7 @@
 
 ## 6. 管理后台 UI 要求
 
-管理后台使用 `frontend-service/apps/admin-antd-avmc`，优先遵循以下模式：
+底座管理后台使用 `frontend-service/apps/web-antd-admin`，优先遵循以下模式：
 
 - 页面放在 `src/views/<module>`。
 - 路由放在 `src/router/routes/modules`。
