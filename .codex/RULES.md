@@ -178,8 +178,8 @@ Page
 ### 前端工具链
 
 - Node.js：`>=20.19.0`
-- pnpm：`>=10.0.0`
-- package manager：`pnpm@10.28.1`
+- pnpm：`>=11.0.0`
+- package manager：`pnpm@11.5.2`
 - 当前底座管理后台前端应用包名：`@vben/web-antd-admin`
 
 在 `frontend-service` 中常用命令：

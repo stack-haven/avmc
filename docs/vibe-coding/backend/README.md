@@ -41,12 +41,12 @@
 ```
 backend-service/
 ├── api/                 # 生成的 API 代码
-│   ├── avmc/            # AVMC 项目服务 API
-│   │   └── admin/v1/     # AVMC 项目服务管理接口
+│   ├── platform/            # 底座管理后台 API
+│   │   └── admin/v1/     # 底座管理后台基础服务接口
 │   ├── common/          # 公共 API 定义
 │   └── core/            # 核心服务 API
 ├── app/                 # 应用服务
-│   ├── avmc/admin/      # 底座管理后台基础服务，当前路径待复审
+│   ├── platform/admin/      # 底座管理后台基础服务
 │   │   ├── cmd/         # 命令行入口
 │   │   │   └── server/  # 服务器启动
 │   │   ├── configs/     # 配置文件
@@ -78,7 +78,7 @@ backend-service/
 │   │   └── trans/         # 翻译
 │   └── viewer/          # 视图工具
 ├── proto/               # Protobuf 定义文件
-│   ├── avmc/            # 当前包含底座管理后台历史路径和 AVMC proto
+│   ├── platform/            # 底座管理后台 proto
 │   │   └── admin/v1/      # 管理接口
 │   ├── common/          # 公共定义
 │   │   ├── conf/          # 配置
@@ -812,17 +812,17 @@ backend-service/
   COPY . .
   
   RUN go mod tidy
-  RUN go build -o avmc ./cmd/server
+  RUN go build -o server ./cmd/server
   
   FROM alpine:latest
   
   WORKDIR /app
-  COPY --from=builder /app/avmc /app/
+  COPY --from=builder /app/server /app/
   COPY --from=builder /app/configs /app/configs
   
   EXPOSE 8000 9000
   
-  CMD ["./avmc"]
+  CMD ["./server"]
   ```
 
 ### 2. 环境配置

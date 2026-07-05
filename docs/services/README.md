@@ -6,12 +6,12 @@
 
 | 服务 | 状态 | 代码落点 | 资料入口 |
 | --- | --- | --- | --- |
-| 应用版本管理中心（AVMC） | boundary pending | 后端业务服务待定义，历史/候选边界见服务文档 | `docs/services/app-version-management/README.md` |
+| 应用版本管理中心（参考） | historical | 历史业务服务定义，作为后续新业务服务定义参考 | `docs/services/app-version-management/README.md` |
 
 ## 使用规则
 
 - 新增业务服务前，先在本目录增加服务定义，再补产品需求和代码落点。
 - 服务定义用于说明“这个业务是什么”；架构决策仍放在 `docs/architecture`。
 - 服务产品需求可以放在 `docs/product`，但必须在服务定义中声明资料入口，避免把底座和单个服务混为一谈。
-- 当前 `docs/product` 主要归档应用版本管理中心服务资料。
-- `backend-service/app/platform/admin` 当前是底座管理后台基础服务，不再作为 AVMC 业务服务默认落点。
+- 当前 `docs/product` 主要归档历史业务服务资料。
+- `backend-service/app/platform/admin` 当前是底座管理后台基础服务，不作为业务服务默认落点。

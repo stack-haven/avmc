@@ -1,6 +1,6 @@
 # 贡献指南（Contributing Guide）
 
-欢迎来到 AVMC 项目！我们非常欢迎你的贡献，无论是代码提交、文档改进，还是 Bug 报告和新功能建议。请阅读以下指南，以确保协作顺利高效。
+欢迎为本项目贡献代码！我们非常欢迎你的贡献，无论是代码提交、文档改进，还是 Bug 报告和新功能建议。请阅读以下指南，以确保协作顺利高效。
 
 ---
 
@@ -25,8 +25,8 @@
 ### 2. 克隆项目并初始化子模块
 
 ```bash
-git clone --recurse-submodules https://github.com/your-username/avmc.git
-cd avmc
+git clone --recurse-submodules https://github.com/your-username/saas-base.git
+cd saas-base
 ```
 
 ### 3. 创建新的开发分支
@@ -92,4 +92,4 @@ git push origin feature/your-feature-name
 
 ## ❤️ 感谢
 
-感谢你参与 AVMC 项目的构建与完善，我们期待与你一起打造更强大、智能、开放的版本管理平台！
+感谢你的贡献！我们期待与你一起打造更完善的多租户项目开发底座。

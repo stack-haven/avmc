@@ -18,8 +18,15 @@
 
 - 当前 `frontend-service/apps/web-antd-admin` 作为底座管理后台前端，包名为 `@vben/web-antd-admin`。
 - `web-antd`、`web-ele`、`web-naive`、`web-tdesign` 和 `playground` 主要作为 Vben 示例或参考，除非任务明确指定，否则不要作为业务实现目标。
-- Node.js 要求 `>=20.19.0`，pnpm 要求 `>=10.0.0`，仓库 packageManager 为 `pnpm@10.28.1`。
+- Node.js 要求 `^22.18.0 || ^24.0.0`，pnpm 要求 `>=11.0.0`，仓库 packageManager 为 `pnpm@11.5.2`。
 - 业务页面优先使用现有 `Page + useVbenVxeGrid + useVbenDrawer + useVbenForm` 模式。
+
+### 样式编译器
+
+- 工作区统一使用纯 JavaScript `sass`，不使用 `sass-embedded`。
+- `pnpm-workspace.yaml` 必须将 `sass-embedded` 放入 `ignoredOptionalDependencies`。
+- 原因是 `sass-embedded@1.100.0` 的 macOS x64 Dart VM 在当前开发环境启动即崩溃，并导致 Vite 构建挂起。
+- 升级 Vite、tsdown 或 Sass 后，必须同时执行 `pnpm --filter @vben/web-antd-admin build`，不能只依赖类型检查。
 
 ## 🎯 技术栈
 

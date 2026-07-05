@@ -27,7 +27,7 @@
 2. `.codex/RULES.md`
 3. `.codex/DESIGN.md`
 4. `docs/architecture/README.md`
-5. `docs/architecture/00-AVMC-后端底座架构决策.md`
+5. `docs/architecture/00-后端底座架构决策.md`
 6. `docs/services/README.md`
 7. `docs/services/app-version-management/README.md`
 8. 同一后端服务或前端应用中最接近的现有代码。

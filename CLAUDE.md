@@ -1,13 +1,13 @@
-# AVMC 项目指南
+# 项目开发底座指南
 
 ## 项目概述
 
-AVMC (App Version Management Center) 是一套为多项目应用提供版本控制、灰度发布、用户反馈、推送通知与用户管理的开源系统平台。
+本项目是一个 SaaS 多租户项目开发底座，提供认证授权、项目边界、数据隔离、菜单权限、操作审计、数据字典、租户生命周期等基础治理能力。底座之上可承载多个可扩展的业务项目服务。
 
 ## 仓库结构
 
 ```
-avmc/
+saas-base/
 ├── backend-service/          # Go + go-kratos 后端工作区 (子模块)
 ├── frontend-service/         # Vue Vben Admin pnpm monorepo (子模块)
 ├── docs/product/             # 当前产品需求和迭代开发主文档
@@ -46,9 +46,9 @@ avmc/
 ## 活跃开发区域
 
 ### 后端
-- `backend-service/app/platform/admin` — 底座管理后台基础服务（认证、用户、角色、菜单、权限、项目管理；迭代 1、2 的默认目标）
-- `backend-service/app/ai/service` — AI/chat 相关服务
-- `backend-service/app/version/service` — 版本发布服务（当前冻结，不作为迭代 1/2 默认开发落点）
+- `backend-service/app/platform/admin` — 底座管理后台基础服务（认证、用户、角色、菜单、权限、租户管理、字典、审计、会话；默认开发目标）
+- `backend-service/app/ai/service` — AI/chat 通用能力服务
+- `backend-service/app/version/service` — 历史版本发布服务雏形（当前冻结，待复审）
 
 当前阶段采用"大仓 + 模块化单服务优先"策略，不要因为新增业务模块就默认创建新的 Kratos service。
 
@@ -168,11 +168,32 @@ pnpm -F @vben/web-antd-admin run typecheck # 类型检查
 pnpm -F @vben/web-antd-admin run build     # 构建
 ```
 
-## 迭代开发进度（当前）
+## 底座治理能力开发进度（当前）
 
-当前处于 **迭代 1**（基础权限与项目管理）收尾阶段：
-- ✅ 项目管理后端 MVP 完成（proto、Ent schema、repo、usecase、service）
-- ✅ 项目管理前端基础页面完成（列表、筛选、创建/编辑 drawer）
-- ⏳ 项目权限配置入口、项目级成员角色和操作日志仍待补充
+底座多租户能力已基本完成：
 
-下一步计划：**迭代 2**（版本管理 MVP）
+### ✅ 已完成的底座能力
+| 能力 | 状态 |
+|------|------|
+| 租户生命周期（5 状态状态机） | ✅ 已完成 |
+| 租户业务套餐（菜单权限组） | ✅ 已完成 |
+| 租户原子开通事务 | ✅ 已完成 |
+| 数据字典（租户隔离） | ✅ 已完成 |
+| 操作审计日志（Middleware 自动捕获） | ✅ 已完成 |
+| 登录安全日志（LoginLog） | ✅ 已完成 |
+| Token 会话化（多设备支持） | ✅ 已完成 |
+| 会话管理（列表/强制下线） | ✅ 已完成 |
+| 用户/角色/菜单/部门/岗位管理 | ✅ 已完成 |
+| 项目管理 | ✅ MVP 已完成 |
+| 认证安全（JWT + 失败锁定） | ✅ 已完成 |
+
+### ⏳ 待补充的底座能力
+| 能力 | 状态 |
+|------|------|
+| 参数配置中心 | P1 计划 |
+| 数据权限 | P1 计划 |
+| 文件与对象存储 | P1 计划 |
+| 通知中心 | P1 计划 |
+
+### 📋 下一步
+底座基础治理能力完成后，可启动业务项目服务的定义和开发。
