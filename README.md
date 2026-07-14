@@ -116,14 +116,13 @@ git clone --recurse-submodules https://github.com/stack-haven/avmc.git
 该命令统一验证 Proto 契约、Buf lint 无新增债务基线、平台后端测试、差异格式、管理后台类型检查和生产构建。
 数据库迁移、Mock 初始化及 HTTP 权限场景需要在 MySQL、Redis 启动后单独执行。
 
-MySQL、Redis 和前端依赖均可用时，可执行真实后端页面验收：
+MySQL、Redis 和前端依赖均可用时，在根目录执行真实链路验收：
 
 ```bash
-cd frontend-service
-pnpm --filter @vben/web-antd-admin test:e2e
+./scripts/verify-foundation-live.sh
 ```
 
-该测试会关闭 Nitro Mock，启动平台后端和管理后台，并验证租户、业务套餐、角色、用户、参数和异步任务页面。
+该命令会执行平台管理后台迁移、连续两次 Mock 初始化并比较校验输出，再关闭 Nitro Mock 启动真实后端和管理后台，验证租户、业务套餐、角色、用户、参数和异步任务页面。
 
 ### 🌐 访问系统
 
