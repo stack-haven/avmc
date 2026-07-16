@@ -24,6 +24,7 @@
 - 业务实现按 `service -> biz/usecase -> data/repo -> ent schema` 分层。
 - 活跃基础服务为 `backend-service/app/platform/admin` 和 `backend-service/app/ai/service`；`backend-service/app/platform/admin` 当前作为底座管理后台基础服务；`backend-service/app/version/service` 是已存在版本发布服务雏形，当前冻结，迭代 3 前不作为新增业务落点。
 - 生成代码、Swagger UI bundle、Ent gen 目录不手工修改。
+- Buf 与 Protobuf 生成流程见 [Buf 与 Protobuf 标准生成流程](./proto-buf-generation.md)。
 
 ## 🎯 技术栈
 
