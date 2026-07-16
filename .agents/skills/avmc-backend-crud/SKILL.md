@@ -1,6 +1,6 @@
 ---
 description: |
-  为 AVMC 后端生成完整 CRUD 全链路代码。当需要新增业务模块并走完 proto → service → biz → data → ent → wire 完整链路时触发。
+  为 项目开发底座 后端生成完整 CRUD 全链路代码。当需要新增业务模块并走完 proto → service → biz → data → ent → wire 完整链路时触发。
 
   触发场景：
   - "新增 XXX 管理的 CRUD" / "为 XXX 创建后端接口"
@@ -12,7 +12,7 @@ description: |
 name: avmc-backend-crud
 ---
 
-# AVMC 后端 CRUD 生成
+# 项目开发底座 后端 CRUD 生成
 
 生成后端 CRUD 六层代码，确保所有分层一致且符合项目约定。
 
@@ -32,7 +32,7 @@ name: avmc-backend-crud
 
 ## 生成
 
-### 1. Protobuf 契约（`backend-service/proto/avmc/admin/v1/`）
+### 1. Protobuf 契约（`backend-service/app/platform/admin/v1/`）
 
 生成以下消息和 RPC 定义：
 
@@ -108,7 +108,7 @@ type XxxRepo interface {
 ## 验证
 
 ```bash
-cd backend-service/app/avmc/admin
+cd backend-service/app/platform/admin
 go build ./...
 go test ./...
 ```
