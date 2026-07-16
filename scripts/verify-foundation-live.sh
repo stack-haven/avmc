@@ -42,7 +42,13 @@ if ! diff -u "${FIRST_COUNTS}" "${SECOND_COUNTS}"; then
   exit 1
 fi
 
-echo "[4/4] Run admin frontend E2E against real backend"
+echo "[4/5] Verify Redis-backed tenant authorization cache"
+(
+  cd "${BACKEND_DIR}"
+  GOCACHE="${GOCACHE_DIR}" go test -tags=integration ./app/platform/admin/internal/data -run '^TestTenantAuthorizationCacheWithRedisVersions$'
+)
+
+echo "[5/5] Run admin frontend E2E against real backend"
 (
   cd "${FRONTEND_DIR}"
   pnpm --filter @vben/web-antd-admin test:e2e
