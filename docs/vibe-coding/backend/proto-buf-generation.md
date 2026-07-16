@@ -69,8 +69,9 @@ GOCACHE=/private/tmp/avmc-go-cache make generate-check
 2. `make ent`
 3. `make config`
 4. `make doc`
-5. `go mod tidy`
-6. `make diff-check`
+5. `make wire`
+6. `go mod tidy`
+7. `make diff-check`
 
 服务目录 `generate-check` 负责检查本服务生成产物：全局 `api`、`app/platform/admin/cmd/server/assets/openapi.yaml`、`app/platform/admin/internal/conf`、`app/platform/admin/internal/data/ent/gen`、`go.mod`、`go.sum`。
 
@@ -83,10 +84,13 @@ cd backend-service/app/platform/admin
 make doc      # 生成 platform/admin OpenAPI 文档
 make config   # 生成 platform/admin internal/conf
 make ent      # 生成 platform/admin Ent 代码
+make race     # 检查 platform/admin 服务包并发数据竞争
 make migrate  # 执行 platform/admin 数据库迁移
 make policy   # 初始化 platform/admin 授权策略
 make mock     # 生成 platform/admin 演示数据
 ```
+
+根目录 `make race` 只覆盖全局共享包，例如 `pkg/auth`、`pkg/health`、`pkg/middleware`。服务级并发检测必须进入服务目录执行，例如 `cd backend-service/app/platform/admin && make race`。
 
 如果只是检查 proto 是否可编译：
 
