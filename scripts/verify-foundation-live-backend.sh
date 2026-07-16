@@ -10,25 +10,31 @@ FIRST_MOCK_LOG="$(mktemp "${TMPDIR:-/tmp}/avmc-mock-first.XXXXXX")"
 SECOND_MOCK_LOG="$(mktemp "${TMPDIR:-/tmp}/avmc-mock-second.XXXXXX")"
 FIRST_COUNTS="$(mktemp "${TMPDIR:-/tmp}/avmc-mock-first-counts.XXXXXX")"
 SECOND_COUNTS="$(mktemp "${TMPDIR:-/tmp}/avmc-mock-second-counts.XXXXXX")"
+SERVER_LOG="$(mktemp "${TMPDIR:-/tmp}/avmc-platform-admin-server.XXXXXX")"
+SERVER_PID=""
 
 cleanup() {
-  rm -f "${FIRST_MOCK_LOG}" "${SECOND_MOCK_LOG}" "${FIRST_COUNTS}" "${SECOND_COUNTS}"
+  if [[ -n "${SERVER_PID}" ]] && kill -0 "${SERVER_PID}" >/dev/null 2>&1; then
+    kill "${SERVER_PID}" >/dev/null 2>&1 || true
+    wait "${SERVER_PID}" >/dev/null 2>&1 || true
+  fi
+  rm -f "${FIRST_MOCK_LOG}" "${SECOND_MOCK_LOG}" "${FIRST_COUNTS}" "${SECOND_COUNTS}" "${SERVER_LOG}"
 }
 trap cleanup EXIT
 
-echo "[1/4] Run platform admin database migration"
+echo "[1/5] Run platform admin database migration"
 (
   cd "${ADMIN_DIR}"
   GOCACHE="${GOCACHE_DIR}" go run ./cmd/migrate -conf ./configs
 )
 
-echo "[2/4] Seed and verify platform admin mock data"
+echo "[2/5] Seed and verify platform admin mock data"
 (
   cd "${ADMIN_DIR}"
   GOCACHE="${GOCACHE_DIR}" go run ./cmd/mock -conf ./configs
 ) | tee "${FIRST_MOCK_LOG}"
 
-echo "[3/4] Re-run mock seed and compare verification output"
+echo "[3/5] Re-run mock seed and compare verification output"
 (
   cd "${ADMIN_DIR}"
   GOCACHE="${GOCACHE_DIR}" go run ./cmd/mock -conf ./configs
@@ -41,10 +47,42 @@ if ! diff -u "${FIRST_COUNTS}" "${SECOND_COUNTS}"; then
   exit 1
 fi
 
-echo "[4/4] Verify Redis-backed tenant authorization cache"
+echo "[4/5] Verify Redis-backed tenant authorization cache"
 (
   cd "${BACKEND_DIR}"
   GOCACHE="${GOCACHE_DIR}" go test -tags=integration ./app/platform/admin/internal/data -run '^TestTenantAuthorizationCacheWithRedisVersions$'
 )
+
+echo "[5/5] Verify service readiness and authorization cache health"
+(
+  cd "${ADMIN_DIR}"
+  GOCACHE="${GOCACHE_DIR}" go run ./cmd/server -conf ./configs
+) >"${SERVER_LOG}" 2>&1 &
+SERVER_PID=$!
+
+readiness_output=""
+ready=0
+for _ in {1..30}; do
+  if ! kill -0 "${SERVER_PID}" >/dev/null 2>&1; then
+    cat "${SERVER_LOG}" >&2
+    echo "platform admin server exited before readiness check passed" >&2
+    exit 1
+  fi
+  if readiness_output="$(HEALTH_URL="${HEALTH_URL:-http://127.0.0.1:8000/health/ready}" "${ROOT_DIR}/scripts/check-authorization-cache-health.sh" 2>&1)"; then
+    echo "${readiness_output}"
+    ready=1
+    break
+  fi
+  sleep 1
+done
+
+if [[ "${ready}" != "1" ]]; then
+  cat "${SERVER_LOG}" >&2
+  if [[ -n "${readiness_output}" ]]; then
+    echo "${readiness_output}" >&2
+  fi
+  echo "platform admin readiness check did not pass within 30 seconds" >&2
+  exit 1
+fi
 
 echo "Foundation backend live verification passed."
