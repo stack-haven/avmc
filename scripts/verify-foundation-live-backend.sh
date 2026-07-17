@@ -53,7 +53,7 @@ echo "[4/5] Verify Redis-backed tenant authorization cache"
   GOCACHE="${GOCACHE_DIR}" go test -tags=integration ./app/platform/admin/internal/data -run '^TestTenantAuthorizationCacheWithRedisVersions$'
 )
 
-echo "[5/5] Verify service readiness and authorization cache health"
+echo "[5/5] Verify service readiness, authorization cache health, and resource quota health"
 (
   cd "${ADMIN_DIR}"
   GOCACHE="${GOCACHE_DIR}" go run ./cmd/server -conf ./configs
@@ -69,9 +69,13 @@ for _ in {1..30}; do
     exit 1
   fi
   if readiness_output="$(HEALTH_URL="${HEALTH_URL:-http://127.0.0.1:8000/health/ready}" "${ROOT_DIR}/scripts/check-authorization-cache-health.sh" 2>&1)"; then
-    echo "${readiness_output}"
-    ready=1
-    break
+    if quota_output="$(HEALTH_URL="${HEALTH_URL:-http://127.0.0.1:8000/health/ready}" "${ROOT_DIR}/scripts/check-resource-quota-health.sh" 2>&1)"; then
+      echo "${readiness_output}"
+      echo "${quota_output}"
+      ready=1
+      break
+    fi
+    readiness_output="${readiness_output}"$'\n'"${quota_output}"
   fi
   sleep 1
 done
