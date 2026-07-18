@@ -133,13 +133,20 @@
 
 目标：为系统公告、告警、审批、用户消息和业务通知提供统一能力。
 
+已具备：
+
+- 站内信通知模板。
+- 站内信异步发送任务。
+- 通知消息记录。
+- 当前用户通知列表和未读数。
+- 单条已读和批量已读。
+- 管理后台通知模板和通知记录页面。
+- Mock 数据和通知菜单权限。
+
 待建设：
 
-- 通知模板。
-- 通知渠道：站内信、邮件、短信、Webhook。
-- 通知任务。
-- 通知记录。
-- 失败重试。
+- 通知渠道：邮件、短信、Webhook。
+- 通知失败重试可视化和渠道响应详情。
 - 用户通知偏好。
 - 租户通知配置。
 - 平台通知公告。
@@ -233,7 +240,7 @@
 | --- | --- | --- | --- |
 | P0 | 安全与权限加固 | 进行中 | 保证租户隔离、权限撤销、缓存一致性和平台控制面边界持续可验证 |
 | P1 | 文件中心闭环 | 已验证 | 完成额度占用释放、访问日志、详情和审计闭环 |
-| P1 | 通知中心 MVP | 下一步 | 支撑站内信、系统公告、异步通知和后续告警 |
+| P1 | 通知中心 MVP | 已验证 | 支撑站内信、系统公告、异步通知和后续告警 |
 | P2 | Webhook 与事件中心 MVP | 待启动 | 支撑外部系统订阅和事件投递 |
 | P2 | 可观测与运维中心 | 待启动 | 支撑真实部署、巡检、告警和问题定位 |
 | P3 | 开发者与模块接入中心 | 待启动 | 提升后续业务模块接入效率和一致性 |
@@ -314,6 +321,27 @@
 - 当前用户只能读取自己的通知。
 - 已读状态可回显，批量已读幂等。
 - 异步发送失败可重试并可在任务中心观察。
+
+状态：已验证。
+
+已完成：
+
+- 新增 `core/service/v1/notification.proto` 和 `platform/admin/v1/i_notification.proto`。
+- 新增 `notification_templates` 与 `notification_messages` Ent schema。
+- 新增 `NotificationService`，覆盖模板管理、站内信发送、通知记录、我的通知、未读数、单条已读和批量已读。
+- 站内信发送接入 `AsyncTask`，任务类型为 `notification.in_app.send`，任务执行时按 payload 租户 ID 解析模板并生成站内信。
+- 管理后台新增 `/system/notification` 页面，支持模板列表、新增、编辑、删除、通知记录列表和发送站内信。
+- Mock 数据新增通知模板、通知消息、未读样例、通知菜单权限和 notification 队列任务。
+
+验证：
+
+- `GOCACHE=/private/tmp/avmc-go-cache go test ./...`
+- `PATH=/Users/jayden/go/bin:$PATH buf build`
+- `PATH=/Users/jayden/go/bin:$PATH ./scripts/check-buf-lint-baseline.sh`
+- `GOCACHE=/private/tmp/avmc-go-cache go run ./cmd/mock -conf ./configs -migrate`
+- `GOCACHE=/private/tmp/avmc-go-cache go run ./cmd/mock -conf ./configs`
+- `pnpm -F @vben/web-antd-admin run typecheck`
+- `pnpm -F @vben/web-antd-admin run build`
 
 ### 阶段三：Webhook 与事件中心 MVP
 
@@ -396,11 +424,13 @@
 - P3 租户业务套餐能力包、资源额度、功能开关。
 - P3 文件中心多存储渠道第一轮：S3-compatible、本地存储、存储渠道管理后台、Mock 数据和文档。
 - P3 文件中心闭环：额度检查、确认占用、删除释放、访问日志、文件详情和访问记录后台。
+- P3 通知中心 MVP：站内信模板、异步发送任务、通知记录、已读未读和后台页面。
 
-下一步默认从 `阶段二：通知中心 MVP` 开始。
+下一步默认从 `阶段三：Webhook 与事件中心 MVP` 开始。
 
 当前保留风险：
 
-- 通知中心和 Webhook 尚未进入实现。
+- Webhook 尚未进入实现。
+- 通知中心仍未实现邮件、短信、Webhook 渠道发送、用户通知偏好、租户通知配置和平台公告。
 - 文件中心仍未实现 Multipart Upload、对象扫描、CDN 私有签名、私有文件下载代理和生命周期策略。
 - 可观测和开发者中心仍以文档规范为主，尚未后台化。
