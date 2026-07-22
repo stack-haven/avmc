@@ -1,6 +1,6 @@
 # Buf 与 Protobuf 标准生成流程
 
-> 适用范围：`backend-service/proto` 下的 API 契约、`backend-service/api` 生成代码，以及各项目服务目录下的 OpenAPI、配置 proto 和 Ent 生成物。
+> 适用范围：`backend-service/proto` 下的 API 契约、`backend-service/api` 生成代码，以及各产品服务目录下的 OpenAPI、配置 proto 和 Ent 生成物。
 
 ## 1. 基本原则
 
@@ -53,7 +53,7 @@ GOCACHE=/private/tmp/avmc-go-cache make generate-check
 2. `go mod tidy`
 3. `make diff-check`
 
-根目录 `generate-check` 只检查全局 API 生成产物：`go.mod`、`go.sum`、`api`。它不生成任何项目服务的 OpenAPI、配置文件或 Ent 代码。
+根目录 `generate-check` 只检查全局 API 生成产物：`go.mod`、`go.sum`、`api`。它不生成任何产品服务的 OpenAPI、配置文件或 Ent 代码。
 
 ### 3.2 Platform Admin 服务生成
 

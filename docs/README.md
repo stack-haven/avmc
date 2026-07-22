@@ -1,22 +1,27 @@
-# 项目开发底座文档中心
+# Ark Tech Platform 文档中心
 
-本文档目录按"架构决策、项目服务、开发规范、历史归档"分层，方便开发者和 AI 代理快速判断应读取哪份文档。
+本文档目录是 Ark Tech Platform 的当前事实来源入口。后续开发和 Codex 代理判断项目结构时，只按 Ark Tech Platform 一套口径读取；原始合并来源已归档到 `docs/archive/architecture-ark-source`。
 
-当前仓库的顶层定位正从 **SaaS 多租户项目开发底座** 逐步演进为 **Ark Engine（方舟引擎）**。现阶段不要直接改动代码级命名；文档合并和平台分层先以 `docs/architecture/14-Ark-Engine-合并共创方案.md` 为准。
+## 项目定位
 
-当前可运行工程基线仍是多租户技术底座。底座提供认证授权、项目边界、数据隔离、菜单权限、操作审计、数据字典、租户生命周期等基础治理能力。业务项目服务可复用底座基础能力，但服务定义和资料需独立管理。
+**Ark Tech Platform** 是面向多产品 SaaS 的技术平台与业务承载底座，提供多租户、认证授权、数据隔离、菜单权限、业务套餐、资源配额、操作审计、参数配置、异步任务、文件、通知和产品服务接入能力。
+
+GEO Engine、AI Agent Management、App Version Management 等都属于平台之上的 **Ark Product Services**，不代表平台本身。
 
 ## 读取顺序
 
-处理底座治理或迭代开发任务时，优先读取：
+处理架构、文档、后端或前端实现任务时，优先读取：
 
 1. `CLAUDE.md`
-2. `docs/architecture/README.md`
-3. `docs/architecture/14-Ark-Engine-合并共创方案.md`（涉及 Ark Engine 命名、平台合并或产品服务归类时）
-4. `docs/architecture/00-后端底座架构决策.md`
-5. `docs/services/README.md`
-6. `docs/vibe-coding/base/README.md`
-7. `docs/vibe-coding/backend/README.md` 或 `docs/vibe-coding/frontend/README.md`
+2. `.codex/AGENTS.md`
+3. `.codex/RULES.md`
+4. `.codex/DESIGN.md`
+5. `docs/architecture/README.md`
+6. `docs/architecture/00-Ark-Tech-Platform-架构总览.md`
+7. `docs/architecture/00-后端底座架构决策.md`
+8. `docs/services/README.md`
+9. `docs/vibe-coding/base/README.md`
+10. `docs/vibe-coding/backend/README.md` 或 `docs/vibe-coding/frontend/README.md`
 
 `docs/archive` 只作为历史资料查询，不作为当前实现依据。
 
@@ -24,20 +29,20 @@
 
 ```text
 docs/
-├── architecture/             # 当前架构决策、服务边界和冻结清单
-├── architecture-ark/         # Ark Engine 目标蓝图输入，合并完成前不作为唯一事实来源
-├── services/                 # 项目服务定义、资料入口和服务归类
-├── product/                  # 业务项目服务产品需求（当前为空，待新增）
+├── architecture/             # 当前架构决策、服务边界、冻结清单和平台路线图
+├── services/                 # Ark Product Services 定义、资料入口和服务归类
+├── product/                  # 业务产品需求文档入口
 ├── vibe-coding/              # 当前开发规范和工程约定
 └── archive/                  # 历史文档归档，不作为默认实现依据
 ```
 
 ## 当前事实来源
 
-- 架构决策和冻结清单：`docs/architecture/README.md`
-- Ark Engine 合并方案：`docs/architecture/14-Ark-Engine-合并共创方案.md`
-- 项目服务目录：`docs/services/README.md`
-- 业务服务定义参考：`docs/services/app-version-management/README.md`（历史参考）
+- 平台总览：`docs/architecture/00-Ark-Tech-Platform-架构总览.md`
+- 架构索引：`docs/architecture/README.md`
+- 后端服务边界：`docs/architecture/00-后端底座架构决策.md`
+- Ark 整合决策：`docs/architecture/14-Ark-Tech-Platform-整合决策记录.md`
+- 产品服务目录：`docs/services/README.md`
 - 后端实现规则：`CLAUDE.md` 与 `docs/vibe-coding/backend/README.md`
 - 前端实现规则：`CLAUDE.md` 与 `docs/vibe-coding/frontend/README.md`
-- 历史产品资料：`docs/archive/product-avmc/`（归档参考）
+- 历史来源：`docs/archive/`

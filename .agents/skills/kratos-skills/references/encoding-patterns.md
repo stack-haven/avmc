@@ -250,4 +250,3 @@ func init() {
 
 - [Kratos Encoding](https://go-kratos.dev/docs/component/encoding)
 - [Protocol Buffers](https://developers.google.com/protocol-buffers)
-

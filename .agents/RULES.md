@@ -1,0 +1,140 @@
+# Ark Tech Platform 结构与开发规则
+
+本文件描述当前仓库的真实结构。如果这里的规则和较早的归档文档存在冲突，以这里和当前代码为准。
+
+## 顶层定义
+
+当前仓库是 **Ark Tech Platform**，不等同于单一业务系统。GEO Engine、AI Agent Management、App Version Management 等是平台之上的 Ark Product Services。
+
+## 仓库结构
+
+```text
+ark-tech-platform/
+├── backend-service/          # Go + go-kratos 后端工作区
+├── frontend-service/         # Vue Vben Admin pnpm monorepo
+├── docs/architecture/        # 当前架构决策、服务边界和平台路线图
+├── docs/services/            # Ark Product Services 目录和服务资料入口
+├── docs/product/             # 产品需求、字段、验收标准和迭代规划
+├── docs/vibe-coding/         # 代码规范与架构约定
+├── docs/archive/             # 历史文档归档，不作为默认实现依据
+├── backend-service-pkg-bakup/# 备份/参考包，不作为活跃开发目标
+└── .agents/                  # 统一项目配置源（Claude Code + Codex 共用）
+```
+
+## 子仓库提交规则
+
+`backend-service` 和 `frontend-service` 是独立子仓库。后续迭代涉及后端或后台代码变更时，需要分别维护子仓库提交，再回到根仓库更新子仓库指针。
+
+规则：
+
+- 后端代码变更在 `backend-service` 内提交。
+- 前端后台代码变更在 `frontend-service` 内提交。
+- 根仓库只提交文档变更、子仓库指针更新和根级配置变更。
+- 不要只在根仓库提交而忽略子仓库内部提交。
+
+## 后端规则
+
+### 活跃服务
+
+- `backend-service/app/platform/admin`：Ark Platform Foundation 基础管理后台服务，负责认证、用户、角色、菜单、权限、租户、套餐、配置、审计、会话、任务、文件、通知和产品服务配置入口。
+- `backend-service/app/ai/service`：AI/chat 通用能力服务。
+- `backend-service/app/version/service`：已存在的版本发布服务雏形，当前冻结，恢复前必须复审。
+
+当前阶段采用"大仓 + 模块化服务边界优先"策略：
+
+- `backend-service` 保持 go-kratos 大仓模式，`app` 下保留未来微服务拆分能力。
+- `backend-service/app/platform/admin` 只承接平台基础能力，不承接 GEO、AI Agent、App Version Management 等具体产品业务。
+- 产品服务需要先在 `docs/services` 定义后端落点；在服务边界确认前，不把新业务继续写入 `app/platform/admin`。
+- 不要因为新增业务模块就默认创建新的 Kratos service。
+- 只有模块需要独立部署、独立扩缩容、独立公共 API、独立数据生命周期或清晰业务域时，才考虑拆出独立服务。
+
+### API 契约流程
+
+```text
+backend-service/proto
+  -> backend-service/api
+  -> app/*/internal/service
+  -> app/*/internal/biz
+  -> app/*/internal/data
+  -> app/*/internal/data/ent/schema
+```
+
+- `backend-service/proto` 下的 Protobuf 文件是 API 事实来源。
+- `backend-service/api` 下的生成文件不要手工编辑。
+- 对外暴露 HTTP endpoint 时，使用 Google HTTP annotations 和 OpenAPI operation annotations。
+- 创建重复消息前，优先复用 `proto/common`、`proto/common/pagination`、`proto/common/enum`、`proto/core/service/v1` 下已有的公共消息。
+
+### 持久化与业务分层
+
+- 业务编排和校验放在 `internal/biz` usecase 中。
+- repository interface 放在 `internal/biz`，具体实现放在 `internal/data`。
+- 数据库结构使用 `internal/data/ent/schema` 下的 Ent schema 表达。
+- ID、status、timestamps、soft delete 等通用字段优先复用现有 mixins。
+- 新增 usecase、repo 或 service 依赖时，同步更新 Wire provider set。
+
+## 前端规则
+
+`frontend-service/apps/web-antd-admin` 当前作为 Ark Tech Platform 管理后台前端。它使用 Vue 3、TypeScript、Vite、Vben Admin、Ant Design Vue、Pinia、Vue Router、`@vben/request` 和 pnpm workspace。
+
+除非任务明确指定，以下 Vben 应用只作为示例或参考实现：
+
+- `apps/web-antd`
+- `apps/web-ele`
+- `apps/web-naive`
+- `apps/web-tdesign`
+- `playground`
+
+管理类 CRUD 页面遵循现有模式：
+
+```text
+Page + useVbenVxeGrid + useVbenDrawer + useVbenForm
+```
+
+## 命名与生成输出
+
+- 前端 Vue 和 TypeScript 文件使用 kebab-case。
+- 后端 Go 文件使用 snake_case。
+- 文档描述用中文，路径、命令、API 名称、字段名保持英文。
+- 不要手工修改生成的 Go、生成的 TypeScript、OpenAPI 输出、嵌入的 Swagger UI bundle 或 `node_modules`。
+- 普通功能开发不要改示例、备份和 vendor-like assets。
+
+## API 设计硬规则
+
+> 违反以下规则的 PR 不得合并。详见 `docs/architecture/3-0-跨领域-API边界与通信契约.md`。
+
+- **RPC 命名**: List/Get/Create/Update/Delete + CurrentTenant 区分控制面/数据面
+- **HTTP 路径**: 控制面 `/admin/v1/{resource}`，数据面 `/admin/v1/current-tenant/{resource}`
+- **分页**: 全部使用 `pagination.PagingRequest/PagingResponse`，默认 page_size=20
+- **错误码**: kratos errors + UPPER_SNAKE_CASE（`PARAMETER_KEY_INVALID`）
+- **枚举**: 首个值必须 `*_UNSPECIFIED = 0`
+- **契约**: 每次 PR 运行 `buf lint` + `buf breaking`
+
+## 数据库变更硬规则
+
+> 违反以下规则的迁移不得执行。详见 `docs/architecture/0-3-架构总览-后端底座架构决策.md`。
+
+- Schema 修改从 `ent/schema/*.go` 开始 → `make generate` → Atlas 迁移
+- 删除字段：先废弃一个大版本，再物理删除
+- 修改类型：新增字段 → 数据迁移 → 切换代码 → 删除旧字段
+- 不手工改 `ent/gen/` 下生成代码
+
+## Feature Flag 规则
+
+> 详见 `docs/architecture/1-2-技术中台-套餐与配额设计.md`。
+
+- Flag key: `snake_case`，不包含租户特定 ID
+- 生命周期: 创建 → 灰度 → 全量 → 废弃 → 清理
+- **Feature Flag 不替代权限校验**——后端必须独立授权
+
+## 开发功能清单维护规则
+
+> `docs/architecture/4-6-治理-开发功能清单.md` 是手动维护的开发追踪文件。
+
+- 每个功能必须在清单中有对应条目，标注状态和优先级
+- 开始开发 → `[ ]` 改为 `[~]`（进行中）
+- 完成并验证 → `[~]` 改为 `[x]`
+- 调整优先级 → 修改 P 标记，同步更新设计文档中对应说明
+- 暂停开发 → `[~]` 改为 `[.]`，注明原因
+- 新增功能 → 在对应模块下追加一行，附设计文档链接
+- 每个迭代结束后更新「变更记录」
+- 「当前断点」始终指向下一个待开始的任务

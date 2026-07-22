@@ -795,4 +795,3 @@ message User {
 ### Other
 - [CEL Language](https://github.com/google/cel-spec)
 - [Kratos Middleware](https://go-kratos.dev/docs/component/middleware/validate)
-

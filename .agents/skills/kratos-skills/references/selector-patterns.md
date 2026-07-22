@@ -349,4 +349,3 @@ grpc.WithSelector(random.New()) // ❌ Not recommended for production
 
 - [Kratos Selector](https://go-kratos.dev/docs/component/selector)
 - [Load Balancing](https://go-kratos.dev/docs/guide/load-balance)
-

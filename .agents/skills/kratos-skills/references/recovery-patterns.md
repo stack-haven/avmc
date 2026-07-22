@@ -316,4 +316,3 @@ func TestRecovery(t *testing.T) {
 ## References
 
 - [Kratos Recovery Middleware](https://go-kratos.dev/docs/component/middleware/recovery)
-

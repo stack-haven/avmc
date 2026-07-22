@@ -4,7 +4,7 @@
 
 ## 📋 文档概述
 
-本指南基于 Vibe Coding 基础规范，针对项目开发底座及其项目服务的前端开发提供详细的实践指导。主要涵盖：
+本指南基于 Vibe Coding 基础规范，针对 Ark Tech Platform 及其产品服务的前端开发提供详细的实践指导。主要涵盖：
 
 - **Vue 3 + TypeScript 开发规范**
 - **Vben Admin 框架使用最佳实践**

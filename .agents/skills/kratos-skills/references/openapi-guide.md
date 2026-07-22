@@ -390,4 +390,3 @@ message UserRequest {
 - [Kratos OpenAPI Guide](https://go-kratos.dev/docs/guide/openapi)
 - [OpenAPI Specification](https://swagger.io/specification/)
 - [protoc-gen-openapi](https://github.com/google/gnostic)
-
