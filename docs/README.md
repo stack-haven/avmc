@@ -2,7 +2,9 @@
 
 本文档目录按"架构决策、项目服务、开发规范、历史归档"分层，方便开发者和 AI 代理快速判断应读取哪份文档。
 
-当前仓库的顶层定位是 **SaaS 多租户项目开发底座**。底座提供认证授权、项目边界、数据隔离、菜单权限、操作审计、数据字典、租户生命周期等基础治理能力。业务项目服务可复用底座基础能力，但服务定义和资料需独立管理。
+当前仓库的顶层定位正从 **SaaS 多租户项目开发底座** 逐步演进为 **Ark Engine（方舟引擎）**。现阶段不要直接改动代码级命名；文档合并和平台分层先以 `docs/architecture/14-Ark-Engine-合并共创方案.md` 为准。
+
+当前可运行工程基线仍是多租户技术底座。底座提供认证授权、项目边界、数据隔离、菜单权限、操作审计、数据字典、租户生命周期等基础治理能力。业务项目服务可复用底座基础能力，但服务定义和资料需独立管理。
 
 ## 读取顺序
 
@@ -10,10 +12,11 @@
 
 1. `CLAUDE.md`
 2. `docs/architecture/README.md`
-3. `docs/architecture/00-后端底座架构决策.md`
-4. `docs/services/README.md`
-5. `docs/vibe-coding/base/README.md`
-6. `docs/vibe-coding/backend/README.md` 或 `docs/vibe-coding/frontend/README.md`
+3. `docs/architecture/14-Ark-Engine-合并共创方案.md`（涉及 Ark Engine 命名、平台合并或产品服务归类时）
+4. `docs/architecture/00-后端底座架构决策.md`
+5. `docs/services/README.md`
+6. `docs/vibe-coding/base/README.md`
+7. `docs/vibe-coding/backend/README.md` 或 `docs/vibe-coding/frontend/README.md`
 
 `docs/archive` 只作为历史资料查询，不作为当前实现依据。
 
@@ -22,6 +25,7 @@
 ```text
 docs/
 ├── architecture/             # 当前架构决策、服务边界和冻结清单
+├── architecture-ark/         # Ark Engine 目标蓝图输入，合并完成前不作为唯一事实来源
 ├── services/                 # 项目服务定义、资料入口和服务归类
 ├── product/                  # 业务项目服务产品需求（当前为空，待新增）
 ├── vibe-coding/              # 当前开发规范和工程约定
@@ -31,6 +35,7 @@ docs/
 ## 当前事实来源
 
 - 架构决策和冻结清单：`docs/architecture/README.md`
+- Ark Engine 合并方案：`docs/architecture/14-Ark-Engine-合并共创方案.md`
 - 项目服务目录：`docs/services/README.md`
 - 业务服务定义参考：`docs/services/app-version-management/README.md`（历史参考）
 - 后端实现规则：`CLAUDE.md` 与 `docs/vibe-coding/backend/README.md`
