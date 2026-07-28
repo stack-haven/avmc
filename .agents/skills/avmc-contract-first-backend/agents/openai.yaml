@@ -1,4 +1,4 @@
 interface:
-  display_name: "项目服务契约优先后端开发"
-  short_description: "保证项目服务后端契约、分层实现、权限和测试完整一致"
-  default_prompt: "使用 $avmc-contract-first-backend 按契约优先方式实现并验证这个项目服务后端需求。"
+  display_name: "Ark Tech Platform 契约优先后端开发"
+  short_description: "保证后端契约、分层实现、权限和测试完整一致"
+  default_prompt: "使用 $avmc-contract-first-backend 按契约优先方式实现并验证这个后端需求。"

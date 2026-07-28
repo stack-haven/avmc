@@ -1,28 +1,28 @@
 ---
 name: avmc-contract-first-backend
-description: 按照契约优先方式分析、实现和审查项目开发底座后端功能，保证 Protobuf、生成 API、Kratos service、biz/usecase、data/repository、Ent schema、Wire、权限和测试完整一致。处理 backend-service 的新增接口、接口修改、数据模型变化、后端缺陷修复或后端代码审查时使用。
+description: 按照契约优先方式分析、实现和审查 Ark Tech Platform 后端功能，保证 Protobuf、生成 API、Kratos service、biz/usecase、data/repository、Ent schema、Wire、权限和测试完整一致。处理 backend-service 的新增接口、接口修改、数据模型变化、后端缺陷修复或后端代码审查时使用。
 ---
 
-# 项目开发底座契约优先后端开发
+# Ark Tech Platform 契约优先后端开发
 
 以后端 API 契约作为实现起点，确保所有受影响分层同步修改并通过验证。
 
-## 加载事实来源
+## 启动前确认
 
-开始前读取：
+与调用方确认以下信息：
 
-1. 根仓库 `.codex/AGENTS.md` 和 `.codex/RULES.md`
-2. `docs/architecture/README.md`
-3. `docs/architecture/00-后端底座架构决策.md`
-4. `docs/services/README.md`
-5. `docs/services/app-version-management/README.md`
-6. `docs/vibe-coding/backend/README.md`
-7. 目标服务中最接近的现有实现
-8. 相关 `docs/product` 当前需求文档
+- 目标服务（platform/admin、ai/service 等）
+- 需求范围和业务目标
+- 目标服务中最接近的现有实现（作为模板参考）
 
-不得将 `backend-service-pkg-bakup` 作为活跃实现目标。不得手工修改 `backend-service/api`、`internal/conf` 或 `internal/data/ent/gen` 中的生成文件。
+**功能清单确认（必须）：**
 
-`backend-service/app/platform/admin` 当前是底座管理后台基础服务。除认证、用户、角色、菜单、权限、中台基础配置、项目服务配置入口、操作日志等底座能力外，不得继续把 AVMC 版本、Release、灰度、下载页、反馈、协议、推送等业务模块写入该服务。
+开始前必须读取 `docs/architecture/4-7-治理-代码功能清单.md`，在清单中找到或追加本次要修改的功能行。如果清单中的功能描述与实际需求不符，先与用户确认调整清单，再开始开发。开发完成后将对应功能行状态更新为 `[x]` 并填写源码追溯列。
+
+硬约束：
+- 不得将 `backend-service-pkg-bakup` 作为活跃实现目标
+- 不得手工修改 `backend-service/api`、`internal/conf` 或 `internal/data/ent/gen` 中的生成文件
+- `backend-service/app/platform/admin` 只承接平台基础能力；业务模块应先确认服务边界再决定落点
 
 ## 契约分析
 
@@ -107,5 +107,6 @@ buf breaking --against '<基准>'
 - 生成命令和测试结果
 - 兼容性风险
 - 未完成或需要确认的事项
+- **功能清单更新**：列出本次在 `docs/architecture/4-7-治理-代码功能清单.md` 中更新的行及其新状态
 
 必要分层、测试、生成或权限验证未完成时，不得声称任务完成。

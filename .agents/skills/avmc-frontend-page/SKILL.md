@@ -1,6 +1,6 @@
 ---
 description: |
-  为 AVMC 前端生成标准管理后台页面骨架。当需要新增管理页 CRUD、或基于 Vben Admin 模式创建列表/表单/抽屉页面时触发。
+  为 Ark Tech Platform 管理后台前端生成标准管理后台页面骨架。当需要新增管理页 CRUD、或基于 Vben Admin 模式创建列表/表单/抽屉页面时触发。
 
   触发场景：
   - "给 XXX 创建前端管理页面" / "新增 XXX 列表页"
@@ -12,9 +12,9 @@ description: |
 name: avmc-frontend-page
 ---
 
-# AVMC 前端管理页面生成
+# Ark Tech Platform 前端管理页面生成
 
-生成标准 Vben Admin CRUD 页面骨架。底座管理后台页面生成在 `frontend-service/apps/web-antd-admin` 下；AVMC 业务页面需先确认前端服务边界。
+生成标准 Vben Admin CRUD 页面骨架。管理后台页面默认生成在 `frontend-service/apps/web-antd-admin` 下；业务模块页面需先确认前端服务边界后再确定落点。
 
 ## 输入要求
 
@@ -27,6 +27,10 @@ name: avmc-frontend-page
 | **是否项目级** | 是否关联项目 | 是，按项目筛选 |
 
 字段列表的每项包含：`key`(字段名), `label`(中文标签), `type`(text/number/select/switch/date/upload), `inTable`(是否表格列), `inSearch`(是否可搜索), `inForm`(是否出现在表单), `required`(是否必填), `options`(下拉选项)。
+
+**功能清单确认（必须）：**
+
+生成页面代码前，读取 `docs/architecture/4-7-治理-代码功能清单.md`。在"四、前端管理后台页面"对应模块下追加新的功能行（状态 `[~]`、对应优先级），或在已有行上确认范围。代码生成完成后，将功能行状态更新为 `[x]` 并填写生成的 views/api/router/locales 文件路径。
 
 ## 生成文件结构
 
@@ -120,11 +124,11 @@ export interface XxxItem {
 }
 
 export const api = {
-  list: (params: Record<string, any>) => request.get<{ items: XxxItem[]; total: number }>('/api/v1/xxx', { params }),
-  create: (data: Partial<XxxItem>) => request.post('/api/v1/xxx', data),
-  update: (id: number, data: Partial<XxxItem>) => request.put(`/api/v1/xxx/${id}`, data),
-  delete: (id: number) => request.delete(`/api/v1/xxx/${id}`),
-  get: (id: number) => request.get<XxxItem>(`/api/v1/xxx/${id}`),
+  list: (params: Record<string, any>) => request.get<{ items: XxxItem[]; total: number }>('/admin/v1/xxx', { params }),
+  create: (data: Partial<XxxItem>) => request.post('/admin/v1/xxx', data),
+  update: (id: number, data: Partial<XxxItem>) => request.put(`/admin/v1/xxx/${id}`, data),
+  delete: (id: number) => request.delete(`/admin/v1/xxx/${id}`),
+  get: (id: number) => request.get<XxxItem>(`/admin/v1/xxx/${id}`),
 }
 ```
 

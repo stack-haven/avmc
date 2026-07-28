@@ -1,6 +1,6 @@
 ---
 description: |
-  处理 AVMC 项目 gitsubmodule 提交工作流，保证根仓库和子仓库提交顺序正确。当涉及跨仓库代码修改、提交、或查看状态时触发。
+  处理 Ark Tech Platform gitsubmodule 提交工作流，保证根仓库和子仓库提交顺序正确。当涉及跨仓库代码修改、提交、或查看状态时触发。
 
   触发场景：
   - "提交代码" / "git commit 这次改动"
@@ -11,9 +11,9 @@ description: |
 name: avmc-submodule-sync
 ---
 
-# AVMC 子模块提交工作流
+# Ark Tech Platform 子模块提交工作流
 
-AVMC 项目有 3 个 git 仓库：**根仓库** + **`backend-service`** + **`frontend-service**。每个仓库各自的提交不可混淆。
+Ark Tech Platform 有 3 个 git 仓库：**根仓库** + **`backend-service`** + **`frontend-service`**。每个仓库各自的提交不可混淆。
 
 ## 1. 诊断当前状态
 
@@ -38,7 +38,7 @@ cd frontend-service && git status && git log --oneline -3 && cd ..
 |---|---|
 | `backend-service/` 下除 `.gitmodules` 的改动 | `backend-service` |
 | `frontend-service/` 下除 `.gitmodules` 的改动 | `frontend-service` |
-| `docs/`、`README.md`、`CLAUDE.md`、`.codex/`、根级配置 | 根仓库 |
+| `docs/`、`README.md`、`CLAUDE.md`、`.agents/`、根级配置 | 根仓库 |
 
 **常见错误：** 在根仓库直接 commit 子仓库内的文件改动。❌ 这是错误的。
 

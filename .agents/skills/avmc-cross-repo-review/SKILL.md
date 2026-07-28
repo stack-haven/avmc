@@ -1,9 +1,9 @@
 ---
 name: avmc-cross-repo-review
-description: 审查项目开发底座根仓库、backend-service 和 frontend-service 的跨仓库功能交付完整性，检查需求追踪、前后端契约一致性、测试、生成文件、文档、Git 状态、子模块提交和根仓库指针。处理跨前后端代码审查、功能验收、提交前检查或子模块交付检查时使用。
+description: 审查 Ark Tech Platform 根仓库、backend-service 和 frontend-service 的跨仓库功能交付完整性，检查需求追踪、前后端契约一致性、测试、生成文件、Git 状态、子模块提交和根仓库指针。处理跨前后端代码审查、功能验收、提交前检查或子模块交付检查时使用。
 ---
 
-# 项目开发底座跨仓库交付审查
+# Ark Tech Platform 跨仓库交付审查
 
 从产品行为到三个 Git 仓库审查项目服务功能是否真正完整交付。。
 
@@ -14,20 +14,18 @@ description: 审查项目开发底座根仓库、backend-service 和 frontend-se
 - 不因代码存在就判断功能完成；必须验证契约、权限、测试和交付状态。
 - 不修改或撤销用户已有的无关改动。
 
-## 读取范围
+## 审查范围确认
 
-开始前读取：
+开始前确认审查目标：
 
-1. `.codex/AGENTS.md`
-2. `.codex/RULES.md`
-3. `.codex/DESIGN.md`
-4. `docs/architecture/README.md`
-5. `docs/services/README.md`
-6. 相关 `docs/product` 当前需求
-7. 目标功能的后端 Proto 和实现
-8. 目标功能的前端 API、页面、路由和 locales
+1. 功能范围和涉及仓库
+2. 目标功能的后端 Proto 和分层实现
+3. 目标功能的前端 API、页面、路由和 locales
+4. 涉及的权限和数据边界
 
-历史文档仅用于追溯，不作为当前实现事实来源。
+**与功能清单对照（必须）：**
+
+审查前读取 `docs/architecture/4-7-治理-代码功能清单.md`，确认目标功能在清单中的状态和源码追溯是否正确。审查报告中应包含清单与实际代码的一致性检查结果：如果清单标记 `[x]` 但代码缺失，报告为回归风险；如果代码已实现但清单标记 `[ ]`，报告为清单过期。
 
 ## 审查步骤
 

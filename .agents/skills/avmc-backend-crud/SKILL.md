@@ -1,6 +1,6 @@
 ---
 description: |
-  为 项目开发底座 后端生成完整 CRUD 全链路代码。当需要新增业务模块并走完 proto → service → biz → data → ent → wire 完整链路时触发。
+  为 Ark Tech Platform 后端生成完整 CRUD 全链路代码。当需要新增业务模块并走完 proto → service → biz → data → ent → wire 完整链路时触发。
 
   触发场景：
   - "新增 XXX 管理的 CRUD" / "为 XXX 创建后端接口"
@@ -12,7 +12,7 @@ description: |
 name: avmc-backend-crud
 ---
 
-# 项目开发底座 后端 CRUD 生成
+# Ark Tech Platform 后端 CRUD 生成
 
 生成后端 CRUD 六层代码，确保所有分层一致且符合项目约定。
 
@@ -30,19 +30,23 @@ name: avmc-backend-crud
 | **关联关系** | 是否关联现有数据模型（用户、项目等） | 关联 project |
 | **特殊行为** | 回滚、灰度发布等业务逻辑 | 支持状态变更记录 |
 
+**功能清单确认（必须）：**
+
+生成代码前，读取 `docs/architecture/4-7-治理-代码功能清单.md`。在对应模块下追加新的功能行（状态 `[~]`、对应优先级），或在已有行上确认范围。代码生成完成后，将功能行状态更新为 `[x]` 并填写生成的 Proto、Service、UseCase、Schema 等源文件路径。
+
 ## 生成
 
-### 1. Protobuf 契约（`backend-service/app/platform/admin/v1/`）
+### 1. Protobuf 契约（`backend-service/proto/platform/admin/v1/`）
 
 生成以下消息和 RPC 定义：
 
 ```protobuf
 service IXxx {
-    rpc CreateXxx(CreateXxxRequest) returns (CreateXxxResponse) { option (google.api.http) = { post: "/api/v1/xxx" body: "*" }; }
-    rpc GetXxx(GetXxxRequest) returns (GetXxxResponse) { option (google.api.http) = { get: "/api/v1/xxx/{id}" }; }
-    rpc UpdateXxx(UpdateXxxRequest) returns (UpdateXxxResponse) { option (google.api.http) = { put: "/api/v1/xxx/{id}" body: "*" }; }
-    rpc DeleteXxx(DeleteXxxRequest) returns (DeleteXxxResponse) { option (google.api.http) = { delete: "/api/v1/xxx/{id}" }; }
-    rpc ListXxx(ListXxxRequest) returns (ListXxxResponse) { option (google.api.http) = { get: "/api/v1/xxx" }; }
+    rpc CreateXxx(CreateXxxRequest) returns (CreateXxxResponse) { option (google.api.http) = { post: "/admin/v1/xxx" body: "*" }; }
+    rpc GetXxx(GetXxxRequest) returns (GetXxxResponse) { option (google.api.http) = { get: "/admin/v1/xxx/{id}" }; }
+    rpc UpdateXxx(UpdateXxxRequest) returns (UpdateXxxResponse) { option (google.api.http) = { put: "/admin/v1/xxx/{id}" body: "*" }; }
+    rpc DeleteXxx(DeleteXxxRequest) returns (DeleteXxxResponse) { option (google.api.http) = { delete: "/admin/v1/xxx/{id}" }; }
+    rpc ListXxx(ListXxxRequest) returns (ListXxxResponse) { option (google.api.http) = { get: "/admin/v1/xxx" }; }
 }
 ```
 
@@ -51,7 +55,7 @@ service IXxx {
 ### 2. Ent Schema（`internal/data/ent/schema/`）
 
 使用现有 mixins 处理通用字段：
-- `common/mixin` 中的 `StatusMixin`、`TimeMixin`、`SoftDeleteMixin`
+- `internal/data/ent/mixins/v1` 中的 `StatusMixin`、`TimeMixin`、`SoftDeleteMixin`
 - ID 生成策略与现有 schema 保持一致
 - 通用字段不要重复定义
 
