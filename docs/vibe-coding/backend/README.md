@@ -28,7 +28,7 @@
 
 ## 🎯 技术栈
 
-- **语言**：Go 1.18+
+- **语言**：Go 1.24+（当前基线 1.24.6）
 - **框架**：go-kratos v2
 - **API 协议**：gRPC + HTTP
 - **ORM**：entgo
@@ -807,7 +807,7 @@ backend-service/
 - **Dockerfile**：
   ```dockerfile
   # Dockerfile
-  FROM golang:1.18-alpine as builder
+  FROM golang:1.24-alpine as builder
   
   WORKDIR /app
   COPY . .

@@ -1,0 +1,203 @@
+- generic [ref=f31e7]:
+  - complementary [ref=f31e8]:
+    - generic [ref=f31e9]:
+      - link "Platform Admin Platform Admin" [ref=f31e15] [cursor=pointer]:
+        - /url: javascript:void 0
+        - img "Platform Admin" [ref=f31e18]
+        - generic [ref=f31e19]: Platform Admin
+      - menu [ref=f31e22]:
+        - listitem [ref=f31e23]:
+          - generic [ref=f31e24] [cursor=pointer]: 仪表盘
+        - listitem [ref=f31e29]:
+          - generic [ref=f31e30] [cursor=pointer]: 租户管理
+        - listitem [ref=f31e35]:
+          - generic [ref=f31e36] [cursor=pointer]: 组织架构
+        - listitem [ref=f31e41]:
+          - generic [ref=f31e42] [cursor=pointer]: 权限与安全
+        - listitem [ref=f31e47]:
+          - generic [ref=f31e48] [cursor=pointer]: 文件中心
+        - listitem [ref=f31e53]:
+          - generic [ref=f31e54] [cursor=pointer]: 通知中心
+        - listitem [ref=f31e59]:
+          - generic [ref=f31e60] [cursor=pointer]: 系统管理
+        - listitem [ref=f31e65]:
+          - generic [ref=f31e66] [cursor=pointer]: 演示
+        - listitem [ref=f31e71]:
+          - generic [ref=f31e72] [cursor=pointer]: 系统管理
+        - listitem [ref=f31e77]:
+          - generic [ref=f31e78] [cursor=pointer]: 项目
+        - menuitem "关于" [ref=f31e87] [cursor=pointer]
+  - generic [ref=f31e97]:
+    - generic [ref=f31e98]:
+      - banner [ref=f31e99]:
+        - button [ref=f31e100] [cursor=pointer]
+        - button [ref=f31e102] [cursor=pointer]
+        - navigation "breadcrumb" [ref=f31e107]:
+          - list [ref=f31e108]:
+            - listitem [ref=f31e109]:
+              - link [ref=f31e110] [cursor=pointer]:
+                - /url: javascript:void 0
+              - listitem [ref=f31e113]
+            - listitem [ref=f31e116]:
+              - link [disabled] [ref=f31e117]
+        - generic [ref=f31e121]:
+          - generic [ref=f31e123] [cursor=pointer]:
+            - generic [ref=f31e127]: 搜索
+            - generic [ref=f31e128]: ⌘ K
+          - button [ref=f31e130] [cursor=pointer]
+          - button "light" [ref=f31e135] [cursor=pointer]
+          - button [ref=f31e144] [cursor=pointer]
+          - button [ref=f31e150] [cursor=pointer]
+          - button [ref=f31e152] [cursor=pointer]
+          - button [ref=f31e158] [cursor=pointer]:
+            - button [ref=f31e160]
+          - button [ref=f31e165] [cursor=pointer]:
+            - img "超级管理员" [ref=f31e170]
+      - generic [ref=f31e172]:
+        - generic [ref=f31e177]:
+          - generic [ref=f31e178] [cursor=pointer]: 分析页
+          - generic [ref=f31e193] [cursor=pointer]: 租户列表
+          - generic [ref=f31e210] [cursor=pointer]: 租户套餐配置
+          - generic [ref=f31e227] [cursor=pointer]: 用户与部门
+        - button [ref=f31e244] [cursor=pointer]
+    - main [ref=f31e262]:
+      - generic [ref=f31e266]:
+        - generic [ref=f31e268]:
+          - generic [ref=f31e269]:
+            - generic [ref=f31e270]:
+              - generic [ref=f31e271]: 部门
+              - generic [ref=f31e272]: 选择部门以筛选右侧人员
+            - button "新增部门" [ref=f31e273] [cursor=pointer]
+          - textbox "搜索部门" [ref=f31e281]
+          - tree [ref=f31e284]:
+            - generic:
+              - textbox "for screen reader"
+            - generic [ref=f31e288]:
+              - generic [ref=f31e289]:
+                - img "caret-down" [ref=f31e291] [cursor=pointer]
+                - generic "全部用户 (4)" [ref=f31e294] [cursor=pointer]
+              - generic "广州万企兴科技有限公司 (0)" [ref=f31e298] [cursor=pointer]
+              - generic [ref=f31e299]:
+                - img "caret-down" [ref=f31e302] [cursor=pointer]
+                - generic "总公司 (4)" [ref=f31e305] [cursor=pointer]
+              - generic "技术部 (2)" [ref=f31e309] [cursor=pointer]
+          - generic [ref=f31e729]:
+            - generic [ref=f31e730]:
+              - generic [ref=f31e731]: 总公司
+              - generic [ref=f31e732]: "4"
+            - generic [ref=f31e733]:
+              - button "新增下级" [ref=f31e735] [cursor=pointer]
+              - button "修 改" [ref=f31e738] [cursor=pointer]
+              - button "删 除" [ref=f31e741] [cursor=pointer]
+        - generic [ref=f31e310]:
+          - generic [ref=f31e311]:
+            - generic [ref=f31e312]: 总公司4 人
+            - generic [ref=f31e743]:
+              - generic [ref=f31e744]: 包含下级部门
+              - switch [checked] [ref=f31e745] [cursor=pointer]
+          - generic [ref=f31e314]:
+            - generic [ref=f31e319]:
+              - generic [ref=f31e320]:
+                - generic [ref=f31e321]: 用户名称
+                - textbox "用户名称" [ref=f31e751]:
+                  - /placeholder: 请输入
+              - generic [ref=f31e323]:
+                - generic [ref=f31e324]: 用户ID
+                - textbox "用户ID" [ref=f31e755]:
+                  - /placeholder: 请输入
+              - generic [ref=f31e326]:
+                - generic [ref=f31e327]: 状态
+                - generic [ref=f31e333] [cursor=pointer]:
+                  - combobox "状态" [ref=f31e335]
+                  - generic: 请选择
+              - generic [ref=f31e336]:
+                - generic [ref=f31e337]: 创建时间
+                - generic [ref=f31e759]:
+                  - textbox "创建时间" [ref=f31e761]:
+                    - /placeholder: 开始日期
+                  - generic "to" [ref=f31e763]:
+                    - img "swap-right" [ref=f31e764]
+                  - textbox "结束日期" [ref=f31e768]
+                  - generic:
+                    - img "calendar"
+              - generic [ref=f31e339]:
+                - button "重 置" [ref=f31e769] [cursor=pointer]
+                - button "搜 索" [ref=f31e771] [cursor=pointer]
+                - generic [ref=f31e340] [cursor=pointer]: 收起
+            - generic [ref=f31e347]:
+              - generic [ref=f31e349]:
+                - generic [ref=f31e352]:
+                  - button "新增用户" [ref=f31e353] [cursor=pointer]
+                  - button "" [ref=f31e356] [cursor=pointer]
+                - generic [ref=f31e358]:
+                  - button "" [ref=f31e359] [cursor=pointer]
+                  - button "" [ref=f31e361] [cursor=pointer]
+                  - button "" [ref=f31e363] [cursor=pointer]
+              - generic [ref=f31e370]:
+                - generic [ref=f31e371]:
+                  - table [ref=f31e375]:
+                    - rowgroup [ref=f31e385]:
+                      - row [ref=f31e386]:
+                        - columnheader "用户名称" [ref=f31e387]
+                        - columnheader "用户真实姓名" [ref=f31e392]
+                        - columnheader "所属部门" [ref=f31e397]
+                        - columnheader "管理员身份" [ref=f31e402]
+                        - columnheader "状态" [ref=f31e407]
+                        - columnheader "用户电话" [ref=f31e412]
+                        - columnheader "创建时间" [ref=f31e417]
+                  - table [ref=f31e425]:
+                    - rowgroup [ref=f31e435]:
+                      - row [ref=f31e436]:
+                        - cell "admin" [ref=f31e437]
+                        - cell "超级管理员" [ref=f31e441]
+                        - cell "总公司" [ref=f31e445]
+                        - cell "租户管理员" [ref=f31e449]
+                        - cell [ref=f31e453]:
+                          - switch "已启用 已禁用" [ref=f31e456] [cursor=pointer]:
+                            - generic [ref=f31e458]:
+                              - generic: 已启用
+                              - generic: 已禁用
+                        - cell "18584565115" [ref=f31e459]
+                        - cell "2026-07-30 16:06:44" [ref=f31e463]
+                      - row [ref=f31e467]:
+                        - cell "jack" [ref=f31e468]
+                        - cell "-" [ref=f31e472]
+                        - cell "总公司" [ref=f31e476]
+                        - cell "租户管理员" [ref=f31e480]
+                        - cell [ref=f31e484]:
+                          - switch "已启用 已禁用" [ref=f31e487] [cursor=pointer]:
+                            - generic [ref=f31e489]:
+                              - generic: 已启用
+                              - generic: 已禁用
+                        - cell "-" [ref=f31e490]
+                        - cell "2026-07-30 16:06:44" [ref=f31e494]
+                - generic [ref=f31e591]:
+                  - table [ref=f31e594]:
+                    - rowgroup [ref=f31e604]:
+                      - row [ref=f31e605]:
+                        - columnheader "操作" [ref=f31e606]
+                  - table [ref=f31e613]:
+                    - rowgroup [ref=f31e616]:
+                      - row [ref=f31e617]:
+                        - cell [ref=f31e618]:
+                          - generic [ref=f31e621]:
+                            - button "修改" [ref=f31e622] [cursor=pointer]
+                            - button "删除" [ref=f31e624] [cursor=pointer]
+                      - row [ref=f31e626]:
+                        - cell [ref=f31e627]:
+                          - generic [ref=f31e630]:
+                            - button "修改" [ref=f31e631] [cursor=pointer]
+                            - button "删除" [ref=f31e633] [cursor=pointer]
+              - generic [ref=f31e668]:
+                - generic [ref=f31e669]: 共 2 条记录
+                - generic [ref=f31e671] [cursor=pointer]:
+                  - generic "20条/页" [ref=f31e672]:
+                    - textbox "请选择" [ref=f31e673]: 20条/页
+                  - generic [ref=f31e674]: 
+                - button "" [ref=f31e677]
+                - button "" [ref=f31e679]
+                - button "" [ref=f31e681]
+                - button "1" [ref=f31e684] [cursor=pointer]
+                - button "" [ref=f31e685]
+                - button "" [ref=f31e687]
+                - button "" [ref=f31e689]

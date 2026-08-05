@@ -1,0 +1,246 @@
+- generic [ref=f8e4]:
+  - generic [ref=f8e7]:
+    - complementary [ref=f8e8]:
+      - generic [ref=f8e9]:
+        - link "Platform Admin Platform Admin" [ref=f8e417] [cursor=pointer]:
+          - /url: javascript:void 0
+          - img "Platform Admin" [ref=f8e418]
+          - generic [ref=f8e19]: Platform Admin
+        - menu [ref=f8e22]:
+          - listitem [ref=f8e23]:
+            - generic [ref=f8e24] [cursor=pointer]: 仪表盘
+          - listitem [ref=f8e29]:
+            - generic [ref=f8e30] [cursor=pointer]: 租户管理
+            - list [ref=f8e550]:
+              - menuitem "租户列表" [ref=f8e551] [cursor=pointer]
+              - menuitem "租户套餐配置" [ref=f8e556] [cursor=pointer]
+          - listitem [ref=f8e35]:
+            - generic [ref=f8e36] [cursor=pointer]: 组织架构
+          - listitem [ref=f8e41]:
+            - generic [ref=f8e42] [cursor=pointer]: 权限与安全
+          - listitem [ref=f8e47]:
+            - generic [ref=f8e48] [cursor=pointer]: 文件中心
+          - listitem [ref=f8e53]:
+            - generic [ref=f8e54] [cursor=pointer]: 通知中心
+          - listitem [ref=f8e59]:
+            - generic [ref=f8e60] [cursor=pointer]: 系统管理
+          - listitem [ref=f8e65]:
+            - generic [ref=f8e66] [cursor=pointer]: 演示
+          - listitem [ref=f8e71]:
+            - generic [ref=f8e72] [cursor=pointer]: 系统管理
+          - listitem [ref=f8e77]:
+            - generic [ref=f8e78] [cursor=pointer]: 项目
+          - menuitem "关于" [ref=f8e87] [cursor=pointer]
+    - generic [ref=f8e97]:
+      - generic [ref=f8e98]:
+        - banner [ref=f8e99]:
+          - button [ref=f8e100] [cursor=pointer]
+          - button [ref=f8e102] [cursor=pointer]
+          - navigation "breadcrumb" [ref=f8e107]:
+            - list [ref=f8e108]:
+              - listitem [ref=f8e109]:
+                - link [ref=f8e110] [cursor=pointer]:
+                  - /url: javascript:void 0
+                - listitem [ref=f8e113]
+              - listitem [ref=f8e561]:
+                - link [disabled] [ref=f8e562]
+          - generic [ref=f8e121]:
+            - generic [ref=f8e123] [cursor=pointer]:
+              - generic [ref=f8e127]: 搜索
+              - generic [ref=f8e128]: ⌘ K
+            - button [ref=f8e130] [cursor=pointer]
+            - button "light" [ref=f8e135] [cursor=pointer]
+            - button [ref=f8e144] [cursor=pointer]
+            - button [ref=f8e150] [cursor=pointer]
+            - button [ref=f8e152] [cursor=pointer]
+            - button [ref=f8e158] [cursor=pointer]:
+              - button [ref=f8e160]
+            - button [ref=f8e165] [cursor=pointer]
+        - generic [ref=f8e172]:
+          - generic [ref=f8e177]:
+            - generic [ref=f8e178] [cursor=pointer]: 分析页
+            - generic [ref=f8e193] [cursor=pointer]: 租户列表
+            - generic [ref=f8e567] [cursor=pointer]: 租户套餐配置
+          - button [ref=f8e210] [cursor=pointer]
+      - main [ref=f8e228]:
+        - generic [ref=f8e589]:
+          - generic [ref=f8e594]:
+            - generic [ref=f8e595]:
+              - generic [ref=f8e596]: 套餐名称
+              - textbox "套餐名称" [ref=f8e601]:
+                - /placeholder: 请输入
+            - generic [ref=f8e602]:
+              - generic [ref=f8e603]: 套餐编码
+              - textbox "套餐编码" [ref=f8e608]:
+                - /placeholder: 请输入
+            - generic [ref=f8e609]:
+              - generic [ref=f8e610]: 状态
+              - generic [ref=f8e616] [cursor=pointer]:
+                - combobox "状态" [ref=f8e618]
+                - generic: 请选择
+            - generic [ref=f8e619]:
+              - button "重 置" [ref=f8e620] [cursor=pointer]
+              - button "搜 索" [ref=f8e622] [cursor=pointer]
+              - generic [ref=f8e624] [cursor=pointer]: 收起
+          - generic [ref=f8e631]:
+            - generic [ref=f8e633]:
+              - generic [ref=f8e634]: 租户业务套餐列表
+              - generic [ref=f8e638]:
+                - button "新增租户业务套餐" [ref=f8e639] [cursor=pointer]
+                - button "" [ref=f8e642] [cursor=pointer]
+              - generic [ref=f8e644]:
+                - button "" [ref=f8e645] [cursor=pointer]
+                - button "" [ref=f8e647] [cursor=pointer]
+                - button "" [ref=f8e649] [cursor=pointer]
+            - generic [ref=f8e656]:
+              - generic [ref=f8e657]:
+                - table [ref=f8e661]:
+                  - rowgroup [ref=f8e672]:
+                    - row [ref=f8e673]:
+                      - columnheader "套餐名称" [ref=f8e674]
+                      - columnheader "套餐编码" [ref=f8e679]
+                      - columnheader "状态" [ref=f8e684]
+                      - columnheader "当前版本" [ref=f8e689]
+                      - columnheader "绑定租户数" [ref=f8e694]
+                      - columnheader "接口能力数" [ref=f8e699]
+                      - columnheader "描述" [ref=f8e704]
+                      - columnheader "创建时间" [ref=f8e709]
+                - table [ref=f8e717]:
+                  - rowgroup [ref=f8e728]:
+                    - row "全功能管理员套餐 full-admin 已启用 已禁用 v1 0 2026-07-30 16:06:45" [ref=f8e729]:
+                      - cell "全功能管理员套餐" [ref=f8e730]
+                      - cell "full-admin" [ref=f8e734]
+                      - cell [ref=f8e738]:
+                        - switch "已启用 已禁用" [ref=f8e741] [cursor=pointer]:
+                          - generic [ref=f8e743]:
+                            - generic: 已启用
+                            - generic: 已禁用
+                      - cell "v1" [ref=f8e744]
+                      - cell [ref=f8e748]
+                      - cell "0" [ref=f8e752]
+                      - cell [ref=f8e756]
+                      - cell "2026-07-30 16:06:45" [ref=f8e760]
+                    - row "基础业务套餐 basic-business 已启用 已禁用 v1 0 2026-07-30 16:06:45" [ref=f8e764]:
+                      - cell "基础业务套餐" [ref=f8e765]
+                      - cell "basic-business" [ref=f8e769]
+                      - cell [ref=f8e773]:
+                        - switch "已启用 已禁用" [ref=f8e776] [cursor=pointer]:
+                          - generic [ref=f8e778]:
+                            - generic: 已启用
+                            - generic: 已禁用
+                      - cell "v1" [ref=f8e779]
+                      - cell [ref=f8e783]
+                      - cell "0" [ref=f8e787]
+                      - cell [ref=f8e791]
+                      - cell "2026-07-30 16:06:45" [ref=f8e795]
+              - generic [ref=f8e799]:
+                - table [ref=f8e802]:
+                  - rowgroup [ref=f8e813]:
+                    - row [ref=f8e814]:
+                      - columnheader "操作" [ref=f8e815]
+                - table [ref=f8e822]:
+                  - rowgroup [ref=f8e825]:
+                    - row [ref=f8e826]:
+                      - cell [ref=f8e827]:
+                        - generic [ref=f8e830]:
+                          - button "菜单权限" [ref=f8e831] [cursor=pointer]
+                          - button "版本历史" [ref=f8e833] [cursor=pointer]
+                          - button "修改" [ref=f8e835] [cursor=pointer]
+                          - button "删除" [ref=f8e837] [cursor=pointer]
+                    - row [ref=f8e839]:
+                      - cell [ref=f8e840]:
+                        - generic [ref=f8e843]:
+                          - button "菜单权限" [ref=f8e844] [cursor=pointer]
+                          - button "版本历史" [ref=f8e846] [cursor=pointer]
+                          - button "修改" [ref=f8e848] [cursor=pointer]
+                          - button "删除" [ref=f8e850] [cursor=pointer]
+            - generic [ref=f8e858]:
+              - generic [ref=f8e859]: 共 2 条记录
+              - generic [ref=f8e861] [cursor=pointer]:
+                - generic "20条/页" [ref=f8e862]:
+                  - textbox "请选择" [ref=f8e863]: 20条/页
+                - generic [ref=f8e864]: 
+              - button "" [ref=f8e867]
+              - button "" [ref=f8e869]
+              - button "" [ref=f8e871]
+              - button "1" [ref=f8e874] [cursor=pointer]
+              - button "" [ref=f8e875]
+              - button "" [ref=f8e877]
+              - button "" [ref=f8e879]
+  - dialog "配置套餐菜单权限" [ref=f8e882]:
+    - document:
+      - generic [ref=f8e883]:
+        - button "Close" [ref=f8e884] [cursor=pointer]:
+          - img "close" [ref=f8e886]
+        - generic [ref=f8e889]: 配置套餐菜单权限
+        - generic [ref=f8e892]:
+          - generic [ref=f8e893]:
+            - generic [ref=f8e894]:
+              - generic [ref=f8e895]:
+                - generic [ref=f8e896]: 全功能管理员套餐
+                - generic [ref=f8e897]: full-admin
+              - paragraph [ref=f8e898]: 菜单权限独立保存，并会影响所有绑定该套餐的租户。
+            - generic [ref=f8e899]:
+              - strong [ref=f8e900]: "105"
+              - generic [ref=f8e901]: 项菜单已选
+          - generic [ref=f8e902]:
+            - generic [ref=f8e904]:
+              - textbox "搜索菜单名称" [ref=f8e906]
+              - button [ref=f8e909] [cursor=pointer]:
+                - img "search" [ref=f8e910]
+            - generic [ref=f8e913]:
+              - button "全部展开" [ref=f8e915] [cursor=pointer]
+              - button "全部收起" [ref=f8e918] [cursor=pointer]
+              - button "全 选" [ref=f8e921] [cursor=pointer]
+              - button "清 空" [ref=f8e924] [cursor=pointer]
+          - tree [ref=f8e929]:
+            - generic:
+              - textbox "for screen reader"
+            - generic [ref=f8e933]:
+              - generic [ref=f8e934]:
+                - img "caret-down" [ref=f8e936] [cursor=pointer]
+                - generic [ref=f8e941] [cursor=pointer]: 仪表盘
+              - generic [ref=f8e950]: 工作台
+              - generic [ref=f8e961]:
+                - img "caret-down" [ref=f8e963] [cursor=pointer]
+                - generic [ref=f8e968] [cursor=pointer]: 租户管理
+              - generic [ref=f8e974]:
+                - img "caret-down" [ref=f8e977] [cursor=pointer]
+                - generic [ref=f8e982] [cursor=pointer]: 租户列表
+              - generic [ref=f8e988]:
+                - img "caret-down" [ref=f8e991] [cursor=pointer]
+                - generic [ref=f8e996] [cursor=pointer]: 租户套餐配置
+              - generic [ref=f8e1002]:
+                - img "caret-down" [ref=f8e1004] [cursor=pointer]
+                - generic [ref=f8e1009] [cursor=pointer]: 组织架构
+              - generic [ref=f8e1018]:
+                - img "caret-down" [ref=f8e1021] [cursor=pointer]
+                - generic [ref=f8e1026] [cursor=pointer]: 用户管理
+              - generic [ref=f8e1032]:
+                - img "caret-down" [ref=f8e1035] [cursor=pointer]
+                - generic [ref=f8e1040] [cursor=pointer]: 部门管理
+              - generic [ref=f8e1050]:
+                - img "caret-down" [ref=f8e1053] [cursor=pointer]
+                - generic [ref=f8e1058] [cursor=pointer]: 岗位管理
+              - generic [ref=f8e1064]:
+                - img "caret-down" [ref=f8e1067] [cursor=pointer]
+                - generic [ref=f8e1072] [cursor=pointer]: 角色管理
+              - generic [ref=f8e1078]:
+                - img "caret-down" [ref=f8e1081] [cursor=pointer]
+                - generic [ref=f8e1086] [cursor=pointer]: 项目管理
+              - generic [ref=f8e1092]:
+                - img "caret-down" [ref=f8e1094] [cursor=pointer]
+                - generic [ref=f8e1099] [cursor=pointer]: 权限与安全
+              - generic [ref=f8e1106]:
+                - img "caret-down" [ref=f8e1109] [cursor=pointer]
+                - generic [ref=f8e1114] [cursor=pointer]: 菜单管理
+              - generic [ref=f8e1120]:
+                - img "caret-down" [ref=f8e1122] [cursor=pointer]
+                - generic [ref=f8e1127] [cursor=pointer]: 文件中心
+              - generic [ref=f8e1134]:
+                - img "caret-down" [ref=f8e1137] [cursor=pointer]
+                - generic [ref=f8e1142] [cursor=pointer]: 文件列表
+          - generic [ref=f8e1150]: 保存后，绑定该套餐的租户有效菜单将在权限缓存刷新后更新。
+        - generic [ref=f8e1151]:
+          - button "取 消" [ref=f8e1152] [cursor=pointer]
+          - button "确 定" [ref=f8e1154] [cursor=pointer]

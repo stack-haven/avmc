@@ -37,4 +37,4 @@
 - 产品需求总览：`docs/archive/product-avmc/00-AVMC-产品需求总览.md`
 - 迭代开发规划：`docs/archive/product-avmc/00-AVMC-迭代开发规划.md`
 - 模块划分与工具分析：`docs/archive/product-avmc/00-AVMC-模块划分与工具分析.md`
-- 架构边界：`docs/architecture/00-后端底座架构决策.md`
+- 架构边界：`docs/architecture/0-3-架构总览-后端底座架构决策.md`

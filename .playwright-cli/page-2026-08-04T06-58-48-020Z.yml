@@ -1,0 +1,251 @@
+- generic [ref=f21e1]:
+  - generic [ref=f21e4]:
+    - complementary [ref=f21e5]:
+      - generic [ref=f21e6]:
+        - link "Platform Admin Platform Admin" [ref=f21e12] [cursor=pointer]:
+          - /url: javascript:void 0
+          - img "Platform Admin" [ref=f21e15]
+          - generic [ref=f21e16]: Platform Admin
+        - menu [ref=f21e19]:
+          - listitem [ref=f21e20]:
+            - generic [ref=f21e21] [cursor=pointer]: 仪表盘
+          - listitem [ref=f21e30]:
+            - generic [ref=f21e31] [cursor=pointer]: 租户管理
+          - listitem [ref=f21e37]:
+            - generic [ref=f21e38] [cursor=pointer]: 组织架构
+          - listitem [ref=f21e47]:
+            - generic [ref=f21e48] [cursor=pointer]: 权限与安全
+          - listitem [ref=f21e55]:
+            - generic [ref=f21e56] [cursor=pointer]: 文件中心
+          - listitem [ref=f21e63]:
+            - generic [ref=f21e64] [cursor=pointer]: 通知中心
+          - listitem [ref=f21e70]:
+            - generic [ref=f21e71] [cursor=pointer]: 系统管理
+          - listitem [ref=f21e77]:
+            - generic [ref=f21e78] [cursor=pointer]: 演示
+          - listitem [ref=f21e84]:
+            - generic [ref=f21e85] [cursor=pointer]: 系统管理
+          - listitem [ref=f21e91]:
+            - generic [ref=f21e92] [cursor=pointer]: 项目
+          - menuitem "关于" [ref=f21e101] [cursor=pointer]
+    - generic [ref=f21e114]:
+      - generic [ref=f21e115]:
+        - banner [ref=f21e116]:
+          - button [ref=f21e117] [cursor=pointer]
+          - button [ref=f21e120] [cursor=pointer]
+          - navigation "breadcrumb" [ref=f21e125]:
+            - list [ref=f21e126]:
+              - listitem [ref=f21e127]:
+                - link [ref=f21e128] [cursor=pointer]:
+                  - /url: javascript:void 0
+                - listitem [ref=f21e132]
+              - listitem [ref=f21e135]:
+                - link [disabled] [ref=f21e136]
+          - generic [ref=f21e141]:
+            - generic [ref=f21e143] [cursor=pointer]:
+              - generic [ref=f21e147]: 搜索
+              - generic [ref=f21e148]: ⌘ K
+            - button [ref=f21e150] [cursor=pointer]
+            - button "light" [ref=f21e155] [cursor=pointer]
+            - button [ref=f21e164] [cursor=pointer]
+            - button [ref=f21e170] [cursor=pointer]
+            - button [ref=f21e173] [cursor=pointer]
+            - button [ref=f21e179] [cursor=pointer]:
+              - button [ref=f21e181]
+            - button [ref=f21e186] [cursor=pointer]
+        - generic [ref=f21e193]:
+          - generic [ref=f21e198]:
+            - generic [ref=f21e199] [cursor=pointer]: 分析页
+            - generic [ref=f21e217] [cursor=pointer]: 租户列表
+            - generic [ref=f21e234] [cursor=pointer]: 租户套餐配置
+          - button [ref=f21e253] [cursor=pointer]
+      - main [ref=f21e271]:
+        - generic [ref=f21e276]:
+          - generic [ref=f21e281]:
+            - generic [ref=f21e282]:
+              - generic [ref=f21e283]: 租户
+              - textbox "租户" [ref=f21e288]:
+                - /placeholder: 请输入
+            - generic [ref=f21e289]:
+              - generic [ref=f21e290]: 租户编码
+              - textbox "租户编码" [ref=f21e295]:
+                - /placeholder: 请输入
+            - generic [ref=f21e296]:
+              - generic [ref=f21e297]: 生命周期状态
+              - generic [ref=f21e303] [cursor=pointer]:
+                - combobox "生命周期状态" [ref=f21e305]
+                - generic: 请选择
+            - generic [ref=f21e306]:
+              - generic [ref=f21e307]: 创建时间
+              - generic [ref=f21e312]:
+                - textbox "创建时间" [ref=f21e314]:
+                  - /placeholder: 开始日期
+                - generic "to" [ref=f21e316]:
+                  - img "swap-right" [ref=f21e317]
+                - textbox "结束日期" [ref=f21e321]
+                - generic:
+                  - img "calendar"
+            - generic [ref=f21e322]:
+              - button "重 置" [ref=f21e323] [cursor=pointer]
+              - button "搜 索" [ref=f21e325] [cursor=pointer]
+              - generic [ref=f21e327] [cursor=pointer]: 收起
+          - generic [ref=f21e334]:
+            - generic [ref=f21e336]:
+              - generic [ref=f21e337]: 租户列表
+              - generic [ref=f21e341]:
+                - button "新增租户" [ref=f21e342] [cursor=pointer]
+                - button "" [ref=f21e345] [cursor=pointer]
+              - generic [ref=f21e347]:
+                - button "" [ref=f21e348] [cursor=pointer]
+                - button "" [ref=f21e350] [cursor=pointer]
+                - button "" [ref=f21e352] [cursor=pointer]
+            - generic [ref=f21e359]:
+              - generic [ref=f21e360]:
+                - table [ref=f21e364]:
+                  - rowgroup [ref=f21e377]:
+                    - row [ref=f21e378]:
+                      - columnheader "ID" [ref=f21e379]
+                      - columnheader "租户" [ref=f21e384]
+                      - columnheader "租户编码" [ref=f21e389]
+                      - columnheader "生命周期状态" [ref=f21e394]
+                      - columnheader "套餐" [ref=f21e399]
+                      - columnheader "平台租户" [ref=f21e404]
+                      - columnheader "到期时间" [ref=f21e409]
+                      - columnheader "排序" [ref=f21e414]
+                      - columnheader "备注" [ref=f21e419]
+                      - columnheader "创建时间" [ref=f21e424]
+                - table [ref=f21e432]:
+                  - rowgroup [ref=f21e445]:
+                    - row "1 广州万企兴科技有限公司 427643 正常 2 个套餐 - 2026-09-01 22:24:47 10 2026-07-30 16:14:14" [ref=f21e446]:
+                      - cell "1" [ref=f21e447]
+                      - cell "广州万企兴科技有限公司" [ref=f21e451]
+                      - cell "427643" [ref=f21e455]
+                      - cell "正常" [ref=f21e459]
+                      - cell "2 个套餐" [ref=f21e463]
+                      - cell "-" [ref=f21e467]
+                      - cell "2026-09-01 22:24:47" [ref=f21e471]
+                      - cell "10" [ref=f21e475]
+                      - cell [ref=f21e479]
+                      - cell "2026-07-30 16:14:14" [ref=f21e483]
+              - generic [ref=f21e487]:
+                - table [ref=f21e490]:
+                  - rowgroup [ref=f21e503]:
+                    - row [ref=f21e504]:
+                      - columnheader "操作" [ref=f21e505]
+                - table [ref=f21e512]:
+                  - rowgroup [ref=f21e515]:
+                    - row [ref=f21e516]:
+                      - cell [ref=f21e517]:
+                        - generic [ref=f21e520]:
+                          - button "修改" [ref=f21e521] [cursor=pointer]
+                          - button "管理员" [ref=f21e523] [cursor=pointer]
+                          - button "生命周期" [ref=f21e525] [cursor=pointer]
+                          - button "删除" [ref=f21e527] [cursor=pointer]
+            - generic [ref=f21e535]:
+              - generic [ref=f21e536]: 共 1 条记录
+              - generic [ref=f21e538] [cursor=pointer]:
+                - generic "20条/页" [ref=f21e539]:
+                  - textbox "请选择" [ref=f21e540]: 20条/页
+                - generic [ref=f21e541]: 
+              - button "" [ref=f21e544]
+              - button "" [ref=f21e546]
+              - button "" [ref=f21e548]
+              - button "1" [ref=f21e551] [cursor=pointer]
+              - button "" [ref=f21e552]
+              - button "" [ref=f21e554]
+              - button "" [ref=f21e556]
+  - dialog "租户管理员" [ref=f21e564]:
+    - document:
+      - generic [ref=f21e565]:
+        - button "Close" [ref=f21e566] [cursor=pointer]:
+          - img "close" [ref=f21e568]
+        - generic [ref=f21e571]: 租户管理员
+        - generic [ref=f21e574]:
+          - generic [ref=f21e575]:
+            - generic [ref=f21e576]:
+              - generic [ref=f21e577]: 广州万企兴科技有限公司
+              - generic [ref=f21e578]: "427643"
+            - paragraph [ref=f21e579]: 管理员账号用于租户首次登录和权限治理。资料维护与密码重置相互独立。
+          - generic [ref=f21e598]:
+            - article [ref=f21e599]:
+              - generic [ref=f21e600]:
+                - generic [ref=f21e601]:
+                  - generic [ref=f21e602]:
+                    - strong [ref=f21e603]: admin
+                    - generic [ref=f21e604]: 租户管理员
+                    - generic [ref=f21e605]: 已启用
+                  - generic [ref=f21e606]:
+                    - generic [ref=f21e607]: 未设置
+                    - generic [ref=f21e608]: admin@example.com
+                    - generic [ref=f21e609]: 未设置
+                - generic [ref=f21e610]:
+                  - button "编辑资料" [ref=f21e611] [cursor=pointer]
+                  - button "重置密码" [ref=f21e613] [cursor=pointer]
+            - article [ref=f21e615]:
+              - generic [ref=f21e616]:
+                - generic [ref=f21e617]:
+                  - generic [ref=f21e618]:
+                    - strong [ref=f21e619]: vben
+                    - generic [ref=f21e620]: 租户管理员
+                    - generic [ref=f21e621]: 已启用
+                  - generic [ref=f21e622]:
+                    - generic [ref=f21e623]: 未设置
+                    - generic [ref=f21e624]: vben@example.com
+                    - generic [ref=f21e625]: 未设置
+                - generic [ref=f21e626]:
+                  - button "编辑资料" [ref=f21e627] [cursor=pointer]
+                  - button "重置密码" [ref=f21e629] [cursor=pointer]
+            - article [ref=f21e631]:
+              - generic [ref=f21e632]:
+                - generic [ref=f21e633]:
+                  - generic [ref=f21e634]:
+                    - strong [ref=f21e635]: jack
+                    - generic [ref=f21e636]: 租户管理员
+                    - generic [ref=f21e637]: 已启用
+                  - generic [ref=f21e638]:
+                    - generic [ref=f21e639]: 未设置
+                    - generic [ref=f21e640]: jack@example.com
+                    - generic [ref=f21e641]: 未设置
+                - generic [ref=f21e642]:
+                  - button "编辑资料" [ref=f21e643] [cursor=pointer]
+                  - button "重置密码" [ref=f21e645] [cursor=pointer]
+            - article [ref=f21e647]:
+              - generic [ref=f21e648]:
+                - generic [ref=f21e649]:
+                  - generic [ref=f21e650]:
+                    - strong [ref=f21e651]: test
+                    - generic [ref=f21e652]: 租户管理员
+                    - generic [ref=f21e653]: 已启用
+                  - generic [ref=f21e654]:
+                    - generic [ref=f21e655]: 未设置
+                    - generic [ref=f21e656]: 未设置
+                    - generic [ref=f21e657]: 未设置
+                - generic [ref=f21e658]:
+                  - button "编辑资料" [ref=f21e659] [cursor=pointer]
+                  - button "重置密码" [ref=f21e661] [cursor=pointer]
+  - dialog "重置管理员密码" [ref=f21e721]:
+    - document:
+      - generic [ref=f21e722]:
+        - button "Close" [ref=f21e723] [cursor=pointer]:
+          - img "close" [ref=f21e725]
+        - generic [ref=f21e728]: 重置管理员密码
+        - generic [ref=f21e730]:
+          - alert [ref=f21e731]:
+            - img "exclamation-circle" [ref=f21e732]
+            - generic [ref=f21e735]: 重置 admin 的密码后，该账号现有登录会话将失效。
+          - generic [ref=f21e737]:
+            - generic [ref=f21e739]:
+              - generic "新密码" [ref=f21e741]
+              - generic [ref=f21e744]:
+                - generic [ref=f21e745]:
+                  - textbox [ref=f21e746]
+                  - img "eye-invisible" [ref=f21e748] [cursor=pointer]
+                - generic [ref=f21e752]: 8–72 位，必须同时包含大写字母、小写字母、数字和特殊字符。
+            - generic [ref=f21e754]:
+              - generic "确认新密码" [ref=f21e756]
+              - generic [ref=f21e760]:
+                - textbox [ref=f21e761]
+                - img "eye-invisible" [ref=f21e763] [cursor=pointer]
+        - generic [ref=f21e767]:
+          - button "取 消" [ref=f21e768] [cursor=pointer]
+          - button "确 定" [disabled] [ref=f21e770]

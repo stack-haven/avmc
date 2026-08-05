@@ -1,0 +1,2 @@
+[permissions]
+allow = ["Bash=cd /Users/jayden/Development/Code/Object/stack-haven/avmc/backend-service && grep -n \"Status.*`\" app/platform/admin/internal/data/role_repo.go | head -5", "Bash=sed -n '55,90p' $(go env GOPATH)/pkg/mod/entgo.io/ent@v0.14.5/dialect/sql/schema/sqlite.go"]

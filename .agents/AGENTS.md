@@ -28,10 +28,11 @@ ark-tech-platform/
 1. `.agents/AGENTS.md`（本文件）
 2. `.agents/RULES.md` — 结构与开发规则
 3. `.agents/DESIGN.md` — 产品与 UI 设计规则
-4. `docs/architecture/README.md`
-5. `docs/architecture/0-0-架构总览-架构总览.md` — 架构第一入口
-6. `docs/architecture/0-3-架构总览-后端底座架构决策.md`
-7. `docs/services/README.md`
+4. `.agents/REVIEW.md` — Code Review 检查清单（安全/架构/契约/风格）
+5. `docs/architecture/README.md`
+6. `docs/architecture/0-0-架构总览-架构总览.md` — 架构第一入口
+7. `docs/architecture/0-3-架构总览-后端底座架构决策.md`
+8. `docs/services/README.md`
 
 实现类任务的推荐阅读顺序：
 
@@ -45,10 +46,11 @@ ark-tech-platform/
 8. `docs/architecture/0-3-架构总览-后端底座架构决策.md`
 9. `docs/services/README.md`
 10. `docs/architecture/4-6-治理-开发功能清单.md` — 当前开发状态和断点
-11. 同一后端服务或前端应用中最接近的现有代码
-12. `docs/product/README.md`
-13. `docs/vibe-coding/*/README.md`
-14. `docs/archive/*` 仅用于追溯历史需求来源
+11. `docs/architecture/4-7-治理-代码功能清单.md` — 代码落点和人工验证状态
+12. 同一后端服务或前端应用中最接近的现有代码
+13. `docs/product/README.md`
+14. `docs/vibe-coding/*/README.md`
+15. `docs/archive/*` 仅用于追溯历史需求来源
 
 当前代码、`.agents/`、`docs/architecture/`、`docs/services/` 和 `docs/product/` 是事实来源。
 
@@ -178,8 +180,10 @@ locales/      # zh-CN 和 en-US labels
 
 ### 开发工作流
 
-- **开始新功能** → 先查 `4-6-治理-开发功能清单` 确认状态和优先级
-- **功能完成** → 更新清单 `[ ]` → `[x]`，同步更新设计文档
+- **第一原则：需求和文档先于开发**。开始或继续任何功能前，必须先明确需求、验收标准、边界和非目标，并更新对应设计文档及 `4-6`/`4-7` 清单；文档未收口时不得进入下一功能开发。
+- **开始新功能** → 先查 `4-6-治理-开发功能清单` 明确需求、状态和优先级，再查 `4-7-治理-代码功能清单` 确认代码落点
+- **功能完成** → 代码完成先标记 `[~]`；自动化验证和人工功能验证均完成后才更新为 `[x]`，并同步设计文档和验证证据
+- **人工测试或重构后** → 先修复文档与清单偏差，未验证项保持 `[~]`，不得用“代码存在”代替“已完成并验证”
 - **调整优先级** → 直接编辑清单中的 P0/P1/P2/P3 标记
 - **新增小功能** → 在对应模块下追加一行
 - **中断后恢复** → 读清单「当前断点」→ 读对应设计文档 → 开发
@@ -253,4 +257,3 @@ make contract-check    # proto-lint + generate-check
 rg "Ark Tech Platform" README.md .agents docs/README.md docs/architecture docs/services docs/product docs/vibe-coding
 git diff -- .agents README.md docs
 ```
-

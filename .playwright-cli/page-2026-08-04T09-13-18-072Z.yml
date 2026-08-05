@@ -1,0 +1,237 @@
+- generic [ref=f32e7]:
+  - complementary [ref=f32e8]:
+    - generic [ref=f32e9]:
+      - link "Platform Admin Platform Admin" [ref=f32e15] [cursor=pointer]:
+        - /url: javascript:void 0
+        - img "Platform Admin" [ref=f32e18]
+        - generic [ref=f32e19]: Platform Admin
+      - menu [ref=f32e22]:
+        - listitem [ref=f32e23]:
+          - generic [ref=f32e24] [cursor=pointer]: 仪表盘
+        - listitem [ref=f32e33]:
+          - generic [ref=f32e34] [cursor=pointer]: 租户管理
+        - listitem [ref=f32e40]:
+          - generic [ref=f32e41] [cursor=pointer]: 组织架构
+        - listitem [ref=f32e50]:
+          - generic [ref=f32e51] [cursor=pointer]: 权限与安全
+        - listitem [ref=f32e58]:
+          - generic [ref=f32e59] [cursor=pointer]: 文件中心
+        - listitem [ref=f32e66]:
+          - generic [ref=f32e67] [cursor=pointer]: 通知中心
+        - listitem [ref=f32e73]:
+          - generic [ref=f32e74] [cursor=pointer]: 系统管理
+        - listitem [ref=f32e80]:
+          - generic [ref=f32e81] [cursor=pointer]: 演示
+        - listitem [ref=f32e87]:
+          - generic [ref=f32e88] [cursor=pointer]: 系统管理
+        - listitem [ref=f32e94]:
+          - generic [ref=f32e95] [cursor=pointer]: 项目
+        - menuitem "关于" [ref=f32e104] [cursor=pointer]
+  - generic [ref=f32e117]:
+    - generic [ref=f32e118]:
+      - banner [ref=f32e119]:
+        - button [ref=f32e120] [cursor=pointer]
+        - button [ref=f32e123] [cursor=pointer]
+        - navigation "breadcrumb" [ref=f32e128]:
+          - list [ref=f32e129]:
+            - listitem [ref=f32e130]:
+              - link [ref=f32e131] [cursor=pointer]:
+                - /url: javascript:void 0
+              - listitem [ref=f32e138]
+            - listitem [ref=f32e141]:
+              - link [disabled] [ref=f32e142]
+        - generic [ref=f32e147]:
+          - generic [ref=f32e149] [cursor=pointer]:
+            - generic [ref=f32e153]: 搜索
+            - generic [ref=f32e154]: ⌘ K
+          - button [ref=f32e156] [cursor=pointer]
+          - button "light" [ref=f32e161] [cursor=pointer]
+          - button [ref=f32e170] [cursor=pointer]
+          - button [ref=f32e176] [cursor=pointer]
+          - button [ref=f32e179] [cursor=pointer]
+          - button [ref=f32e185] [cursor=pointer]:
+            - button [ref=f32e187]
+          - button [ref=f32e192] [cursor=pointer]:
+            - img "超级管理员" [ref=f32e197]
+      - generic [ref=f32e199]:
+        - generic [ref=f32e204]:
+          - generic [ref=f32e205] [cursor=pointer]: 分析页
+          - generic [ref=f32e223] [cursor=pointer]: 租户列表
+          - generic [ref=f32e241] [cursor=pointer]: 租户套餐配置
+          - generic [ref=f32e259] [cursor=pointer]: 用户与部门
+        - button [ref=f32e277] [cursor=pointer]
+    - main [ref=f32e295]:
+      - generic [ref=f32e299]:
+        - generic [ref=f32e301]:
+          - generic [ref=f32e302]:
+            - generic [ref=f32e303]:
+              - generic [ref=f32e304]: 部门
+              - generic [ref=f32e305]: 选择部门以筛选右侧人员
+            - button "新增部门" [ref=f32e306] [cursor=pointer]
+          - textbox "搜索部门" [ref=f32e314]
+          - tree [ref=f32e317]:
+            - generic:
+              - textbox "for screen reader"
+            - generic [ref=f32e321]:
+              - generic [ref=f32e322]:
+                - img "caret-down" [ref=f32e324] [cursor=pointer]
+                - generic "全部用户 (4)" [ref=f32e327] [cursor=pointer]
+              - generic "广州万企兴科技有限公司 (0)" [ref=f32e331] [cursor=pointer]
+              - generic [ref=f32e332]:
+                - img "caret-down" [ref=f32e335] [cursor=pointer]
+                - generic "总公司 (4)" [ref=f32e338] [cursor=pointer]
+              - generic "技术部 (2)" [ref=f32e342] [cursor=pointer]
+          - generic [ref=f32e749]:
+            - generic [ref=f32e750]:
+              - generic [ref=f32e751]: 总公司
+              - generic [ref=f32e752]: "4"
+            - generic [ref=f32e753]:
+              - button "新增下级" [ref=f32e755] [cursor=pointer]
+              - button "修 改" [ref=f32e758] [cursor=pointer]
+              - button "删 除" [ref=f32e761] [cursor=pointer]
+        - generic [ref=f32e343]:
+          - generic [ref=f32e344]:
+            - generic [ref=f32e345]: 总公司4 人
+            - generic [ref=f32e763]:
+              - generic [ref=f32e764]: 包含下级部门
+              - switch [checked] [ref=f32e765] [cursor=pointer]
+          - generic [ref=f32e347]:
+            - generic [ref=f32e352]:
+              - generic [ref=f32e353]:
+                - generic [ref=f32e354]: 用户名称
+                - textbox "用户名称" [ref=f32e359]:
+                  - /placeholder: 请输入
+              - generic [ref=f32e360]:
+                - generic [ref=f32e361]: 用户ID
+                - textbox "用户ID" [ref=f32e366]:
+                  - /placeholder: 请输入
+              - generic [ref=f32e367]:
+                - generic [ref=f32e368]: 状态
+                - generic [ref=f32e374] [cursor=pointer]:
+                  - combobox "状态" [ref=f32e376]
+                  - generic: 请选择
+              - generic [ref=f32e377]:
+                - generic [ref=f32e378]: 创建时间
+                - generic [ref=f32e383]:
+                  - textbox "创建时间" [ref=f32e385]:
+                    - /placeholder: 开始日期
+                  - generic "to" [ref=f32e387]:
+                    - img "swap-right" [ref=f32e388]
+                  - textbox "结束日期" [ref=f32e392]
+                  - generic:
+                    - img "calendar"
+              - generic [ref=f32e393]:
+                - button "重 置" [ref=f32e394] [cursor=pointer]
+                - button "搜 索" [ref=f32e396] [cursor=pointer]
+                - generic [ref=f32e398] [cursor=pointer]: 收起
+            - generic [ref=f32e405]:
+              - generic [ref=f32e407]:
+                - generic [ref=f32e410]:
+                  - button "新增用户" [ref=f32e411] [cursor=pointer]
+                  - button "" [ref=f32e414] [cursor=pointer]
+                - generic [ref=f32e416]:
+                  - button "" [ref=f32e417] [cursor=pointer]
+                  - button "" [ref=f32e419] [cursor=pointer]
+                  - button "" [ref=f32e421] [cursor=pointer]
+              - generic [ref=f32e428]:
+                - generic [ref=f32e429]:
+                  - table [ref=f32e433]:
+                    - rowgroup [ref=f32e443]:
+                      - row [ref=f32e444]:
+                        - columnheader "用户名称" [ref=f32e445]
+                        - columnheader "用户真实姓名" [ref=f32e450]
+                        - columnheader "所属部门" [ref=f32e455]
+                        - columnheader "管理员身份" [ref=f32e460]
+                        - columnheader "状态" [ref=f32e465]
+                        - columnheader "用户电话" [ref=f32e470]
+                        - columnheader "创建时间" [ref=f32e475]
+                  - table [ref=f32e483]:
+                    - rowgroup [ref=f32e493]:
+                      - row [ref=f32e494]:
+                        - cell "admin" [ref=f32e495]
+                        - cell "超级管理员" [ref=f32e499]
+                        - cell "总公司" [ref=f32e503]
+                        - cell "租户管理员" [ref=f32e507]
+                        - cell [ref=f32e511]:
+                          - switch "已启用 已禁用" [ref=f32e514] [cursor=pointer]:
+                            - generic [ref=f32e516]:
+                              - generic: 已启用
+                              - generic: 已禁用
+                        - cell "18584565115" [ref=f32e517]
+                        - cell "2026-07-30 16:06:44" [ref=f32e521]
+                      - row [ref=f32e525]:
+                        - cell "jack" [ref=f32e526]
+                        - cell "-" [ref=f32e530]
+                        - cell "总公司" [ref=f32e534]
+                        - cell "租户管理员" [ref=f32e538]
+                        - cell [ref=f32e542]:
+                          - switch "已启用 已禁用" [ref=f32e545] [cursor=pointer]:
+                            - generic [ref=f32e547]:
+                              - generic: 已启用
+                              - generic: 已禁用
+                        - cell "-" [ref=f32e548]
+                        - cell "2026-07-30 16:06:44" [ref=f32e552]
+                      - row [ref=f32e556]:
+                        - cell "operator" [ref=f32e557]
+                        - cell "-" [ref=f32e561]
+                        - cell "技术部" [ref=f32e565]
+                        - cell "-" [ref=f32e569]
+                        - cell [ref=f32e573]:
+                          - switch "已启用 已禁用" [ref=f32e576] [cursor=pointer]:
+                            - generic [ref=f32e578]:
+                              - generic: 已启用
+                              - generic: 已禁用
+                        - cell "-" [ref=f32e579]
+                        - cell "2026-07-30 16:06:44" [ref=f32e583]
+                      - row [ref=f32e768]:
+                        - cell "vben" [ref=f32e769]
+                        - cell "-" [ref=f32e592]
+                        - cell "技术部" [ref=f32e770]
+                        - cell "租户管理员" [ref=f32e600]
+                        - cell [ref=f32e604]:
+                          - switch "已启用 已禁用" [ref=f32e607] [cursor=pointer]:
+                            - generic [ref=f32e609]:
+                              - generic: 已启用
+                              - generic: 已禁用
+                        - cell "-" [ref=f32e610]
+                        - cell "2026-07-30 16:06:44" [ref=f32e771]
+                - generic [ref=f32e649]:
+                  - table [ref=f32e652]:
+                    - rowgroup [ref=f32e662]:
+                      - row [ref=f32e663]:
+                        - columnheader "操作" [ref=f32e664]
+                  - table [ref=f32e671]:
+                    - rowgroup [ref=f32e674]:
+                      - row [ref=f32e675]:
+                        - cell [ref=f32e676]:
+                          - generic [ref=f32e679]:
+                            - button "修改" [ref=f32e680] [cursor=pointer]
+                            - button "删除" [ref=f32e682] [cursor=pointer]
+                      - row [ref=f32e684]:
+                        - cell [ref=f32e685]:
+                          - generic [ref=f32e688]:
+                            - button "修改" [ref=f32e689] [cursor=pointer]
+                            - button "删除" [ref=f32e691] [cursor=pointer]
+                      - row [ref=f32e693]:
+                        - cell [ref=f32e694]:
+                          - generic [ref=f32e697]:
+                            - button "修改" [ref=f32e698] [cursor=pointer]
+                            - button "删除" [ref=f32e700] [cursor=pointer]
+                      - row [ref=f32e702]:
+                        - cell [ref=f32e703]:
+                          - generic [ref=f32e706]:
+                            - button "修改" [ref=f32e707] [cursor=pointer]
+                            - button "删除" [ref=f32e709] [cursor=pointer]
+              - generic [ref=f32e726]:
+                - generic [ref=f32e727]: 共 4 条记录
+                - generic [ref=f32e729] [cursor=pointer]:
+                  - generic "20条/页" [ref=f32e730]:
+                    - textbox "请选择" [ref=f32e731]: 20条/页
+                  - generic [ref=f32e732]: 
+                - button "" [ref=f32e735]
+                - button "" [ref=f32e737]
+                - button "" [ref=f32e739]
+                - button "1" [ref=f32e742] [cursor=pointer]
+                - button "" [ref=f32e743]
+                - button "" [ref=f32e745]
+                - button "" [ref=f32e747]

@@ -1,0 +1,156 @@
+- generic [ref=f8e7]:
+  - complementary [ref=f8e8]:
+    - generic [ref=f8e9]:
+      - link "Platform Admin Platform Admin" [ref=f8e417] [cursor=pointer]:
+        - /url: javascript:void 0
+        - img "Platform Admin" [ref=f8e418]
+        - generic [ref=f8e19]: Platform Admin
+      - menu [ref=f8e22]:
+        - listitem [ref=f8e23]:
+          - generic [ref=f8e24] [cursor=pointer]: 仪表盘
+        - listitem [ref=f8e29]:
+          - generic [ref=f8e30] [cursor=pointer]: 租户管理
+          - list [ref=f8e550]:
+            - menuitem "租户列表" [ref=f8e551] [cursor=pointer]
+            - menuitem "租户套餐配置" [ref=f8e556] [cursor=pointer]
+        - listitem [ref=f8e35]:
+          - generic [ref=f8e36] [cursor=pointer]: 组织架构
+        - listitem [ref=f8e41]:
+          - generic [ref=f8e42] [cursor=pointer]: 权限与安全
+        - listitem [ref=f8e47]:
+          - generic [ref=f8e48] [cursor=pointer]: 文件中心
+        - listitem [ref=f8e53]:
+          - generic [ref=f8e54] [cursor=pointer]: 通知中心
+        - listitem [ref=f8e59]:
+          - generic [ref=f8e60] [cursor=pointer]: 系统管理
+        - listitem [ref=f8e65]:
+          - generic [ref=f8e66] [cursor=pointer]: 演示
+        - listitem [ref=f8e71]:
+          - generic [ref=f8e72] [cursor=pointer]: 系统管理
+        - listitem [ref=f8e77]:
+          - generic [ref=f8e78] [cursor=pointer]: 项目
+        - menuitem "关于" [ref=f8e87] [cursor=pointer]
+  - generic [ref=f8e97]:
+    - generic [ref=f8e98]:
+      - banner [ref=f8e99]:
+        - button [ref=f8e100] [cursor=pointer]
+        - button [ref=f8e102] [cursor=pointer]
+        - navigation "breadcrumb" [ref=f8e107]:
+          - list [ref=f8e108]:
+            - listitem [ref=f8e109]:
+              - link [ref=f8e110] [cursor=pointer]:
+                - /url: javascript:void 0
+              - listitem [ref=f8e113]
+            - listitem [ref=f8e116]:
+              - link [disabled] [ref=f8e117]
+        - generic [ref=f8e121]:
+          - generic [ref=f8e123] [cursor=pointer]:
+            - generic [ref=f8e127]: 搜索
+            - generic [ref=f8e128]: ⌘ K
+          - button [ref=f8e130] [cursor=pointer]
+          - button "light" [ref=f8e135] [cursor=pointer]
+          - button [ref=f8e144] [cursor=pointer]
+          - button [ref=f8e150] [cursor=pointer]
+          - button [ref=f8e152] [cursor=pointer]
+          - button [ref=f8e158] [cursor=pointer]:
+            - button [ref=f8e160]
+          - button [ref=f8e165] [cursor=pointer]
+      - generic [ref=f8e172]:
+        - generic [ref=f8e177]:
+          - generic [ref=f8e178] [cursor=pointer]: 分析页
+          - generic [ref=f8e193] [cursor=pointer]: 租户列表
+        - button [ref=f8e210] [cursor=pointer]
+    - main [ref=f8e228]:
+      - generic [ref=f8e233]:
+        - generic [ref=f8e238]:
+          - generic [ref=f8e239]:
+            - generic [ref=f8e240]: 租户
+            - textbox "租户" [ref=f8e451]:
+              - /placeholder: 请输入
+          - generic [ref=f8e242]:
+            - generic [ref=f8e243]: 租户编码
+            - textbox "租户编码" [ref=f8e455]:
+              - /placeholder: 请输入
+          - generic [ref=f8e245]:
+            - generic [ref=f8e246]: 生命周期状态
+            - generic [ref=f8e460] [cursor=pointer]:
+              - combobox "生命周期状态" [ref=f8e462]
+              - generic: 请选择
+          - generic [ref=f8e248]:
+            - generic [ref=f8e249]: 创建时间
+            - generic [ref=f8e466]:
+              - textbox "创建时间" [ref=f8e468]:
+                - /placeholder: 开始日期
+              - generic "to" [ref=f8e470]:
+                - img "swap-right" [ref=f8e471]
+              - textbox "结束日期" [ref=f8e475]
+              - generic:
+                - img "calendar"
+          - generic [ref=f8e251]:
+            - button "重 置" [ref=f8e476] [cursor=pointer]
+            - button "搜 索" [ref=f8e478] [cursor=pointer]
+            - generic [ref=f8e252] [cursor=pointer]: 收起
+        - generic [ref=f8e259]:
+          - generic [ref=f8e261]:
+            - generic [ref=f8e262]: 租户列表
+            - generic [ref=f8e266]:
+              - button "新增租户" [ref=f8e267] [cursor=pointer]
+              - button "" [ref=f8e270] [cursor=pointer]
+            - generic [ref=f8e272]:
+              - button "" [ref=f8e273] [cursor=pointer]
+              - button "" [ref=f8e275] [cursor=pointer]
+              - button "" [ref=f8e277] [cursor=pointer]
+          - generic [ref=f8e284]:
+            - generic [ref=f8e285]:
+              - table [ref=f8e289]:
+                - rowgroup [ref=f8e302]:
+                  - row [ref=f8e303]:
+                    - columnheader "ID" [ref=f8e304]
+                    - columnheader "租户" [ref=f8e309]
+                    - columnheader "租户编码" [ref=f8e314]
+                    - columnheader "生命周期状态" [ref=f8e319]
+                    - columnheader "套餐" [ref=f8e324]
+                    - columnheader "平台租户" [ref=f8e329]
+                    - columnheader "到期时间" [ref=f8e334]
+                    - columnheader "排序" [ref=f8e339]
+                    - columnheader "备注" [ref=f8e344]
+                    - columnheader "创建时间" [ref=f8e349]
+              - table [ref=f8e480]:
+                - rowgroup [ref=f8e493]:
+                  - row "1 广州万企兴科技有限公司 427643 正常 1 个套餐 - 10 2026-07-30 16:14:14" [ref=f8e494]:
+                    - cell "1" [ref=f8e495]
+                    - cell "广州万企兴科技有限公司" [ref=f8e499]
+                    - cell "427643" [ref=f8e503]
+                    - cell "正常" [ref=f8e507]
+                    - cell "1 个套餐" [ref=f8e511]
+                    - cell "-" [ref=f8e515]
+                    - cell [ref=f8e519]
+                    - cell "10" [ref=f8e523]
+                    - cell [ref=f8e527]
+                    - cell "2026-07-30 16:14:14" [ref=f8e531]
+            - generic [ref=f8e357]:
+              - table [ref=f8e360]:
+                - rowgroup [ref=f8e373]:
+                  - row [ref=f8e374]:
+                    - columnheader "操作" [ref=f8e375]
+              - table [ref=f8e535]:
+                - rowgroup [ref=f8e538]:
+                  - row [ref=f8e539]:
+                    - cell [ref=f8e540]:
+                      - generic [ref=f8e543]:
+                        - button "修改" [ref=f8e544] [cursor=pointer]
+                        - button "生命周期" [ref=f8e546] [cursor=pointer]
+                        - button "删除" [ref=f8e548] [cursor=pointer]
+          - generic [ref=f8e389]:
+            - generic [ref=f8e390]: 共 1 条记录
+            - generic [ref=f8e392] [cursor=pointer]:
+              - generic "20条/页" [ref=f8e393]:
+                - textbox "请选择" [ref=f8e394]: 20条/页
+              - generic [ref=f8e395]: 
+            - button "" [ref=f8e398]
+            - button "" [ref=f8e400]
+            - button "" [ref=f8e402]
+            - button "1" [ref=f8e405] [cursor=pointer]
+            - button "" [ref=f8e406]
+            - button "" [ref=f8e408]
+            - button "" [ref=f8e410]

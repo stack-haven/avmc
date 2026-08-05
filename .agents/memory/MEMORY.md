@@ -1,5 +1,5 @@
-- [project-overview](project-overview.md) — AVMC 项目基本信息和仓库结构
-- [tech-stack](tech-stack.md) — AVMC 技术栈和工具链
-- [dev-conventions](dev-conventions.md) — AVMC 开发规则和约束
-- [iteration-plan](iteration-plan.md) — AVMC 迭代开发规划当前进度
-- [codex-migration](codex-migration.md) — 从 Codex 迁移到 Claude Code 的注意事项
+- [Backend Service Build System](backend-service-build.md) — How to build/run backend services; always run make from within the service directory
+- [Ent Case-Insensitive Import Collisions](ent-case-insensitive-imports.md) — macOS filesystem causes import conflicts when renaming Ent schemas
+- [Mock Menu Maintenance](mock-menu-maintenance.md) — Every new feature must update mock menu hierarchy + permissions
+- [Documentation-First Development Gate](documentation-first-development-gate.md) — Requirements and documentation must be complete before development; current tenant/menu permission refactor remains under manual re-verification
+- [Tenant Administrator Maintenance](tenant-administrator-maintenance.md) — Tenant administrators are managed independently after tenant creation; profile updates and password resets are separate, tenant-scoped operations

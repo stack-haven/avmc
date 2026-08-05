@@ -1,0 +1,63 @@
+- generic [ref=e459]:
+  - complementary [ref=e460]:
+    - generic [ref=e461]:
+      - link "Platform Admin Platform Admin" [ref=e467] [cursor=pointer]:
+        - /url: javascript:void 0
+        - img "Platform Admin" [ref=e470]
+        - generic [ref=e471]: Platform Admin
+      - menu [ref=e474]:
+        - listitem [ref=e475]:
+          - generic [ref=e476] [cursor=pointer]: 仪表盘
+        - listitem [ref=e481]:
+          - generic [ref=e482] [cursor=pointer]: 租户管理
+          - list [ref=e844]:
+            - menuitem "租户列表" [active] [ref=e845] [cursor=pointer]
+            - menuitem "租户套餐配置" [ref=e850] [cursor=pointer]
+        - listitem [ref=e487]:
+          - generic [ref=e488] [cursor=pointer]: 组织架构
+        - listitem [ref=e493]:
+          - generic [ref=e494] [cursor=pointer]: 权限与安全
+        - listitem [ref=e499]:
+          - generic [ref=e500] [cursor=pointer]: 文件中心
+        - listitem [ref=e505]:
+          - generic [ref=e506] [cursor=pointer]: 通知中心
+        - listitem [ref=e511]:
+          - generic [ref=e512] [cursor=pointer]: 系统管理
+        - listitem [ref=e517]:
+          - generic [ref=e518] [cursor=pointer]: 演示
+        - listitem [ref=e523]:
+          - generic [ref=e524] [cursor=pointer]: 系统管理
+        - listitem [ref=e529]:
+          - generic [ref=e530] [cursor=pointer]: 项目
+        - menuitem "关于" [ref=e539] [cursor=pointer]
+  - generic [ref=e549]:
+    - generic [ref=e550]:
+      - banner [ref=e551]:
+        - button [ref=e552] [cursor=pointer]
+        - button [ref=e554] [cursor=pointer]
+        - navigation "breadcrumb" [ref=e559]:
+          - list [ref=e560]:
+            - listitem [ref=e855]:
+              - link [ref=e856] [cursor=pointer]:
+                - /url: javascript:void 0
+              - listitem [ref=e860]
+            - listitem [ref=e863]:
+              - link [disabled] [ref=e864]
+        - generic [ref=e573]:
+          - generic [ref=e575] [cursor=pointer]:
+            - generic [ref=e579]: 搜索
+            - generic [ref=e580]: ⌘ K
+          - button [ref=e582] [cursor=pointer]
+          - button "light" [ref=e587] [cursor=pointer]
+          - button [ref=e596] [cursor=pointer]
+          - button [ref=e602] [cursor=pointer]
+          - button [ref=e604] [cursor=pointer]
+          - button [ref=e610] [cursor=pointer]:
+            - button [ref=e612]
+          - button [ref=e617] [cursor=pointer]
+      - generic [ref=e624]:
+        - generic [ref=e629]:
+          - generic [ref=e630] [cursor=pointer]: 分析页
+          - generic [ref=e870] [cursor=pointer]: 租户列表
+        - button [ref=e644] [cursor=pointer]
+    - main [ref=e662]

@@ -1,0 +1,100 @@
+- generic [active] [ref=e4]:
+  - generic [ref=e459]:
+    - complementary [ref=e460]:
+      - generic [ref=e461]:
+        - link "Platform Admin Platform Admin" [ref=e467] [cursor=pointer]:
+          - /url: javascript:void 0
+          - img "Platform Admin" [ref=e470]
+          - generic [ref=e471]: Platform Admin
+        - menu [ref=e474]:
+          - listitem [ref=e475]:
+            - generic [ref=e476] [cursor=pointer]: 仪表盘
+          - listitem [ref=e481]:
+            - generic [ref=e482] [cursor=pointer]: 租户管理
+          - listitem [ref=e487]:
+            - generic [ref=e488] [cursor=pointer]: 组织架构
+          - listitem [ref=e493]:
+            - generic [ref=e494] [cursor=pointer]: 权限与安全
+          - listitem [ref=e499]:
+            - generic [ref=e500] [cursor=pointer]: 文件中心
+          - listitem [ref=e505]:
+            - generic [ref=e506] [cursor=pointer]: 通知中心
+          - listitem [ref=e511]:
+            - generic [ref=e512] [cursor=pointer]: 系统管理
+          - listitem [ref=e517]:
+            - generic [ref=e518] [cursor=pointer]: 演示
+          - listitem [ref=e523]:
+            - generic [ref=e524] [cursor=pointer]: 系统管理
+          - listitem [ref=e529]:
+            - generic [ref=e530] [cursor=pointer]: 项目
+          - menuitem "关于" [ref=e539] [cursor=pointer]
+    - generic [ref=e549]:
+      - generic [ref=e550]:
+        - banner [ref=e551]:
+          - button [ref=e552] [cursor=pointer]
+          - button [ref=e554] [cursor=pointer]
+          - navigation "breadcrumb" [ref=e559]:
+            - list [ref=e560]:
+              - listitem [ref=e561]:
+                - link [ref=e562] [cursor=pointer]:
+                  - /url: javascript:void 0
+                - listitem [ref=e565]
+              - listitem [ref=e568]:
+                - link [disabled] [ref=e569]
+          - generic [ref=e573]:
+            - generic [ref=e575] [cursor=pointer]:
+              - generic [ref=e579]: 搜索
+              - generic [ref=e580]: ⌘ K
+            - button [ref=e582] [cursor=pointer]
+            - button "light" [ref=e587] [cursor=pointer]
+            - button [ref=e596] [cursor=pointer]
+            - button [ref=e602] [cursor=pointer]
+            - button [ref=e604] [cursor=pointer]
+            - button [ref=e610] [cursor=pointer]:
+              - button [ref=e612]
+            - button [ref=e617] [cursor=pointer]
+        - generic [ref=e624]:
+          - generic [ref=e625]: 分析页
+          - button [ref=e644] [cursor=pointer]
+      - main [ref=e662]:
+        - generic [ref=e664]:
+          - generic [ref=e665]:
+            - generic "用户量" [ref=e666]:
+              - heading "用户量" [level=3] [ref=e668]
+              - generic [ref=e669]: "845"
+              - generic [ref=e701]:
+                - generic [ref=e702]: 总用户量
+                - generic [ref=e703]: 50,561
+            - generic "访问量" [ref=e704]:
+              - heading "访问量" [level=3] [ref=e706]
+              - generic [ref=e707]:
+                - generic [ref=e708]: 8,427
+                - img [ref=e709]:
+                  - generic [ref=e710]: "%"
+              - generic [ref=e721]:
+                - generic [ref=e722]: 总访问量
+                - generic [ref=e723]: 210,667
+            - generic "下载量" [ref=e724]:
+              - heading "下载量" [level=3] [ref=e726]
+              - generic [ref=e727]: 3,366
+              - generic [ref=e739]:
+                - generic [ref=e740]: 总下载量
+                - generic [ref=e741]: 50,481
+            - generic "使用量" [ref=e742]:
+              - heading "使用量" [level=3] [ref=e744]
+              - generic [ref=e745]: 2,104
+              - generic [ref=e772]:
+                - generic [ref=e773]: 总使用量
+                - generic [ref=e774]: 20,967
+          - generic [ref=e776]:
+            - tablist [ref=e777]:
+              - tab "流量趋势" [selected] [ref=e778] [cursor=pointer]
+              - tab "月访问量" [ref=e779] [cursor=pointer]
+            - tabpanel "流量趋势" [ref=e780]
+          - generic [ref=e784]:
+            - heading "访问数量" [level=3] [ref=e787]
+            - heading "访问来源" [level=3] [ref=e794]
+            - heading "访问来源" [level=3] [ref=e801]
+  - generic [ref=e807]:
+    - img "loading" [ref=e808]
+    - text: 加载菜单中...
