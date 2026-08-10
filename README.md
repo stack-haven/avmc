@@ -78,6 +78,17 @@ pnpm -F @vben/web-antd-admin run dev
 
 Node.js 和 pnpm 版本以 `frontend-service` 内的 package 配置为准。
 
+### 测试账号
+
+| 项目 | 值 |
+|------|-----|
+| 登录地址 | `http://localhost:5173` |
+| 用户名 | `admin` |
+| 密码 | `Admin@123456` |
+| 租户 | 技术中台管理 (ID: 1) |
+
+> admin 是平台租户（is_platform = 1），拥有全部平台管控权限。
+
 ## API 契约流程
 
 ```text

@@ -15,6 +15,8 @@ backend-service/proto/evie/service/v1/
 ├── dictionary.proto       # 字典管理
 ├── entity.proto           # 实体识别
 ├── hotword.proto          # 热词管理
+├── provider.proto         # ASR 供应商管理（新增）
+├── data_source.proto      # 字典数据源集成（新增）
 ├── common.proto           # 公共 message
 ├── error_reason.proto     # 错误码
 └── buf.openapi.gen.yaml   # OpenAPI 生成配置
@@ -529,7 +531,191 @@ message BatchSetHotwordsResponse {
 
 ---
 
-## 八、权限码声明
+## 八、ASR 供应商管理接口
+
+```protobuf
+// proto/evie/service/v1/provider.proto
+syntax = "proto3";
+package evie.service.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+
+service ProviderService {
+  // 查询可用供应商列表（平台级）
+  rpc ListAvailableProviders(ListAvailableProvidersRequest) returns (ListAvailableProvidersResponse) {
+    option (google.api.http) = {get: "/evie/v1/providers/available"};
+  }
+
+  // 查询租户已配置的供应商
+  rpc GetTenantConfig(GetTenantConfigRequest) returns (GetTenantConfigResponse) {
+    option (google.api.http) = {get: "/evie/v1/providers/config"};
+  }
+
+  // 更新租户供应商配置
+  rpc UpdateTenantConfig(UpdateTenantConfigRequest) returns (UpdateTenantConfigResponse) {
+    option (google.api.http) = {
+      put: "/evie/v1/providers/config"
+      body: "*"
+    };
+  }
+
+  // 启用/停用供应商
+  rpc ToggleProvider(ToggleProviderRequest) returns (ToggleProviderResponse) {
+    option (google.api.http) = {
+      post: "/evie/v1/providers/toggle"
+      body: "*"
+    };
+  }
+}
+
+message ProviderInfo {
+  string name = 1;                   // funasr/whisper/xunfei/aliyun
+  string deployment_mode = 2;        // self_hosted/cloud_api
+  bool streaming = 3;
+  repeated string supported_formats = 4;
+  repeated int32 sample_rates = 5;
+  bool hotword_support = 6;
+}
+
+message ListAvailableProvidersRequest {}
+
+message ListAvailableProvidersResponse {
+  repeated ProviderInfo providers = 1;
+}
+
+message TenantProviderConfig {
+  string provider_name = 1;
+  bool is_active = 2;
+  string config_json = 3;            // Provider 连接配置
+  int32 sample_rate = 4;
+  string language = 5;
+}
+
+message GetTenantConfigRequest {}
+
+message GetTenantConfigResponse {
+  repeated TenantProviderConfig configs = 1;
+}
+
+message UpdateTenantConfigRequest {
+  TenantProviderConfig config = 1;
+}
+
+message UpdateTenantConfigResponse {
+  TenantProviderConfig config = 1;
+}
+
+message ToggleProviderRequest {
+  string provider_name = 1;
+  bool is_active = 2;
+}
+
+message ToggleProviderResponse {}
+```
+
+---
+
+## 九、数据源集成接口
+
+```protobuf
+// proto/evie/service/v1/data_source.proto
+syntax = "proto3";
+package evie.service.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "evie/service/v1/common.proto";
+
+service DataSourceService {
+  rpc CreateDataSource(CreateDataSourceRequest) returns (CreateDataSourceResponse) {
+    option (google.api.http) = {
+      post: "/evie/v1/data-sources"
+      body: "*"
+    };
+  }
+
+  rpc UpdateDataSource(UpdateDataSourceRequest) returns (UpdateDataSourceResponse) {
+    option (google.api.http) = {
+      put: "/evie/v1/data-sources/{id}"
+      body: "*"
+    };
+  }
+
+  rpc DeleteDataSource(DeleteDataSourceRequest) returns (DeleteDataSourceResponse) {
+    option (google.api.http) = {delete: "/evie/v1/data-sources/{id}"};
+  }
+
+  rpc ListDataSources(ListDataSourcesRequest) returns (ListDataSourcesResponse) {
+    option (google.api.http) = {get: "/evie/v1/data-sources"};
+  }
+
+  // 手动触发同步
+  rpc TriggerSync(TriggerSyncRequest) returns (TriggerSyncResponse) {
+    option (google.api.http) = {
+      post: "/evie/v1/data-sources/{id}:sync"
+      body: "*"
+    };
+  }
+
+  // 预览映射结果（试转换，不入库）
+  rpc PreviewMapping(PreviewMappingRequest) returns (PreviewMappingResponse) {
+    option (google.api.http) = {
+      post: "/evie/v1/data-sources:preview"
+      body: "*"
+    };
+  }
+}
+
+message DataSource {
+  int64 id = 1;
+  string name = 2;
+  string source_type = 3;            // http_api/csv_upload/db_direct/grpc
+  string target_type = 4;            // dictionary_word/correction_rule/alias
+  string config_json = 5;            // 连接配置
+  string mapping_json = 6;           // 字段映射规则
+  string sync_schedule = 7;          // cron 表达式
+  int32 status = 8;                  // 1=启用 0=停用
+  string created_at = 9;
+  string updated_at = 10;
+}
+
+message CreateDataSourceRequest {
+  string name = 1 [(buf.validate.field).string = { min_len: 1, max_len: 128 }];
+  string source_type = 2 [(buf.validate.field).string = { in: ["http_api", "csv_upload", "db_direct", "grpc"] }];
+  string target_type = 3 [(buf.validate.field).string = { in: ["dictionary_word", "correction_rule", "alias"] }];
+  string config_json = 4;
+  string mapping_json = 5;
+  string sync_schedule = 6;
+}
+
+message CreateDataSourceResponse { DataSource data_source = 1; }
+message UpdateDataSourceRequest { int64 id = 1; /* + 可更新字段 */ }
+message UpdateDataSourceResponse { DataSource data_source = 1; }
+message DeleteDataSourceRequest { int64 id = 1; }
+message DeleteDataSourceResponse {}
+message ListDataSourcesRequest { Pagination pagination = 1; }
+message ListDataSourcesResponse { repeated DataSource data_sources = 1; PageInfo page_info = 2; }
+message TriggerSyncRequest { int64 id = 1; }
+message TriggerSyncResponse {
+  int32 new_count = 1;
+  int32 updated_count = 2;
+  string error_message = 3;
+}
+message PreviewMappingRequest {
+  string source_type = 1;
+  string config_json = 2;
+  string mapping_json = 3;
+}
+message PreviewMappingResponse {
+  repeated string preview_items = 1;  // 转换后的前 10 条预览
+  int32 total_count = 2;
+}
+```
+
+---
+
+## 十、权限码声明
 
 ```go
 // internal/authzpolicy/permissions.go
@@ -539,6 +725,10 @@ const (
     PermDictionaryRead   = "evie.dictionary.read"
     PermDictionaryWrite  = "evie.dictionary.write"
     PermDictionaryImport = "evie.dictionary.import"
+
+    // 数据源
+    PermDataSourceRead  = "evie.data_source.read"
+    PermDataSourceWrite = "evie.data_source.write"
 
     // 热词管理
     PermHotwordRead  = "evie.hotword.read"
@@ -550,6 +740,10 @@ const (
 
     // ASR
     PermASRExecute = "evie.asr.execute"
+
+    // Provider 管理
+    PermProviderRead  = "evie.provider.read"
+    PermProviderWrite = "evie.provider.write"
 
     // 平台管理
     PermAdminCrossTenant = "evie.admin.cross_tenant"
