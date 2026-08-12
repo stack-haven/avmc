@@ -946,6 +946,20 @@ backend-service/
 
 ## 🎯 最佳实践总结
 
+### 项目特有约定（优先于通用规范）
+
+以下规则基于 Ark Tech Platform 租户管理/用户部门模块梳理提炼：
+
+1. **安全三件套（Data 层必守）**：每个数据面方法（List/Get/Create/Update/Delete/其他写操作）必须按顺序执行：
+   - ① `RequireTenantID(ctx)` — 从 context 提取租户 ID，租户隔离第一道防线
+   - ② 业务校验 — 存在性、唯一性、状态合法性、循环引用检测等
+   - ③ 事务包裹（写操作） — 多表变更用 `InTx` 保证原子性
+2. **Proto 类型贯穿**：Service → Biz → Data 接口签名全部使用 `pbCore.Xxx`，转换只在 Data 层做 `ent ↔ proto`
+3. **字段命名**：Proto `snake_case` ↔ Go `PascalCase`（生成代码），手写 Go 用 `camelCase`；`uint32` 做 ID 类型，枚举首个值必为 `*_UNSPECIFIED = 0`
+4. **错误码**：使用 kratos errors `UPPER_SNAKE_CASE`，区分 `BadRequest`/`NotFound`/`Conflict`/`Forbidden`，前端能据此给出差异化反馈
+
+### 通用规范
+
 1. **遵循 Go 语言规范**：使用标准库，遵循官方代码风格
 2. **采用六边形架构**：清晰的分层结构，易于测试和维护
 3. **使用依赖注入**：通过 wire 实现依赖注入，减少耦合

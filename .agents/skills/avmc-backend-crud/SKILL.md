@@ -27,6 +27,7 @@ name: avmc-backend-crud
 | **字段列表** | 每个字段的名称、类型、校验规则 | name(string,required), code(int32,unique) |
 | **权限控制** | 是否需要项目隔离 / 角色限制 | 项目级隔离，仅 admin 可写 |
 | **列表接口** | 需要哪些筛选/排序/分页维度 | 按项目筛选、按状态筛选、按创建时间排序 |
+| **列表字段边界** | 列表页、详情页、选择器分别需要哪些字段 | 列表显示名称/状态/时间；详情包含配置明细；选择器只要 id/name/status |
 | **关联关系** | 是否关联现有数据模型（用户、项目等） | 关联 project |
 | **特殊行为** | 回滚、灰度发布等业务逻辑 | 支持状态变更记录 |
 
@@ -51,6 +52,16 @@ service IXxx {
 ```
 
 优先复用 `proto/common/` 下的分页、枚举、空消息。
+
+#### 列表接口设计要求
+
+生成或修改列表接口时，先按界面场景定义响应字段：
+
+- `ListXxx` 服务于管理列表页，只返回表格列、筛选排序、状态展示和行操作必需字段。
+- `GetXxx` 服务于详情/编辑，不把详情字段默认放进 `ListXxx`。
+- 选择器、绑定弹窗、筛选项等轻量场景，应新增 `ListXxxSimple` / `ListXxxSimples` 类接口；字段保持最小化，通常只包含 `id`、`name/title`、`code/key`、`status`、`sort`、`parent_id` 等实际需要字段。
+- 高复用基础资源不得长期复用完整列表接口。角色选择场景可参照现有 `ListUsersSimple` 的 service、biz、data 链路补齐 `ListRoleSimple`，而不是直接复用完整 `ListRoles`。
+- simple 接口也必须保留后端权限和数据边界校验；轻量只代表字段少和查询轻，不代表绕过权限。
 
 ### 2. Ent Schema（`internal/data/ent/schema/`）
 

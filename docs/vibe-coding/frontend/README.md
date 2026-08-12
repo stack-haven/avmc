@@ -960,8 +960,22 @@ export const useUserStore = defineStore('user', {
 
 ## 🎯 最佳实践总结
 
+### 项目特有约定（优先于通用规范）
+
+以下规则基于 Ark Tech Platform 租户管理模块重构经验提炼，适用于后续所有模块开发：
+
+1. **Drawer vs Modal**：CRUD 表单使用 `useVbenDrawer`（侧边抽屉），非 CRUD 独立操作（如生命周期修改、角色配置、管理员维护）使用 `useVbenModal`（居中弹窗）。一个操作一个抽屉/弹窗，不混入多种职责。
+2. **API 层模式**：先定义 namespace 类型（`export namespace XxxApi { interface Xxx {...} }`）和枚举工具函数（如 `normalizeXxx`、`getXxxLabel`、`XxxOptions()`），再导出纯函数。不放组件逻辑进 API 文件。
+3. **data.ts 纯度**：`useFormSchema()`、`useColumns()` 等只包含静态 schema/columns 定义，不接收运行时回调参数。跨组件共享数据（如字典映射）用模块级 `reactive()` Map，由页面组件在数据加载后写入。
+4. **300 行规则**：一个 `.vue` 组件超过 300 行即拆分。list.vue 只做编排组装，复杂面板、模态框、表单各自独立文件。参考 `user/modules/dept-panel.vue` 从 600 行 list.vue 中抽离的模式。
+5. **`$t()` 全覆盖**：所有用户可见文案（标题、按钮、提示、placeholder、空状态、确认框）必须使用 `$t()`，中英文 locale 同步添加。禁止硬编码中英文字符串。
+6. **破坏性操作**：删除、状态变更、密码重置等操作必须 `Modal.confirm` 二次确认，明确展示影响范围。
+7. **字段命名**：Proto `snake_case` ↔ 前端 `camelCase`，遵循既有约定不自行发明。
+
+### 通用规范
+
 1. **遵循 Vibe Coding 基础规范**：统一的代码风格和命名规范
-2. **使用 TypeScript 严格模式**：提高代码类型安全性
+2. **使用 TypeScript 严格模式**：提高代码类型安全性，避免 `as any`
 3. **优先使用组合式 API**：`setup script` 语法简洁高效
 4. **模块化开发**：按功能划分代码模块，提高可维护性
 5. **组件复用**：封装可复用的业务组件
