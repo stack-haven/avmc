@@ -71,25 +71,42 @@ git commit -m "chore: 更新 backend-service 子模块指针"
 
 ## 4. 提交信息规范
 
-遵循 Conventional Commits：
+遵循 Conventional Commits（后端由 `.githooks/commit-msg` hook 强制校验）：
 
 ```
 <type>(<scope>): <description>
 
-类型: feat / fix / chore / refactor / docs / style / test
-scope 示例: admin / proto / project / version / ai / deps
+类型: feat / fix / perf / refactor / style / docs / test / build / ci / chore / revert
 ```
+
+**后端 scope 严格按服务级划分：**
+
+| scope | 目录 |
+|---|---|
+| platform | app/platform/admin（平台基础服务） |
+| evie | app/evie/service |
+| version | app/version/service |
+| ai | app/ai/service |
+| proto | proto/、api/ |
+| pkg | pkg/ |
+| make | Makefile、app.mk、scripts/ |
+| deps | go.mod、go.sum |
+| ci | .github/ |
+
+scope 可省略；省略时表示跨模块改动。`auth`/`role`/`user` 等子模块统一归 `platform`。
 
 后端示例：
 ```
-feat(project): 新增项目成员管理 CRUD 接口
-fix(auth): 修复 JWT token 过期未刷新问题
+feat(platform): 新增用户管理 CRUD 接口
+fix(platform): 修复 JWT token 过期未刷新问题
+feat(proto): 新增角色权限 RPC
+chore(deps): 升级 entgo 到最新版
 ```
 
-前端示例：
+**前端 scope 使用 pnpm workspace 包名**（由 commitlint 校验）：
 ```
-feat(project): 新增项目管理列表页和创建表单
-fix(user): 修复用户角色选择不生效问题
+feat(@vben/web-antd-admin): 新增角色管理页面
+fix(@vben/web-antd-admin): 修复用户角色选择不生效问题
 ```
 
 根仓库示例：
