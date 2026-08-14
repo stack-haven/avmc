@@ -957,6 +957,13 @@ backend-service/
 2. **Proto 类型贯穿**：Service → Biz → Data 接口签名全部使用 `pbCore.Xxx`，转换只在 Data 层做 `ent ↔ proto`
 3. **字段命名**：Proto `snake_case` ↔ Go `PascalCase`（生成代码），手写 Go 用 `camelCase`；`uint32` 做 ID 类型，枚举首个值必为 `*_UNSPECIFIED = 0`
 4. **错误码**：使用 kratos errors `UPPER_SNAKE_CASE`，区分 `BadRequest`/`NotFound`/`Conflict`/`Forbidden`，前端能据此给出差异化反馈
+5. **供应商模式（provider pattern）**：对外部服务商（对象存储、短信、推送、邮件等）统一采用工厂注册模式，与 `pkg/objectstorage`、`pkg/notifier` 同构：
+   - **统一接口层**：`pkg/xxx` 定义唯一 `Client`/`Sender` 接口 + `Message`/类型 + 工厂 `Register`/`NewClient`；不在渠道下再定义独立接口
+   - **两层维度分离**：当存在「渠道（业务维度）→ 提供商（技术维度）」嵌套时，用 `channel` + `provider_type` 两个字段区分，工厂按 **provider_type** 注册，不按 channel（避免后注册覆盖）
+   - **目录结构**：`pkg/xxx/{channel}/{provider}/`（如 `pkg/notifier/sms/aliyun`），每个提供商独立包实现接口 + `init()` 注册
+   - **平台级配置表**：`XxxProvider` 存渠道/提供商/密钥/默认标记/状态，密钥脱敏返回（`secret_configured` 不回传明文），提供连通测试
+   - **resolver**：按业务维度（channel/type）查默认配置 → 读 `provider_type` → `NewClient(provider_type, config)`
+   - 新增提供商只需实现接口 + 注册工厂，**框架零改动**
 
 ### 通用规范
 
