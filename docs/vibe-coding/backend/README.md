@@ -964,6 +964,12 @@ backend-service/
    - **平台级配置表**：`XxxProvider` 存渠道/提供商/密钥/默认标记/状态，密钥脱敏返回（`secret_configured` 不回传明文），提供连通测试
    - **resolver**：按业务维度（channel/type）查默认配置 → 读 `provider_type` → `NewClient(provider_type, config)`
    - 新增提供商只需实现接口 + 注册工厂，**框架零改动**
+6. **公共函数复用（先搜索，再生成）**：新增转换类/工具类辅助函数前，必须先搜索公共包确认是否已有等价实现，不要在各模块内手写重复函数：
+   - 类型转换统一用 `convert.ToPointer[T]`（取指针）、`convert.EmptyToNil[T]`（空值/零值返回 nil）、`convert.ToValue[T]`、`convert.SliceToAny`、`convert.TimeValueToString`、`convert.SliceContains`、`convert.SliceUnique` 等
+   - **禁止**手写 `xxxPtr` / `xxxStringPtr` / `xxxInt32Ptr` 等命名各异的重复指针辅助函数
+   - **语义区分（不可混用）**：纯取指针用 `ToPointer`；空值返回 nil 用 `EmptyToNil`
+   - 公共包缺能力且属跨模块通用场景时，补到对应公共包（附单元测试），不要写进单个业务模块
+   - 复用前先确认签名与语义：`rg "func 函数名" backend-service/pkg`
 
 ### 通用规范
 

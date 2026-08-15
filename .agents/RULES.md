@@ -72,6 +72,24 @@ backend-service/proto
 - ID、status、timestamps、soft delete 等通用字段优先复用现有 mixins。
 - 新增 usecase、repo 或 service 依赖时，同步更新 Wire provider set。
 
+### 公共函数复用规则（先搜索，再生成）
+
+> 目的：防止各模块重复实现等价工具函数。历史教训：曾出现 26 个功能相同、命名各异的指针辅助函数（`fileStringPtr`/`notificationStringPtr`/`auditStringPtr`/`deviceStringPtr`/`stringPtr` 等），已统一收敛到 `convert` 包。
+
+- 新增任何**转换类/工具类**辅助函数前，必须先搜索公共包确认是否已有等价实现，不要直接生成。
+- 常用公共包索引：
+  - 类型转换：`backend-service/pkg/utils/convert`（`ToPointer[T]` / `EmptyToNil[T]` / `ToValue[T]` / `SliceToAny` / `StringToUint32` / `TimeValueToString` / `SliceContains` / `SliceUnique` 等）
+  - 认证授权：`backend-service/pkg/auth`（`authn` / `authz` / `middleware`）
+  - 分页与过滤：`backend-service/pkg/aip`、`backend-service/pkg/entgo/paging`
+  - 对象存储：`backend-service/pkg/objectstorage`、`backend-service/pkg/filecenter`
+  - 幂等：`backend-service/pkg/idempotency`；健康检查：`backend-service/pkg/health`
+- **禁止**在业务模块内手写 `xxxPtr` / `xxxStringPtr` 等命名各异的重复指针辅助函数。一律使用 `convert.ToPointer[T]` 或 `convert.EmptyToNil[T]`。
+- **语义区分（不可混用）**：
+  - 纯取指针 → `convert.ToPointer[T]`（如 `convert.ToPointer("hello")` 返回 `*string`）
+  - 空值/零值返回 nil → `convert.EmptyToNil[T]`（如 `convert.EmptyToNil("")` 返回 `nil`）
+- 若公共包缺少该能力且确属跨模块通用场景，应把实现补到对应公共包（附单元测试），而不是写进单个业务模块。
+- 复用前先确认签名与语义：`rg "func 函数名" backend-service/pkg`。
+
 ## 前端规则
 
 `frontend-service/apps/web-antd-admin` 当前作为 Ark Tech Platform 管理后台前端。它使用 Vue 3、TypeScript、Vite、Vben Admin、Ant Design Vue、Pinia、Vue Router、`@vben/request` 和 pnpm workspace。

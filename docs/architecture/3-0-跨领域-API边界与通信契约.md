@@ -200,17 +200,28 @@ flowchart LR
 
 ### HTTP 路径规范
 
+> 完整规范见 [3-4-跨领域-HTTP-API设计规范](./3-4-跨领域-HTTP-API设计规范.md)（AIP 对齐）。此处为速查版。
+
 ```
-平台控制面:  /admin/v1/{resource}
-租户数据面:  /admin/v1/current-tenant/{resource}
-自定义操作:  /admin/v1/{resource}/{id}:{action}
+服务前缀:      /{service}/{version}          # /admin/v1, /evie/v1, /ai/v1
+平台控制面:    /admin/v1/{resource}         # List/Get/Create/Update/Delete
+用户级数据面:  /admin/v1/my/{resource}      # 当前登录用户：我的设备、我的通知、我的会话
+租户级数据面:  /admin/v1/current-tenant/{resource}  # 当前租户：参数、有效菜单
+自定义操作:    /admin/v1/{resource}/{id}:{action}    # 冒号分隔，禁止斜杠
 
 示例:
-  GET    /admin/v1/parameters                    # List
-  POST   /admin/v1/parameters                    # Create
-  GET    /admin/v1/current-tenant/parameters     # 租户查询自己的参数
-  POST   /admin/v1/current-tenant/resource-quotas/{key}:consume  # 自定义操作
+  GET    /admin/v1/parameters                          # List（控制面）
+  POST   /admin/v1/parameters                          # Create（控制面）
+  GET    /admin/v1/my/notifications                    # List（用户级数据面）
+  GET    /admin/v1/current-tenant/parameters           # List（租户级数据面）
+  POST   /admin/v1/async-tasks/{id}:cancel             # 自定义操作（冒号）
+  POST   /admin/v1/resource-quotas/{key}:consume       # 自定义操作（冒号）
 ```
+
+**关键规则：**
+- 自定义动作用 `:` 分隔（AIP-136），禁止 `/{id}/{verb}` 斜杠形式
+- 子资源（有独立 ID/生命周期）才用 `/` 分隔（AIP-122）
+- `my/*`（当前用户）与 `current-tenant/*`（当前租户）语义不同，不可混用
 
 ### 分页
 
