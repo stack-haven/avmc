@@ -23,7 +23,7 @@
 
 后端：
 
-- `backend-service/app/platform/admin`：历史上承载过业务管理后台能力，当前升级为底座管理后台基础服务，不再继续承接业务。
+- `backend-service/app/platform/service`：历史上承载过业务管理后台能力，当前升级为底座管理后台基础服务，不再继续承接业务。
 - `backend-service/app/ai/service`：底座 AI/chat 通用能力服务。
 - `backend-service/app/version/service`：已存在版本发布服务雏形，当前冻结。
 - 新业务后端落点：待定义。

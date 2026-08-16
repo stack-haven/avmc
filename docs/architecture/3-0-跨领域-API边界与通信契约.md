@@ -280,16 +280,16 @@ proto/
 ├── common/                  # 公共消息
 │   ├── common.proto
 │   ├── pagination/          # 分页
+│   ├── conf/                # 配置
 │   └── enum/                # 枚举
-├── core/service/v1/         # 核心服务 v1（消息定义+错误码）
+├── platform/service/v1/     # 平台服务（message + service + HTTP 合一）
 │   ├── tenant.proto
 │   ├── user.proto
 │   ├── error_reason.proto
 │   └── ...
-└── platform/admin/v1/       # 平台管理 v1（RPC 服务定义）
-    ├── i_parameter.proto    # i_ = interface (gRPC service)
-    ├── i_tenant.proto
-    └── ...
+├── evie/service/v1/         # Evie 产品服务
+├── ai/service/v1/           # AI 服务
+└── version/service/v1/      # Version 服务（冻结）
 ```
 
 ### 契约检查

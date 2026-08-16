@@ -204,7 +204,7 @@ pnpm run test:unit
 
 ## 强制约束
 
-- `backend-service/app/platform/admin` 默认承接平台基础能力；业务模块应先确认服务边界再决定代码落点。
+- `backend-service/app/platform/service` 默认承接平台基础能力；业务模块应先确认服务边界再决定代码落点。
 - `frontend-service/apps/web-antd-admin` 作为管理后台前端默认开发目标。
 - 后端 API 修改必须从 `backend-service/proto` 开始；不得手工修改生成的 API 或 Ent 文件。
 - 优先复用现有 Vben CRUD 模式和公共消息，再考虑新增抽象。

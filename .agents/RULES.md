@@ -36,15 +36,15 @@ ark-tech-platform/
 
 ### 活跃服务
 
-- `backend-service/app/platform/admin`：Ark Platform Foundation 基础管理后台服务，负责认证、用户、角色、菜单、权限、租户、套餐、配置、审计、会话、任务、文件、通知和产品服务配置入口。
+- `backend-service/app/platform/service`：Ark Platform Foundation 基础管理后台服务，负责认证、用户、角色、菜单、权限、租户、套餐、配置、审计、会话、任务、文件、通知和产品服务配置入口。
 - `backend-service/app/ai/service`：AI/chat 通用能力服务。
 - `backend-service/app/version/service`：已存在的版本发布服务雏形，当前冻结，恢复前必须复审。
 
 当前阶段采用"大仓 + 模块化服务边界优先"策略：
 
 - `backend-service` 保持 go-kratos 大仓模式，`app` 下保留未来微服务拆分能力。
-- `backend-service/app/platform/admin` 只承接平台基础能力，不承接 GEO、AI Agent、App Version Management 等具体产品业务。
-- 产品服务需要先在 `docs/services` 定义后端落点；在服务边界确认前，不把新业务继续写入 `app/platform/admin`。
+- `backend-service/app/platform/service` 只承接平台基础能力，不承接 GEO、AI Agent、App Version Management 等具体产品业务。
+- 产品服务需要先在 `docs/services` 定义后端落点；在服务边界确认前，不把新业务继续写入 `app/platform/service`。
 - 不要因为新增业务模块就默认创建新的 Kratos service。
 - 只有模块需要独立部署、独立扩缩容、独立公共 API、独立数据生命周期或清晰业务域时，才考虑拆出独立服务。
 
@@ -62,7 +62,7 @@ backend-service/proto
 - `backend-service/proto` 下的 Protobuf 文件是 API 事实来源。
 - `backend-service/api` 下的生成文件不要手工编辑。
 - 对外暴露 HTTP endpoint 时，使用 Google HTTP annotations 和 OpenAPI operation annotations。
-- 创建重复消息前，优先复用 `proto/common`、`proto/common/pagination`、`proto/common/enum`、`proto/core/service/v1` 下已有的公共消息。
+- 创建重复消息前，优先复用 `proto/common`、`proto/common/pagination`、`proto/common/enum`、`proto/platform/service/v1` 下已有的公共消息。
 
 ### 持久化与业务分层
 
@@ -79,9 +79,9 @@ backend-service/proto
 - 新增任何**转换类/工具类**辅助函数前，必须先搜索公共包确认是否已有等价实现，不要直接生成。
 - 常用公共包索引：
   - 类型转换：`backend-service/pkg/utils/convert`（`ToPointer[T]` / `EmptyToNil[T]` / `ToValue[T]` / `SliceToAny` / `StringToUint32` / `TimeValueToString` / `SliceContains` / `SliceUnique` 等）
-  - 认证授权：`backend-service/pkg/auth`（`authn` / `authz` / `middleware`）
-  - 分页与过滤：`backend-service/pkg/aip`、`backend-service/pkg/entgo/paging`
-  - 对象存储：`backend-service/pkg/objectstorage`、`backend-service/pkg/filecenter`
+  - 认证授权：`backend-service/pkg/auth`（`authn` / `authz` / `session` / `errs` / `middleware` / `loginattempt`）
+  - 分页与过滤：`backend-service/pkg/aip`（`pkg/entgo/paging` 已废弃删除）
+  - 对象存储：`backend-service/pkg/objectstorage`；跨服务客户端（鉴权/审计/文件中心）：`backend-service/app/platform/service/client`
   - 幂等：`backend-service/pkg/idempotency`；健康检查：`backend-service/pkg/health`
 - **禁止**在业务模块内手写 `xxxPtr` / `xxxStringPtr` 等命名各异的重复指针辅助函数。一律使用 `convert.ToPointer[T]` 或 `convert.EmptyToNil[T]`。
 - **语义区分（不可混用）**：
@@ -90,14 +90,31 @@ backend-service/proto
 - 若公共包缺少该能力且确属跨模块通用场景，应把实现补到对应公共包（附单元测试），而不是写进单个业务模块。
 - 复用前先确认签名与语义：`rg "func 函数名" backend-service/pkg`。
 
-### 认证与密钥统一（多服务本地认证）
+### 认证鉴权工具包（pkg/auth）
+
+> pkg/auth 是统一的认证鉴权公共库，已完成架构重构，结构如下（详见 `backend-service/pkg/auth/README.md`）：
+
+```
+pkg/auth/
+├── authn/       # 认证：JWT/OIDC 本地验签 + Provider 注册
+├── authz/       # 鉴权：Enforcer/PolicyManager/RoleManager 按能力拆分 + Casbin
+├── session/     # 会话：Redis 持久化 / 在线监控 / 踢下线 / Token 轮换
+├── errs/        # 统一错误结构（ErrorCode + Error）
+├── loginattempt/# 登录失败锁定（Lua 原子）
+├── middleware/  # HTTP/gRPC 中间件（kratos 集成）
+└── factory.go   # 认证工厂（高层封装）
+```
 
 - 所有服务采用**本地 JWT 认证**（无状态验签），不建设统一认证中心。
 - **JWT 密钥全平台共享**：所有服务读同一个环境变量 `ARK_JWT_KEY`，禁止各自配置不同密钥。
-- 生产环境密钥必须通过**统一配置源**（如 K8s Secret / 配置中心）下发，长度 ≥ 32 字节，不得使用 `dev-only` / `replace-with` 等占位值（启动时强校验）。
-- 认证器创建统一走 `auth.NewAuthenticator(auth.AuthConfig{...}, authSecurity)` 工厂（见 `pkg/auth/factory.go`），各服务仅提取自身 conf 的 auth 配置并传入，禁止复制 JWT 组装代码。
-- 会话管理（Redis 持久化、在线监控、踢下线）复用 `auth.AuthToken`，SecurityUser 工厂复用 `auth.AuthSecurity`。
-- 鉴权（Casbin）统一委托给 platform（产品服务不维护本地 Casbin 策略），通过 `app/platform/service/client` 的鉴权客户端调用。
+- 生产环境密钥通过**统一配置源**下发，长度 ≥ 32 字节，不得使用 `dev-only` / `replace-with` 占位值（启动时强校验）。
+- **认证器创建**：各服务提取自身 conf 后调 `auth.NewAuthenticator(auth.AuthConfig{...}, authn.NewSecurity(logger))` 工厂（见 `pkg/auth/factory.go`），禁止复制 JWT 组装代码。
+- **会话管理**：复用 `session.NewManager(rdb, logger, authenticator, opts...)`（Redis 持久化、在线监控、踢下线），支持 `session.WithFailOpen`（Redis 故障降级）和 `session.WithLocalCache`（本地缓存）。
+- **SecurityUser 工厂**：复用 `authn.NewSecurity(logger)`。
+- **鉴权**：产品服务不维护本地 Casbin 策略，通过 `app/platform/service/client` 的 gRPC 鉴权客户端委托 platform（仅实现 `authz.Enforcer`）。
+- **安全特性（内置）**：token 类型区分（access/refresh）、密钥轮换（kid）、时钟偏移容差（leeway）、登录锁定、常量时间比较。
+- **Provider 插件化**：认证/鉴权 Provider 通过 `init()` 自动注册，按名称创建（`authn.NewAuthenticator("jwt", ...)` / `authz.NewAuthorizer("casbin", ...)`），新增协议只需实现接口 + `init()` 注册。
+- **跨服务 Token 转发**：`authn.ForwardAuthToken(ctx)` 原样转发 Authorization（含 `Bearer ` 前缀）到 gRPC metadata，保持单一解析链路。
 
 ## 前端规则
 

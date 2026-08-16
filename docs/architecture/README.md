@@ -88,7 +88,7 @@ docs/architecture/
 
 ## 当前冻结结论
 
-- `backend-service/app/platform/admin` — 平台基础管理后台服务，不承载具体产品业务
+- `backend-service/app/platform/service` — 平台基础管理后台服务，不承载具体产品业务
 - `backend-service/app/ai/service` — AI/chat 通用能力服务
 - `backend-service/app/version/service` — 已冻结，恢复前必须复审
 - 产品服务需先在 `docs/services` 定义边界，是否拆独立 service 须按拆分条件复审

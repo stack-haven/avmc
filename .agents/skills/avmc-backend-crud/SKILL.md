@@ -37,7 +37,7 @@ name: avmc-backend-crud
 
 ## 生成
 
-### 1. Protobuf 契约（`backend-service/proto/platform/admin/v1/`）
+### 1. Protobuf 契约（`backend-service/proto/platform/service/v1/`）
 
 生成以下消息和 RPC 定义：
 
@@ -123,7 +123,7 @@ type XxxRepo interface {
 ## 验证
 
 ```bash
-cd backend-service/app/platform/admin
+cd backend-service/app/platform/service
 go build ./...
 go test ./...
 ```

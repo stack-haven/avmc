@@ -83,7 +83,7 @@ git commit -m "chore: 更新 backend-service 子模块指针"
 
 | scope | 目录 |
 |---|---|
-| platform | app/platform/admin（平台基础服务） |
+| platform | app/platform/service（平台基础服务） |
 | evie | app/evie/service |
 | version | app/version/service |
 | ai | app/ai/service |

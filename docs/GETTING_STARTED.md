@@ -49,7 +49,7 @@ CREATE DATABASE ark_platform CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 ### 2.2 配置后端连接
 
-编辑 `backend-service/app/platform/admin/configs/config.yaml`：
+编辑 `backend-service/app/platform/service/configs/config.yaml`：
 
 ```yaml
 server:
@@ -87,7 +87,7 @@ cd backend-service
 make proto
 
 # 编译并启动 platform/admin 服务
-go run ./app/platform/admin/cmd/server/...
+go run ./app/platform/service/cmd/server/...
 ```
 
 ✅ 启动成功标志：

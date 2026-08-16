@@ -22,7 +22,7 @@ description: 按照契约优先方式分析、实现和审查 Ark Tech Platform 
 硬约束：
 - 不得将 `backend-service-pkg-bakup` 作为活跃实现目标
 - 不得手工修改 `backend-service/api`、`internal/conf` 或 `internal/data/ent/gen` 中的生成文件
-- `backend-service/app/platform/admin` 只承接平台基础能力；业务模块应先确认服务边界再决定落点
+- `backend-service/app/platform/service` 只承接平台基础能力；业务模块应先确认服务边界再决定落点
 
 ## 契约分析
 

@@ -79,19 +79,19 @@ ark-tech-platform/
 | 状态管理 | Pinia |
 | 数据库 | MySQL / PostgreSQL |
 | 缓存 | Redis |
-| 认证 | JWT + Casbin |
+| 认证鉴权 | pkg/auth（JWT/OIDC 本地认证 + Casbin 鉴权 + Redis 会话，详见 `backend-service/pkg/auth/README.md`） |
 
 ## 活跃开发区域
 
 ### 后端
 
-- `backend-service/app/platform/admin`：Ark Platform Foundation 基础管理后台服务，负责租户、认证、用户、角色、菜单、权限、套餐、配置、审计、会话、任务、文件、通知等平台基础能力。
+- `backend-service/app/platform/service`：Ark Platform Foundation 基础管理后台服务，负责租户、认证、用户、角色、菜单、权限、套餐、配置、审计、会话、任务、文件、通知等平台基础能力。
 - `backend-service/app/ai/service`：AI/chat 通用能力服务。
 - `backend-service/app/version/service`：历史版本发布服务雏形，当前冻结，待复审。
 
 当前阶段采用"大仓 + 模块化服务边界优先"策略：
-- `backend-service/app/platform/admin` 只承接平台基础能力，不承接 GEO、AI Agent、App Version Management 等具体产品业务。
-- 产品服务需要先在 `docs/services` 定义后端落点；在服务边界确认前，不把新业务写入 `app/platform/admin`。
+- `backend-service/app/platform/service` 只承接平台基础能力，不承接 GEO、AI Agent、App Version Management 等具体产品业务。
+- 产品服务需要先在 `docs/services` 定义后端落点；在服务边界确认前，不把新业务写入 `app/platform/service`。
 - 不要因为新增业务模块就默认创建新的 Kratos service。
 - 只有模块需要独立部署、独立扩缩容、独立公共 API、独立数据生命周期或清晰业务域时，才考虑拆出独立服务。
 
@@ -118,7 +118,7 @@ backend-service/proto
 - `backend-service/proto` 是 API 事实来源。
 - `backend-service/api` 下的生成文件不要手工编辑。
 - 对外暴露 HTTP endpoint 时使用 Google HTTP annotations。
-- 优先复用 `proto/common`、`proto/common/pagination`、`proto/common/enum`、`proto/core/service/v1` 下的公共消息。
+- 优先复用 `proto/common`、`proto/common/pagination`、`proto/common/enum`、`proto/platform/service/v1` 下的公共消息。
 
 ### 业务规则
 

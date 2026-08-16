@@ -269,7 +269,7 @@ gorilla/mux 匹配路由，得到 path template（如 /admin/v1/files/{id}:repla
   ↓
 生成的 http handler 执行 http.SetOperation(ctx, OperationXxx)
   ↓
-operation 被覆盖为 gRPC 方法路径（如 /platform.admin.v1.FileCenterService/ReplaceFileContent）
+operation 被覆盖为 gRPC 方法路径（如 /platform.service.v1.FileCenterService/ReplaceFileContent）
   ↓
 鉴权中间件 / 白名单 / Casbin / authzpolicy 全部使用 gRPC 方法路径
 ```

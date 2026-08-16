@@ -21,7 +21,7 @@
 - [ ] **A02** — Service 层不直接调用 data 层，必须通过 biz usecase
 - [ ] **A03** — biz usecase 不 import `ent/gen`，不直接操作 Ent Client
 - [ ] **A04** — 新增 usecase/repo/service 依赖已在 Wire ProviderSet 注册
-- [ ] **A05** — 新产品业务不写入 `app/platform/admin`，先确认 `docs/services` 落点
+- [ ] **A05** — 新产品业务不写入 `app/platform/service`，先确认 `docs/services` 落点
 - [ ] **A06** — 不因为新增模块默认创建新的 Kratos service（参见拆分条件）
 
 ## 三、API 契约

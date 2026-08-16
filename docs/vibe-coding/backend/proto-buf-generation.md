@@ -5,11 +5,11 @@
 ## 1. 基本原则
 
 - `backend-service/proto` 是后端接口契约唯一源头。
-- `backend-service/api`、`app/*/internal/conf`、`app/platform/admin/internal/data/ent/gen` 是生成产物，不手工修改。
+- `backend-service/api`、`app/*/internal/conf`、`app/platform/service/internal/data/ent/gen` 是生成产物，不手工修改。
 - Protobuf 变更必须先改 `.proto`，再生成，再改 `service -> biz -> data -> ent`。
 - 生成器版本必须固定在 Buf 模板中，不使用 `latest`。
 - 不再用局部模板绕过全量生成来提交 API 产物；局部生成只允许用于定位问题，不能作为最终提交来源。
-- 根 `backend-service/Makefile` 只维护全局后端命令；服务相关命令必须放在对应服务目录，例如 `app/platform/admin/Makefile`。
+- 根 `backend-service/Makefile` 只维护全局后端命令；服务相关命令必须放在对应服务目录，例如 `app/platform/service/Makefile`。
 
 ## 2. 当前标准工具链
 
@@ -31,7 +31,7 @@
 
 配置 proto 模板：
 
-- `backend-service/app/platform/admin/buf.gen.yaml`
+- `backend-service/app/platform/service/buf.gen.yaml`
 - `backend-service/app/ai/service/buf.gen.yaml`
 - `backend-service/app/version/service/buf.gen.yaml`
 
@@ -57,7 +57,7 @@ GOCACHE=/private/tmp/avmc-go-cache make generate-check
 
 ### 3.2 Platform Admin 服务生成
 
-在 `backend-service/app/platform/admin` 目录执行：
+在 `backend-service/app/platform/service` 目录执行：
 
 ```bash
 GOCACHE=/private/tmp/avmc-go-cache make generate-check
@@ -73,14 +73,14 @@ GOCACHE=/private/tmp/avmc-go-cache make generate-check
 6. `go mod tidy`
 7. `make diff-check`
 
-服务目录 `generate-check` 负责检查本服务生成产物：全局 `api`、`app/platform/admin/cmd/server/assets/openapi.yaml`、`app/platform/admin/internal/conf`、`app/platform/admin/internal/data/ent/gen`、`go.mod`、`go.sum`。
+服务目录 `generate-check` 负责检查本服务生成产物：全局 `api`、`app/platform/service/cmd/server/assets/openapi.yaml`、`app/platform/service/internal/conf`、`app/platform/service/internal/data/ent/gen`、`go.mod`、`go.sum`。
 
 服务 Ent 生成统一走 `app.mk` 的 `make ent`，其内部调用服务本地 `go generate ./internal/data/ent`。每个服务必须通过自己的 `internal/data/ent/generate.go` 和 `entc.go` 固化 Ent 特性，不能在共享 `app.mk` 中硬编码某个服务的 Ent feature。
 
 常用服务命令：
 
 ```bash
-cd backend-service/app/platform/admin
+cd backend-service/app/platform/service
 make doc      # 生成 platform/admin OpenAPI 文档
 make config   # 生成 platform/admin internal/conf
 make ent      # 生成 platform/admin Ent 代码
@@ -90,7 +90,7 @@ make policy   # 初始化 platform/admin 授权策略
 make mock     # 生成 platform/admin 演示数据
 ```
 
-根目录 `make race` 只覆盖全局共享包，例如 `pkg/auth`、`pkg/health`、`pkg/middleware`。服务级并发检测必须进入服务目录执行，例如 `cd backend-service/app/platform/admin && make race`。
+根目录 `make race` 只覆盖全局共享包，例如 `pkg/auth`、`pkg/health`、`pkg/middleware`。服务级并发检测必须进入服务目录执行，例如 `cd backend-service/app/platform/service && make race`。
 
 如果只是检查 proto 是否可编译：
 
@@ -114,7 +114,7 @@ cd backend-service
 2. 运行 `cd backend-service/proto && buf build`。
 3. 运行 `cd backend-service && ./scripts/check-buf-lint-baseline.sh`。
 4. 如果只影响全局 API，运行 `cd backend-service && GOCACHE=/private/tmp/avmc-go-cache make generate-check`。
-5. 如果影响 `platform/admin` 服务，运行 `cd backend-service/app/platform/admin && GOCACHE=/private/tmp/avmc-go-cache make generate-check`。
+5. 如果影响 `platform/admin` 服务，运行 `cd backend-service/app/platform/service && GOCACHE=/private/tmp/avmc-go-cache make generate-check`。
 6. 检查生成 diff 是否只包含受影响 API、validate、OpenAPI、Ent、go.mod/go.sum。
 7. 修改对应 Kratos service、biz usecase、data repo、Ent schema 和测试。
 8. 运行受影响包测试，再运行 `GOCACHE=/private/tmp/avmc-go-cache go test ./...`。
@@ -122,7 +122,7 @@ cd backend-service
 ## 5. 禁止事项
 
 - 禁止手工编辑 `backend-service/api/**/*.pb.go`、`*.pb.validate.go`、`*_grpc.pb.go`、`*_http.pb.go`、`*_errors.pb.go`。
-- 禁止手工编辑 `app/platform/admin/internal/data/ent/gen`。
+- 禁止手工编辑 `app/platform/service/internal/data/ent/gen`。
 - 禁止在主流程中使用 `buf.local.gen.yaml` 作为最终生成来源。
 - 禁止在同一提交中混用不同版本的 `protoc-gen-go` 或 `protoc-gen-go-grpc`。
 - 禁止新增 `validate/validate.proto` 的 PGV 规则；新规则使用 `buf/validate/validate.proto`。

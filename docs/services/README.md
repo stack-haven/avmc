@@ -16,5 +16,5 @@
 - 服务定义用于说明“这个业务是什么”；架构决策仍放在 `docs/architecture`。
 - 每个产品服务必须声明依赖的 Ark Platform Foundation 能力，以及是否依赖 Ark Business Platform 能力。
 - 产品需求可以放在 `docs/product` 或服务目录内，但必须在服务定义中声明资料入口。
-- `backend-service/app/platform/admin` 是基础管理后台服务，不作为产品业务默认落点。
+- `backend-service/app/platform/service` 是基础管理后台服务，不作为产品业务默认落点。
 - `docs/archive` 中的产品资料只作历史参考，不作为当前实现依据。

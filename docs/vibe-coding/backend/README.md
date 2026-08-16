@@ -22,7 +22,7 @@
 - 当前后端实现是 Go + go-kratos v2，不使用旧产品文档中出现的 Spring Boot、Django 等泛化方案。
 - API 契约以 `backend-service/proto` 为源头，生成到 `backend-service/api`。
 - 业务实现按 `service -> biz/usecase -> data/repo -> ent schema` 分层。
-- 活跃基础服务为 `backend-service/app/platform/admin` 和 `backend-service/app/ai/service`；`backend-service/app/platform/admin` 当前作为底座管理后台基础服务；`backend-service/app/version/service` 是已存在版本发布服务雏形，当前冻结，迭代 3 前不作为新增业务落点。
+- 活跃基础服务为 `backend-service/app/platform/service` 和 `backend-service/app/ai/service`；`backend-service/app/platform/service` 当前作为底座管理后台基础服务；`backend-service/app/version/service` 是已存在版本发布服务雏形，当前冻结，迭代 3 前不作为新增业务落点。
 - 生成代码、Swagger UI bundle、Ent gen 目录不手工修改。
 - Buf 与 Protobuf 生成流程见 [Buf 与 Protobuf 标准生成流程](./proto-buf-generation.md)。
 
@@ -319,10 +319,10 @@ backend-service/
   
   import (
     "github.com/google/wire"
-    "backend-service/app/platform/admin/internal/biz"
-    "backend-service/app/platform/admin/internal/data"
-    "backend-service/app/platform/admin/internal/service"
-    "backend-service/app/platform/admin/internal/server"
+    "backend-service/app/platform/service/internal/biz"
+    "backend-service/app/platform/service/internal/data"
+    "backend-service/app/platform/service/internal/service"
+    "backend-service/app/platform/service/internal/server"
   )
   
   func initApp() (*App, error) {

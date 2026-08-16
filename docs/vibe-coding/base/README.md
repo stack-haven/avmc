@@ -169,7 +169,7 @@ Vibe Coding 是一套为 Ark Tech Platform 定制的代码风格和开发规范�
 
 - 产品与设计资料位于 `docs/product`。
 - Vibe Coding 规范位于 `docs/vibe-coding`。
-- 后端底座管理后台基础能力优先落在 `backend-service/app/platform/admin`；AI/chat 通用能力落在 `backend-service/app/ai/service`；业务服务落点待定义；`backend-service/app/version/service` 当前冻结，仅保留为复审候选。
+- 后端底座管理后台基础能力优先落在 `backend-service/app/platform/service`；AI/chat 通用能力落在 `backend-service/app/ai/service`；业务服务落点待定义；`backend-service/app/version/service` 当前冻结，仅保留为复审候选。
 - 前端底座管理后台当前优先落在 `frontend-service/apps/web-antd-admin`。
 - `backend-service-pkg-bakup` 是备份/参考目录，不作为默认开发目标。
 

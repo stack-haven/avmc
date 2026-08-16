@@ -14,7 +14,7 @@ Each service module under `backend-service/app/` (e.g., `platform/admin`, `ai/se
 
 **Always run make commands from within the service directory**, e.g.:
 ```bash
-cd backend-service/app/platform/admin
+cd backend-service/app/platform/service
 make run      # api → go run ./cmd/server -conf ./configs
 make build    # go build -o ./bin/ ./...
 make check    # fmt + vet
