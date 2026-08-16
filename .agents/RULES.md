@@ -64,6 +64,16 @@ backend-service/proto
 - 对外暴露 HTTP endpoint 时，使用 Google HTTP annotations 和 OpenAPI operation annotations。
 - 创建重复消息前，优先复用 `proto/common`、`proto/common/pagination`、`proto/common/enum`、`proto/platform/service/v1` 下已有的公共消息。
 
+### 菜单与按钮 seed 同步（产品服务）
+
+产品服务（如 Evie）新增功能或接口，需要在管理后台暴露为菜单/按钮时，必须同步 `backend-service/app/platform/service/cmd/mock` 下对应服务模块的 seed 文件：
+
+- 菜单树：`seed_<module>.go` 中的 `<module>Menus`（目录 + 页面，声明式集中管理）。
+- 权限按钮：同文件的 `<module>Buttons`，引用该服务 proto 生成的 `Operation` 常量（如 `eviev1.OperationXxxServiceYyy`）。
+- seed 为幂等：运行 mock 时增量注册到平台菜单系统并绑定套餐/角色，不重复覆盖。
+
+同步流程：新增 RPC → 生成 `Operation` 常量 → 在 seed 文件补菜单/按钮 → 运行 mock 验证菜单注册与按钮绑定。
+
 ### 持久化与业务分层
 
 - 业务编排和校验放在 `internal/biz` usecase 中。
@@ -128,11 +138,22 @@ pkg/auth/
 - `apps/web-tdesign`
 - `playground`
 
-管理类 CRUD 页面遵循现有模式：
+### 前端开发核心要求（强制）
 
-```text
-Page + useVbenVxeGrid + useVbenDrawer + useVbenForm
-```
+**必须站在 Vben 框架基础上开发**。任何前端页面/组件/交互的开发或修改前，先调用以下 skill 协助设计与实现：
+
+| Skill | 用途 |
+|-------|------|
+| `vben` | Vben Admin 5.0 框架规范（Page/Form/Table/Modal/Drawer 组件、路由菜单、权限、国际化、主题、图标） |
+| `avmc-frontend-page` | 项目级 CRUD 页面生成规范（`list.vue + data.ts + modules/ + api/ + locales/` 模式） |
+| `frontend-design` | 视觉与交互设计（有辨识度的设计，避免模板化，关注字体/配色/布局/动效/文案） |
+
+约束：
+
+- 管理类 CRUD 页面遵循 `Page + useVbenVxeGrid + useVbenDrawer + useVbenForm` 模式。
+- 视觉与交互要有辨识度与专业感，不做模板化/AI 味的界面（参照 frontend-design skill）。
+- 新增文案同时补 `zh-CN` 与 `en-US` locale；菜单标题用 i18n key，不硬编码字符串。
+- 组件优先复用 Vben 现有业务组件与渲染器（`CellTag`/`CellSwitch` 等），不自造轮子。
 
 ## 命名与生成输出
 
