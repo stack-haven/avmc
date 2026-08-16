@@ -576,4 +576,59 @@ asr:
 
 ---
 
+## 十、实现现状（截至 2026-08）
+
+> 本章记录实际实现与设计文档的差异，作为开发过程中的同步。
+
+### 10.1 供应商抽象（pkg/asr 开源包）
+
+`ASRProvider` 抽象已落地为**独立开源包 `pkg/asr/`**（非 internal/biz）：
+
+```
+pkg/asr/
+├── provider.go     # ASRProvider 接口 + 公共类型（结果/参数/能力声明）
+├── registry.go     # 并发安全的供应商注册中心（ErrProviderNotFound）
+├── audio/          # PCM/WAV 互转工具（各实现与业务层复用）
+├── funasr/         # FunASR 实现（HTTP，本地部署）
+└── xunfei/         # 讯飞 IAT 实现（WebSocket，云 API）
+```
+
+关键调整：
+- `ProviderCapabilities` 增加 `Name` 字段（能力声明自包含名称）。
+- `RecognizeOptions` 移除 `TenantID`/`UserID`（业务身份经 context 传递，不污染开源抽象）。
+- `ProviderRegistry` 并发安全（sync.RWMutex）。
+
+### 10.2 FunASR 实现（HTTP，非 gRPC）
+
+FunASR 对接方式由 gRPC 改为**自建 Python HTTP 服务**（独立服务，可单独开源）：
+
+| 端口 | 模型 | 用途 |
+|------|------|------|
+| 18000 | SenseVoice-Small | 批量识别（带标点） |
+| 18001 | paraformer-zh-streaming | 流式识别 |
+
+服务工程化于 `backend-service/app/funasr/service/`（Python 包 + Dockerfile + deploy，支持 Docker/K8s，离线模型挂载）。
+
+### 10.3 整段 / 流式分场景路由
+
+`route(ctx, stream)` 按识别场景路由：
+- 整段批量（`stream=false`）：优先 **funasr**（本地 SenseVoice，约 0.5s/5s 音频，带标点）。
+- 流式（`stream=true`）：active 供应商（讯飞 IAT，实时增量）。
+
+> 原因：讯飞 IAT 是「实时流式转写」API，强制按实时节奏逐帧发送，不适合整段批量；
+> 本地 funasr 批量推理快 20 倍以上。
+
+### 10.4 流式识别（WebSocket）
+
+- 后端：`/evie/v1/asr/stream`（JWT 鉴权 + 音频转发 + 增量回传，记录保存）。
+- 前端：语音识别弹窗双入口（「实时识别」流式 / 「整段识别」批量）。
+- 讯飞 IAT 增量需 `dwa:"wpgs"` 参数 + 处理 `pgs`（rpl=替换/apd=追加）字段。
+
+### 10.5 音频上传文件中心
+
+整段/流式识别后，音频统一转 **WAV** 上传文件中心并保存记录（`audio_url`），
+供后续预览/重试（ReRecognize）复用，避免重复上传。
+
+---
+
 > 下一份：[2-智能纠错引擎](./2-智能纠错引擎.md)
