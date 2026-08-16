@@ -90,6 +90,15 @@ backend-service/proto
 - 若公共包缺少该能力且确属跨模块通用场景，应把实现补到对应公共包（附单元测试），而不是写进单个业务模块。
 - 复用前先确认签名与语义：`rg "func 函数名" backend-service/pkg`。
 
+### 认证与密钥统一（多服务本地认证）
+
+- 所有服务采用**本地 JWT 认证**（无状态验签），不建设统一认证中心。
+- **JWT 密钥全平台共享**：所有服务读同一个环境变量 `ARK_JWT_KEY`，禁止各自配置不同密钥。
+- 生产环境密钥必须通过**统一配置源**（如 K8s Secret / 配置中心）下发，长度 ≥ 32 字节，不得使用 `dev-only` / `replace-with` 等占位值（启动时强校验）。
+- 认证器创建统一走 `auth.NewAuthenticator(auth.AuthConfig{...}, authSecurity)` 工厂（见 `pkg/auth/factory.go`），各服务仅提取自身 conf 的 auth 配置并传入，禁止复制 JWT 组装代码。
+- 会话管理（Redis 持久化、在线监控、踢下线）复用 `auth.AuthToken`，SecurityUser 工厂复用 `auth.AuthSecurity`。
+- 鉴权（Casbin）统一委托给 platform（产品服务不维护本地 Casbin 策略），通过 `app/platform/service/client` 的鉴权客户端调用。
+
 ## 前端规则
 
 `frontend-service/apps/web-antd-admin` 当前作为 Ark Tech Platform 管理后台前端。它使用 Vue 3、TypeScript、Vite、Vben Admin、Ant Design Vue、Pinia、Vue Router、`@vben/request` 和 pnpm workspace。
