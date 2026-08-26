@@ -95,3 +95,124 @@ locales/      # zh-CN 和 en-US labels
 - 空数据和加载中行为正常。
 - 中文和英文 locale key 能正常解析。
 - 路由出现在预期菜单区域。
+
+---
+
+## 产品服务模块设计模式
+
+> 本章节适用于 **Ark Product Services**（Geo Engine、AI Agent Management、evie 等）
+> 服务于「使用平台底座、面向终端业务场景」的产品服务模块。
+> 沉淀自 evie 词库中心交互优化（2026-08-25）。
+
+### 工作台 + 上下文模式（信息架构）
+
+每个产品服务的根页面应是 **「决策中心」**，不是「子页面的导航大厅」：
+
+- 顶部：「我的资源」（按租户过滤的列表）
+- 中部：「全局事件 / 待处理」（跨资源聚合）
+- 侧边：「健康度 / 指标」（基于业务日志聚合）
+- 底部：「快速入口」（模板、导入、试用）
+
+子资源（被父资源拥有的资源）应通过 **tabs 嵌在父资源详情页**内，而不是独立路由：
+
+```text
+# 推荐
+/dictionaries                                       # 工作台
+/dictionaries/:id           # 词库详情
+/dictionaries/:id/entries   # 词条（默认 tab）
+/dictionaries/:id/relations # 关系（在词库上下文里）
+
+# 不推荐
+/dictionaries
+/dictionaries-entries
+/dictionaries-relations  # 强迫用户先选 entry 才能看关系
+```
+
+例外：**跨父资源的共享资源**（如分类、全）才使用独立路由。
+
+### 表单分组与智能默认值
+
+复杂表单应分 **「基础」+「高级」** 两组，高级字段默认折叠：
+
+- 基础字段：高频使用，立等可用
+- 高级字段：偶尔使用，不占首屏空间
+- 字段自动填充：拼音从 standardText 推算、不让用户重复劳动
+- 字段示例占位符：「例：您好」「您好！」「您好。」
+
+### 多租户 scope 视觉化
+
+服务涉及多租户时，应统一 scope 颜色规范：
+
+| Scope | 颜色语义 | 用途 |
+|-------|---------|------|
+| PLATFORM | 紫色 | 全平台共享 |
+| SYSTEM | 蓝色 | 系统级 |
+| TENANT | 绿色 | 租户私有 |
+
+跨租户资源操作时，前端根据 `tenant_id` 显示「来自其他租户」徽章，提醒用户边界。
+
+### 设计语言：服务品牌 vs 平台默认
+
+每个产品服务应有自己的品牌色（避免所有页面都是平台蓝）：
+
+- 主色：从业务语义出发（语音 →波形 →蓝色家族，但不是 antd 默认蓝）
+- 业务色：按业务域划分子色（如 evie voice/vocabulary/enhance 三色）
+- 字体：选有性格的（Plus Jakarta Sans、Inter、JetBrains Mono 等）
+- 圆角：12-16px（比 antd 默认 6px 更大，更现代）
+
+### 术语与文案规范
+
+- 文案用用户视角（「删除」而不是「Delete」），按钮词当动词
+- 错误信息友好（「无法删除：仍有 5 条词条关联」而不是「Conflict409」）
+- 多租户 scope 文案统一：PLATFORM = 平台共享、SYSTEM = 系统级、TENANT = 租户私有
+- 建立服务专属 `glossary.md`，中英文对照，ui 全部走 i18n
+
+### 空状态与引导
+
+空状态不是「暂无数据」，而是 **「行动邀请」**：
+
+- 服务品牌插画（手绘风）
+- CTA 引导（「还没有词库，从模板开始 →」）
+- 操作示例数据（一键试用）
+
+### 后端联动考虑
+
+产品服务优化往往需要后端联动（接口调整）：
+
+- **P0 接口先行**：UI 必需依赖的后端接口先实现
+- **信息架构调整** → 后端需加聚合查询接口（如 `GetStats`、`ListByParent`）
+- **多租户边界** → 后端必须按 scope 应用可见性，前端不传 tenant_id
+- **自然语言化展示** → 后端需在响应中 JOIN 父资源字段（避免前端 N+1）
+
+联动规划模板见 [词库中心交互优化-P0 接口设计](docs/services/evie-platform/development/9-词库中心交互优化-P0接口设计.md)。
+
+---
+
+## evie 设计 Token 参考（产品服务模块示范）
+
+> 完整 Token 定义见 evie 服务层代码（后续在 `packages/effects/styles/` 下落地）：
+
+```ts
+export const evieTokens = {
+  color: {
+    primary: '#1F4FCC',              // evie 深靛蓝
+    vocabulary: '#7B5BE8',           // 词库相关
+    enhance: '#16A085',              // 文本增强相关
+    scopePlatform: '#6F42C1',        // 紫色
+    scopeSystem: '#0D6EFD',          // 蓝色
+    scopeTenant: '#198754',          // 绿色
+  },
+  typography: {
+    display: '"Plus Jakarta Sans", "PingFang SC", sans-serif',
+    body: '"Inter", "PingFang SC", sans-serif',
+    mono: '"JetBrains Mono", monospace',
+  },
+  radius: {
+    card: '12px',
+    button: '8px',
+    input: '8px',
+  },
+};
+```
+
+后续产品服务（Geo Engine、AI Agent Management）应参考本 Token 规范，定制自己的品牌色与字体，避免与 evie 混淆。
