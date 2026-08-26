@@ -5,6 +5,7 @@
 ## 当前归档
 
 - `product-202501`：2025 年 1 月形成的需求、需求分析、项目规划、产品功能设计、UI 原型和 UI 功能说明。
+- `services-evie-platform-202508-pre-restructure`：Evie 语音智能引擎服务在 2026-08-25 M0-M11 重构前的资料（以「字典/纠错/热词」三件套为设计中心）。当前实现以 [8-词库中心与文本增强引擎开发计划](../services/evie-platform/development/8-词库中心与文本增强引擎开发计划.md) 为准。
 
 ## 使用规则
 
