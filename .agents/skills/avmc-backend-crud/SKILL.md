@@ -43,11 +43,11 @@ name: avmc-backend-crud
 
 ```protobuf
 service IXxx {
-    rpc CreateXxx(CreateXxxRequest) returns (CreateXxxResponse) { option (google.api.http) = { post: "/admin/v1/xxx" body: "*" }; }
-    rpc GetXxx(GetXxxRequest) returns (GetXxxResponse) { option (google.api.http) = { get: "/admin/v1/xxx/{id}" }; }
-    rpc UpdateXxx(UpdateXxxRequest) returns (UpdateXxxResponse) { option (google.api.http) = { put: "/admin/v1/xxx/{id}" body: "*" }; }
-    rpc DeleteXxx(DeleteXxxRequest) returns (DeleteXxxResponse) { option (google.api.http) = { delete: "/admin/v1/xxx/{id}" }; }
-    rpc ListXxx(ListXxxRequest) returns (ListXxxResponse) { option (google.api.http) = { get: "/admin/v1/xxx" }; }
+    rpc CreateXxx(CreateXxxRequest) returns (CreateXxxResponse) { option (google.api.http) = { post: "/platform/v1/xxx" body: "*" }; }
+    rpc GetXxx(GetXxxRequest) returns (GetXxxResponse) { option (google.api.http) = { get: "/platform/v1/xxx/{id}" }; }
+    rpc UpdateXxx(UpdateXxxRequest) returns (UpdateXxxResponse) { option (google.api.http) = { put: "/platform/v1/xxx/{id}" body: "*" }; }
+    rpc DeleteXxx(DeleteXxxRequest) returns (DeleteXxxResponse) { option (google.api.http) = { delete: "/platform/v1/xxx/{id}" }; }
+    rpc ListXxx(ListXxxRequest) returns (ListXxxResponse) { option (google.api.http) = { get: "/platform/v1/xxx" }; }
 }
 ```
 

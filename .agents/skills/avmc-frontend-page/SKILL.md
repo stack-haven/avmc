@@ -124,11 +124,11 @@ export interface XxxItem {
 }
 
 export const api = {
-  list: (params: Record<string, any>) => request.get<{ items: XxxItem[]; total: number }>('/admin/v1/xxx', { params }),
-  create: (data: Partial<XxxItem>) => request.post('/admin/v1/xxx', data),
-  update: (id: number, data: Partial<XxxItem>) => request.put(`/admin/v1/xxx/${id}`, data),
-  delete: (id: number) => request.delete(`/admin/v1/xxx/${id}`),
-  get: (id: number) => request.get<XxxItem>(`/admin/v1/xxx/${id}`),
+  list: (params: Record<string, any>) => request.get<{ items: XxxItem[]; total: number }>('/platform/v1/xxx', { params }),
+  create: (data: Partial<XxxItem>) => request.post('/platform/v1/xxx', data),
+  update: (id: number, data: Partial<XxxItem>) => request.put(`/platform/v1/xxx/${id}`, data),
+  delete: (id: number) => request.delete(`/platform/v1/xxx/${id}`),
+  get: (id: number) => request.get<XxxItem>(`/platform/v1/xxx/${id}`),
 }
 ```
 

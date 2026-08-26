@@ -22,7 +22,7 @@ This happens because the old directory `gen/menupermissiongroup` and the new `ge
 
 After schema rename and `make ent` regeneration:
 
-1. **Delete old generated API proto files** (`api/core/service/v1/menu_permission_group*.pb.go`, `api/platform/admin/v1/i_menu_permission_group*.pb.go`) — they coexist with new `tenant_menu_permission_group*.pb.go` files and cause duplicate declarations.
+1. **Delete old generated API proto files** (`api/core/service/v1/menu_permission_group*.pb.go`, `api/platform/admin/v1/i_menu_permission_group*.pb.go` — 注：迁移后旧路径已统一为 `api/platform/service/v1/`；此处为迁移前历史路径) — they coexist with new `tenant_menu_permission_group*.pb.go` files and cause duplicate declarations.
 
 2. **Fix import paths**: Source code imports must use the lowercase package paths that Ent generates (e.g., `gen/tenantmenupermissiongroup`, not `gen/TenantMenuPermissionGroup`). On macOS, Go sees them as the same but the compiler flags the mismatch.
 

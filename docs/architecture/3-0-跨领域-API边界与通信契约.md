@@ -203,22 +203,28 @@ flowchart LR
 > 完整规范见 [3-4-跨领域-HTTP-API设计规范](./3-4-跨领域-HTTP-API设计规范.md)（AIP 对齐）。此处为速查版。
 
 ```
-服务前缀:      /{service}/{version}          # /admin/v1, /evie/v1, /ai/v1
-平台控制面:    /admin/v1/{resource}         # List/Get/Create/Update/Delete
-用户级数据面:  /admin/v1/my/{resource}      # 当前登录用户：我的设备、我的通知、我的会话
-租户级数据面:  /admin/v1/current-tenant/{resource}  # 当前租户：参数、有效菜单
-自定义操作:    /admin/v1/{resource}/{id}:{action}    # 冒号分隔，禁止斜杠
+服务前缀:      /{service-name}/{version}     # /platform/v1, /evie/v1, /ai/v1
+平台控制面:    /platform/v1/{resource}                  # List/Get/Create/Update/Delete
+用户级数据面:  /platform/v1/my/{resource}                # 当前登录用户：我的设备、我的通知、我的会话
+租户级数据面:  /platform/v1/current-tenant/{resource}   # 当前租户：参数、有效菜单
+自定义操作:    /platform/v1/{resource}/{id}:{action}    # 冒号分隔，禁止斜杠
 
 示例:
-  GET    /admin/v1/parameters                          # List（控制面）
-  POST   /admin/v1/parameters                          # Create（控制面）
-  GET    /admin/v1/my/notifications                    # List（用户级数据面）
-  GET    /admin/v1/current-tenant/parameters           # List（租户级数据面）
-  POST   /admin/v1/async-tasks/{id}:cancel             # 自定义操作（冒号）
-  POST   /admin/v1/resource-quotas/{key}:consume       # 自定义操作（冒号）
+  GET    /platform/v1/parameters                              # List（控制面）
+  POST   /platform/v1/parameters                              # Create（控制面）
+  GET    /platform/v1/my/notifications                        # List（用户级数据面）
+  GET    /platform/v1/current-tenant/parameters               # List（租户级数据面）
+  POST   /platform/v1/async-tasks/{id}:cancel                 # 自定义操作（冒号）
+  POST   /platform/v1/resource-quotas/{key}:consume           # 自定义操作（冒号）
+
+产品服务（如 evie）独立服务前缀示例:
+  GET    /evie/v1/dictionaries                                 # 词库列表
+  POST   /evie/v1/dictionaries/{id}:publish                    # 发布词库版本
+  GET    /evie/v1/asr/records                                  # ASR 识别记录列表
 ```
 
 **关键规则：**
+- 服务前缀 `/{service-name}/{version}/`：平台服务用 `/platform/v1/`；产品服务按服务名独立（如 `/evie/v1/`、`/ai/v1/`）
 - 自定义动作用 `:` 分隔（AIP-136），禁止 `/{id}/{verb}` 斜杠形式
 - 子资源（有独立 ID/生命周期）才用 `/` 分隔（AIP-122）
 - `my/*`（当前用户）与 `current-tenant/*`（当前租户）语义不同，不可混用

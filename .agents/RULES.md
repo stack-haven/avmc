@@ -165,10 +165,15 @@ pkg/auth/
 
 ## API 设计硬规则
 
-> 违反以下规则的 PR 不得合并。详见 `docs/architecture/3-0-跨领域-API边界与通信契约.md`。
+> 违反以下规则的 PR 不得合并。详见 `docs/architecture/3-0-跨领域-API边界与通信契约.md`、`docs/architecture/3-4-跨领域-HTTP-API设计规范.md`。
 
 - **RPC 命名**: List/Get/Create/Update/Delete + CurrentTenant 区分控制面/数据面
-- **HTTP 路径**: 控制面 `/admin/v1/{resource}`，数据面 `/admin/v1/current-tenant/{resource}`
+- **HTTP 路径**:
+  - 服务前缀 `/{service-name}/{version}`：平台控制面 `/platform/v1`，产品服务 `/evie/v1`、`/ai/v1` 等
+  - 平台控制面 `/platform/v1/{resource}`
+  - 用户级数据面 `/platform/v1/my/{resource}`
+  - 租户级数据面 `/platform/v1/current-tenant/{resource}`
+  - 自定义动作 `/platform/v1/{resource}/{id}:{verb}`（冒号分隔，禁止斜杠）
 - **分页**: 全部使用 `pagination.PagingRequest/PagingResponse`，默认 page_size=20
 - **错误码**: kratos errors + UPPER_SNAKE_CASE（`PARAMETER_KEY_INVALID`）
 - **枚举**: 首个值必须 `*_UNSPECIFIED = 0`

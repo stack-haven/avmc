@@ -193,12 +193,16 @@ locales/      # zh-CN 和 en-US labels
 > 新增 API 时必须遵守，从 `backend-service/proto/` 实际代码提炼。
 
 - **RPC 命名**: List/Get/Create/Update/Delete + CurrentTenant 前缀（租户数据面）
-- **路径**: 平台控制面 `/admin/v1/{resource}`，租户数据面 `/admin/v1/current-tenant/{resource}`
+- **路径**:
+  - 服务前缀 `/{service-name}/{version}`：平台 `/platform/v1`、产品服务 `/evie/v1`、`/ai/v1` 等
+  - 平台控制面 `/platform/v1/{resource}`
+  - 用户级数据面 `/platform/v1/my/{resource}`
+  - 租户级数据面 `/platform/v1/current-tenant/{resource}`
 - **分页**: 统一使用 `pagination.PagingRequest/PagingResponse`
 - **错误码**: kratos errors UPPER_SNAKE_CASE（如 `PARAMETER_KEY_INVALID`）
 - **枚举**: 首个值必须 `*_UNSPECIFIED = 0`
 - **契约检查**: `buf lint` + `buf breaking`（每次 PR）
-- 详见 `docs/architecture/3-0-跨领域-API边界与通信契约.md`
+- 详见 `docs/architecture/3-0-跨领域-API边界与通信契约.md`、`docs/architecture/3-4-跨领域-HTTP-API设计规范.md`
 
 ## 数据库变更规范
 

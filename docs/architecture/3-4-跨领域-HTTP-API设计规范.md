@@ -43,8 +43,8 @@
 /{service-name}/{version}/{resource-path}
 
 示例:
-  /admin/v1/...     # platform/admin 服务
-  /evie/v1/...      # evie 服务
+  /platform/v1/...  # platform/service 服务（原 platform/admin）
+  /evie/v1/...      # evie 产品服务
   /ai/v1/...        # ai 服务
 ```
 
@@ -52,10 +52,11 @@
 - 每个服务一个前缀，格式 `/{service-name}/{version}`，版本用 `v1`、`v2`
 - **禁止重复服务名**：`/ai/v1/ai/chats` ❌，`/ai/v1/chats` ✅
 - 前缀一经发布不可变更（破坏性）
+- 平台服务前缀为 `/platform/v1`；产品服务按服务名独立（如 `/evie/v1`、`/ai/v1`）
 
 | 服务 | 前缀 | 现状 |
 |------|------|:---:|
-| platform/admin | `/admin/v1` | ✅ |
+| platform/service | `/platform/v1` | ✅ |
 | evie | `/evie/v1` | ✅ |
 | ai | `/ai/v1` | ❌ 现为 `/ai/v1/ai/` |
 
@@ -85,12 +86,12 @@ GET /{prefix}/{resources}/{id}/{sub-resources}/{sid}    # 单个
 ```
 
 **示例：**
-- `GET /admin/v1/files/{id}/parts` — 分片是文件的子资源（有独立 partNumber）✅
-- `GET /admin/v1/files/{file_id}/access-logs` — 访问日志是子资源 ✅
-- `GET /admin/v1/tenants/{tenant_id}/admins` — 租户管理员是子资源 ✅
+- `GET /platform/v1/files/{id}/parts` — 分片是文件的子资源（有独立 partNumber）✅
+- `GET /platform/v1/files/{file_id}/access-logs` — 访问日志是子资源 ✅
+- `GET /platform/v1/tenants/{tenant_id}/admins` — 租户管理员是子资源 ✅
 
 **反模式：** 把"动作"伪装成子资源
-- `POST /admin/v1/files/{id}/replace` ❌（replace 是动作，不是子资源）
+- `POST /platform/v1/files/{id}/replace` ❌（replace 是动作，不是子资源；正确写法 `:replace`）
 
 ---
 
@@ -108,25 +109,25 @@ GET /{prefix}/{resources}/{id}/{sub-resources}/{sid}    # 单个
 
 ```proto
 rpc ListFileObjects(...) returns (...) {
-  option (google.api.http) = {get: "/admin/v1/files"};
+  option (google.api.http) = {get: "/platform/v1/files"};
 }
 rpc GetFileObject(...) returns (...) {
-  option (google.api.http) = {get: "/admin/v1/files/{id}"};
+  option (google.api.http) = {get: "/platform/v1/files/{id}"};
 }
 rpc CreateFileUploadSession(...) returns (...) {
   option (google.api.http) = {
-    post: "/admin/v1/files/upload-sessions"
+    post: "/platform/v1/files/upload-sessions"
     body: "*"
   };
 }
 rpc UpdateFileObject(...) returns (...) {
   option (google.api.http) = {
-    put: "/admin/v1/files/{id}"
+    put: "/platform/v1/files/{id}"
     body: "*"
   };
 }
 rpc DeleteFileObject(...) returns (...) {
-  option (google.api.http) = {delete: "/admin/v1/files/{id}"};
+  option (google.api.http) = {delete: "/platform/v1/files/{id}"};
 }
 ```
 
@@ -158,11 +159,11 @@ rpc DeleteFileObject(...) returns (...) {
 
 | ✅ 正确 | ❌ 错误 | 错误类型 |
 |--------|--------|---------|
-| `POST /files/{id}:replace` | `POST /files/{id}/replace` | 斜杠分隔动作 |
-| `POST /files/{id}:confirm` | `POST /files/{id}/confirm` | 斜杠分隔动作 |
-| `POST /async-tasks/{id}:cancel` | `POST /async-tasks/cancel/{id}` | 动作位置错误 |
-| `POST /async-tasks:stats` | `GET /async-tasks/stats` | 集合级动作用错 |
-| `PUT /users/{id}:status-update` | `PUT /users/status-update/{id}` | 动作位置错误 + 分隔符错误 |
+| `POST /platform/v1/files/{id}:replace` | `POST /platform/v1/files/{id}/replace` | 斜杠分隔动作 |
+| `POST /platform/v1/files/{id}:confirm` | `POST /platform/v1/files/{id}/confirm` | 斜杠分隔动作 |
+| `POST /platform/v1/async-tasks/{id}:cancel` | `POST /platform/v1/async-tasks/cancel/{id}` | 动作位置错误 |
+| `POST /platform/v1/async-tasks:stats` | `GET /platform/v1/async-tasks/stats` | 集合级动作用错 |
+| `PUT /platform/v1/users/{id}:status-update` | `PUT /platform/v1/users/status-update/{id}` | 动作位置错误 + 分隔符错误 |
 
 ### 6.4 自定义方法的 HTTP 方法选择
 
@@ -181,8 +182,8 @@ rpc DeleteFileObject(...) returns (...) {
 
 | 类型 | 前缀 | 语义 | RPC 命名 | 示例 |
 |------|------|------|---------|------|
-| **用户级** | `/my/` | 当前登录用户自己的资源 | `ListMy{Resources}` | `/admin/v1/my/devices`、`/admin/v1/my/notifications` |
-| **租户级** | `/current-tenant/` | 当前租户的共享资源 | `ListCurrentTenant{Resources}` | `/admin/v1/current-tenant/parameters` |
+| **用户级** | `/my/` | 当前登录用户自己的资源 | `ListMy{Resources}` | `/platform/v1/my/devices`、`/platform/v1/my/notifications` |
+| **租户级** | `/current-tenant/` | 当前租户的共享资源 | `ListCurrentTenant{Resources}` | `/platform/v1/current-tenant/parameters` |
 
 **规则：**
 - `my/*` = 当前用户（user-scoped）：我的设备、我的通知、我的会话
@@ -201,7 +202,7 @@ rpc DeleteFileObject(...) returns (...) {
 
 ```proto
 rpc GetFileObject(GetFileObjectRequest) returns (...) {
-  option (google.api.http) = {get: "/admin/v1/files/{id}"};
+  option (google.api.http) = {get: "/platform/v1/files/{id}"};
 }
 ```
 
@@ -212,7 +213,7 @@ rpc GetFileObject(GetFileObjectRequest) returns (...) {
 
 ```proto
 rpc ListFileObjects(ListFileObjectsRequest) returns (...) {
-  option (google.api.http) = {get: "/admin/v1/files"};
+  option (google.api.http) = {get: "/platform/v1/files"};
 }
 ```
 
@@ -226,7 +227,7 @@ rpc ListFileObjects(ListFileObjectsRequest) returns (...) {
 ```proto
 rpc CreateFileUploadSession(CreateFileUploadSessionRequest) returns (...) {
   option (google.api.http) = {
-    post: "/admin/v1/files/upload-sessions"
+    post: "/platform/v1/files/upload-sessions"
     body: "*"     # 整个 message 作为 body
   };
 }
@@ -265,7 +266,7 @@ rpc CreateFileUploadSession(CreateFileUploadSessionRequest) returns (...) {
 ```
 请求进入 kratos http server
   ↓
-gorilla/mux 匹配路由，得到 path template（如 /admin/v1/files/{id}:replace）
+gorilla/mux 匹配路由，得到 path template（如 /platform/v1/files/{id}:replace）
   ↓
 生成的 http handler 执行 http.SetOperation(ctx, OperationXxx)
   ↓
@@ -323,37 +324,40 @@ cd backend-service && make http-convention-check
 
 ## 十二、迁移映射表
 
+> **迁移状态（2026-08 更新）**：
+> - 平台层（platform/service）已统一为 `/platform/v1/` 前缀 + AIP-136 冒号自定义方法（12.1、12.2 全部完成）
+> - AI 服务仍遗留 `/ai/v1/ai/` 重复服务名（12.3 待迁移）
+
 ### 12.1 文件中心（8 处）
 
-| 现状（❌） | 目标（✅） | RPC（不变） |
+| 原状（迁移前 ❌） | 目标（✅ 已迁移） | RPC（不变） |
 |-----------|-----------|------------|
-| `POST /files/{id}/replace` | `POST /files/{id}:replace` | `ReplaceFileContent` |
-| `POST /files/{id}/confirm` | `POST /files/{id}:confirm` | `ConfirmFileUpload` |
-| `POST /files/{id}/complete` | `POST /files/{id}:complete` | `CompleteFileUpload` |
-| `POST /files/{id}/abort` | `POST /files/{id}:abort` | `AbortFileUpload` |
-| `GET /files/{id}/download` | `GET /files/{id}:download` | `DownloadFileContent` |
-| `GET /files/{id}/download-url` | `GET /files/{id}:download-url` | `PresignFileDownload` |
-| `POST /files/{id}/content` | `POST /files/{id}:content` | `UploadFileContent` |
-| `POST /files/upload-sessions` | `POST /files:upload-sessions`（集合级自定义） | `CreateFileUploadSession` |
+| `POST /platform/v1/files/{id}/replace` | `POST /platform/v1/files/{id}:replace` | `ReplaceFileContent` |
+| `POST /platform/v1/files/{id}/confirm` | `POST /platform/v1/files/{id}:confirm` | `ConfirmFileUpload` |
+| `POST /platform/v1/files/{id}/complete` | `POST /platform/v1/files/{id}:complete` | `CompleteFileUpload` |
+| `POST /platform/v1/files/{id}/abort` | `POST /platform/v1/files/{id}:abort` | `AbortFileUpload` |
+| `GET /platform/v1/files/{id}/download` | `GET /platform/v1/files/{id}:download` | `DownloadFileContent` |
+| `GET /platform/v1/files/{id}/download-url` | `GET /platform/v1/files/{id}:download-url` | `PresignFileDownload` |
+| `POST /platform/v1/files/{id}/content` | `POST /platform/v1/files/{id}:content` | `UploadFileContent` |
+| `POST /platform/v1/files/upload-sessions` | `POST /platform/v1/files:upload-sessions`（集合级自定义） | `CreateFileUploadSession` |
 
 ### 12.2 status-update 反模式（8 处）
 
-| 现状（❌） | 目标（✅） |
+| 原状（迁移前 ❌） | 目标（✅ 已迁移） |
 |-----------|-----------|
-| `PUT /users/status-update/{id}` | `POST /users/{id}:status-update` |
-| `PUT /menus/status-update/{id}` | `POST /menus/{id}:status-update` |
-| `PUT /depts/status-update/{id}` | `POST /depts/{id}:status-update` |
-| `PUT /roles/status-update/{id}` | `POST /roles/{id}:status-update` |
-| `PUT /posts/status-update/{id}` | `POST /posts/{id}:status-update` |
-| `PUT /projects/status-update/{id}` | `POST /projects/{id}:status-update` |
-| `PUT /tenant-menu-permission-groups/status-update/{id}` | `POST /tenant-menu-permission-groups/{id}:status-update` |
+| `PUT /platform/v1/users/status-update/{id}` | `POST /platform/v1/users/{id}:status-update` |
+| `PUT /platform/v1/menus/status-update/{id}` | `POST /platform/v1/menus/{id}:status-update` |
+| `PUT /platform/v1/depts/status-update/{id}` | `POST /platform/v1/depts/{id}:status-update` |
+| `PUT /platform/v1/roles/status-update/{id}` | `POST /platform/v1/roles/{id}:status-update` |
+| `PUT /platform/v1/posts/status-update/{id}` | `POST /platform/v1/posts/{id}:status-update` |
+| `PUT /platform/v1/projects/status-update/{id}` | `POST /platform/v1/projects/{id}:status-update` |
+| `PUT /platform/v1/tenant-menu-permission-groups/status-update/{id}` | `POST /platform/v1/tenant-menu-permission-groups/{id}:status-update` |
+
+### 12.3 AI 服务待迁移（服务名重复 + status-update）
+
+| 原状（迁移前 ❌） | 目标（待迁移 ✅） |
+|-----------|-----------|
 | `PUT /ai/v1/ai/chats/status-update/{id}` | `POST /ai/v1/chats/{id}:status-update` |
-
-### 12.3 其他
-
-| 现状（❌） | 目标（✅） |
-|-----------|-----------|
-| `GET /depts/{id}/delete-impact` | `GET /depts/{id}:delete-impact` |
 | `/ai/v1/ai/chats` | `/ai/v1/chats` |
 | `/ai/v1/ai/chats/{id}` | `/ai/v1/chats/{id}` |
 | `/ai/v1/ai/chats/simple` | `/ai/v1/chats/simple` |
