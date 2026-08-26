@@ -1,8 +1,12 @@
 # Evie — ASR 语音识别服务
 
-日期：2026-08-04
-状态：草案
-依赖：[0-架构总览-语音智能引擎](./0-架构总览-语音智能引擎.md)
+日期：2026-08-25
+状态：✅ 已落地
+依赖：[0-架构总览-语音智能引擎](./0-架构总览-语音智能引擎.md)、[8-词库中心与文本增强引擎开发计划](./8-词库中心与文本增强引擎开发计划.md)
+
+> **变更说明（2026-08-25）**：
+> - 文档主体设计与实际代码一致；热词概念已从代码删除（融入词库关系 ALIAS），后续会随文档重写逐步精简代码示例。
+> - 术语统一：「智能纠错」→「文本增强」；「企业知识字典中心」→「词库中心」。
 
 ---
 
@@ -230,14 +234,15 @@ type PCMChunk struct {
 ## 四、Biz 层编排逻辑（集成 ProviderRouter）
 
 ```go
-// internal/biz/asr.go
+// app/evie/service/internal/biz/asr.go（实际代码）
 
+// ASRUsecase ASR 业务编排。
+// Provider 路由后识别结果直接产出 ASRResult，不再走单独的「热词增强」后处理。
+// 词条级 ALIAS 关系在文本增强引擎的「别名解析」阶段统一处理。
 type ASRUsecase struct {
     capture      AudioCapture
     preprocessor AudioPreprocessor
-    vad          VADDetector
-    router       ProviderRouter     // ← 替换原来的单一 engine
-    hotword      HotwordEnhancer
+    router       *ProviderRouter
     repo         ASRRepo
 }
 
@@ -254,41 +259,26 @@ func (uc *ASRUsecase) Recognize(ctx context.Context, req CaptureRequest) (*ASRRe
         return nil, fmt.Errorf("route asr provider: %w", err)
     }
 
-    // 3. 加载热词（如果该 Provider 支持）
-    if provider.Capabilities().HotwordSupport {
-        hotwords, _ := uc.hotword.GetHotwords(ctx, req.TenantID)
-        opts.Hotwords = hotwords
-    }
-
-    // 4. 流式识别
+    // 3. 流式识别（Provider 内部已包含热词处理能力）
     resultCh := make(chan ASRStreamResult, 16)
     go func() {
         defer close(resultCh)
         _ = provider.StreamRecognize(ctx, pcmCh, resultCh, opts)
     }()
 
-    // 5. 收集最终结果
+    // 4. 收集最终结果
     var finalResult *ASRResult
     for r := range resultCh {
         if r.IsFinal {
-            // 6. 热词后处理增强（如果 Provider 不支持原生热词）
-            if !provider.Capabilities().HotwordSupport {
-                enhanced, _ := uc.hotword.Enhance(ctx, req.TenantID, &ASRResult{
-                    Text:       r.Text,
-                    Confidence: r.Confidence,
-                })
-                finalResult = enhanced
-            } else {
-                finalResult = &ASRResult{
-                    Text:       r.Text,
-                    Confidence: r.Confidence,
-                }
+            finalResult = &ASRResult{
+                Text:       r.Text,
+                Confidence: r.Confidence,
             }
             break
         }
     }
 
-    // 7. 持久化识别记录（含 provider 信息）
+    // 5. 持久化识别记录（含 provider 信息，供后续 ReRecognize 与预览复用）
     _ = uc.repo.SaveRecord(ctx, ASRRecord{
         TenantID:     req.TenantID,
         UserID:       req.UserID,
@@ -297,6 +287,7 @@ func (uc *ASRUsecase) Recognize(ctx context.Context, req CaptureRequest) (*ASRRe
         Confidence:   finalResult.Confidence,
         DurationMs:   finalResult.DurationMs,
         ProviderName: provider.Name(),
+        AudioURL:     uploadedAudioURL, // 由文件中心返回
     })
 
     return finalResult, nil
@@ -631,4 +622,4 @@ FunASR 对接方式由 gRPC 改为**自建 Python HTTP 服务**（独立服务�
 
 ---
 
-> 下一份：[2-智能纠错引擎](./2-智能纠错引擎.md)
+> 相关文档：[0-架构总览-语音智能引擎](./0-架构总览-语音智能引擎.md)、[8-词库中心与文本增强引擎开发计划](./8-词库中心与文本增强引擎开发计划.md)
