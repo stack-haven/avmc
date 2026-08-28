@@ -1,9 +1,18 @@
 # Evie 服务模块 — ASR 与文本增强执行流程图
 
 日期：2026-08-27
-状态：✅ M0-M11 全部完成；本图基于当前代码
+状态：✅ M0-M11 全部完成；ASR+Enhancement 统一入口（2026-08-27 改造）
 读者：evie 后续迭代开发者、新成员 onboarding
 目的：用 mermaid 可视化「一次用户操作在后端经历了什么」，便于代码定位、瓶颈分析、后续设计决策
+
+> **2026-08-27 关键改造**（影响 §2 §6 §10 等章节）：
+> - 端点统一：`ASRService.Recognize` **强制**走 8 层文本增强流水线（不再有独立 `RecognizeAndCorrect` RPC）；`profile_id=0` 按租户默认策略，`profile_id>0` 按场景关联策略
+> - 字段重命名：`correction.proto::CorrectionChange` → `enhancement.proto::EnhanceChange`（剥离"纠错"语义，type 含义升级为增强类型 `ALIAS/CLEAN/FILLER/REPLACE/PHONETIC/FUZZY/CONTEXT`）
+> - 新增 `EnhanceService.EnhanceText`：纯文本直接走增强引擎（不经 ASR），供前端"纯文本增强"页面调用
+> - 策略可插拔（架构预留）：`Enhancer` 接口抽象 8 步为可注册组件；后期 LLM/自定义增强器只需实现接口 + 注册。当前不写实际 LLM 集成
+> - Mock 数据增 A/B 场景对比：
+>   - **场景 A** 客服对话场景（id=11/13）→ 客服对话策略（`text_cleaning + filler_removal + alias_resolution`）
+>   - **场景 B** 专业访谈场景（id=12/14）→ 专业访谈策略（`pinyin_correction + fuzzy_matching + context_correction`）
 
 > **图例约定**：
 > - 蓝色 = evie 服务内部模块；绿色 = 平台公共服务（gRPC 委托）；紫色 = ASR 外部供应商；橙色 = 持久化层
