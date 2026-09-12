@@ -1,0 +1,55 @@
+name: Root CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - ark-tech
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: root-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  doc-staleness:
+    name: Documentation staleness
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Run doc staleness check
+        run: ./scripts/check-doc-staleness.sh
+
+  submodule-pointer:
+    name: Submodule pointer consistency
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # 校验：子模块 HEAD 与根仓库 index 中记录一致；工作区中无未跟踪或脏改动（除非标了 known-dirty）。
+      - name: Verify submodule pointers are clean
+        run: |
+          set -e
+          git diff --exit-code -- backend-service frontend-service
+          status=$(git status --porcelain | grep -E '^.. (backend-service|frontend-service)$' || true)
+          if [ -n "$status" ]; then
+            echo "❌ Submodule pointer has uncommitted changes:"
+            echo "$status"
+            exit 1
+          fi
+          echo "✅ Submodule pointers clean."
