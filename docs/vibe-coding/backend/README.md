@@ -39,63 +39,54 @@
 
 ## 📁 后端项目结构
 
+> 实际结构以当前代码为准；目录职责定义见 [`0-4 §四 目录职责`](../../architecture/0-4-架构总览-工程治理总纲.md) 与 `0-2 §三 后端架构流程`。
+
 ```
 backend-service/
-├── api/                 # 生成的 API 代码
-│   ├── platform/            # 底座管理后台 API
-│   │   └── admin/v1/     # 底座管理后台基础服务接口
-│   ├── common/          # 公共 API 定义
-│   └── core/            # 核心服务 API
+├── api/                 # 生成的 API 代码（不手改）
+│   ├── platform/service/v1/   # 底座管理后台基础服务（gRPC + HTTP 合一）
+│   ├── common/          # 公共 API
+│   ├── evie/service/v1/      # Evie 产品服务生成代码
+│   ├── ai/service/v1/        # AI 能力生成代码
+│   └── version/service/v1/   # 历史版本（冻结）
 ├── app/                 # 应用服务
-│   ├── platform/admin/      # 底座管理后台基础服务
-│   │   ├── cmd/         # 命令行入口
-│   │   │   └── server/  # 服务器启动
-│   │   ├── configs/     # 配置文件
-│   │   ├── internal/    # 内部实现
-│   │   │   ├── biz/      # 业务逻辑
-│   │   │   ├── data/     # 数据访问
-│   │   │   ├── server/   # 服务器配置
-│   │   │   └── service/  # 服务实现
-│   │   ├── proto/        # Protobuf 定义
-│   │   └── README.md     # 服务说明
-│   ├── ai/service/      # 底座 AI/chat 通用能力
-│   └── version/service/ # 版本发布服务雏形，当前冻结
-├── pkg/                 # 公共包
-│   ├── auth/            # 认证授权
-│   │   ├── authn/        # 认证
-│   │   ├── authz/        # 授权
-│   │   └── middleware/   # 中间件
-│   ├── bootstrap/       # 启动配置
-│   │   └── databases/    # 数据库启动
-│   ├── entgo/           # entgo 工具
-│   │   ├── mixin/        # 混合器
-│   │   └── paging/        # 分页
-│   ├── utils/           # 工具函数
-│   │   ├── convert/       # 类型转换
-│   │   ├── crypto/        # 加密
-│   │   ├── id/            # ID 生成
-│   │   ├── ip/            # IP 工具
-│   │   ├── pagination/    # 分页
-│   │   └── trans/         # 翻译
-│   └── viewer/          # 视图工具
-├── proto/               # Protobuf 定义文件
-│   ├── platform/            # 底座管理后台 proto
-│   │   └── admin/v1/      # 管理接口
-│   ├── common/          # 公共定义
-│   │   ├── conf/          # 配置
-│   │   └── enum/          # 枚举
-│   └── core/            # 核心服务
-│       └── service/v1/    # 服务定义
-├── go.mod               # Go 模块文件
-├── go.sum               # 依赖校验文件
-└── Makefile             # 构建脚本
+│   ├── platform/service/      # 底座管理后台基础服务
+│   │   ├── cmd/{server,migrate,mock}/
+│   │   ├── configs/
+│   │   ├── internal/{biz,data,server,service,conf,runtimeconfig,client,authzpolicy}/
+│   │   └── README.md
+│   ├── ai/service/      # AI/chat 通用能力
+│   ├── evie/service/    # Evie ASR 产品服务
+│   └── version/service/ # 版本发布服务雏形（冻结）
+├── pkg/                 # 跨服务公共包
+│   ├── aip/listing      # AIP-160 filter / order_by / paging
+│   ├── asr/             # ASR 引擎供应商（FunASR / Whisper / 讯飞 / 阿里云）
+│   ├── audit/           # 操作审计
+│   ├── auth/{authn,authz,middleware,errs,loginattempt,session}/
+│   ├── bootstrap/       # 启动配置（含 databases）
+│   ├── entgo/mixin      # 通用 mixin（ID / CreatedAt / UpdatedAt / Status）
+│   ├── health/ idempotency/ middleware/ notifier/ objectstorage/
+│   ├── pinyin/ storage/ viewer/ lexnorm/ kratos/
+│   └── utils/convert    # 类型转换公共函数（ToPointer / EmptyToNil / SliceToAny 等）
+├── proto/               # Protobuf 定义文件（事实来源）
+│   ├── platform/service/v1/   # 底座管理后台
+│   ├── common/                 # common / pagination / enum / conf
+│   ├── evie/{service,tool}/v1/ # Evie 产品服务
+│   ├── ai/service/v1/
+│   └── version/service/v1/
+├── tests/               # 集成测试、契约测试
+├── go.mod  go.sum  go.work
+├── Makefile
+└── .golangci.yml
 ```
+
+> ❌ 已废弃 / 不应再使用：`backend-service/app/platform/admin/`、`proto/platform/admin/`、`pkg/entgo/paging/`、`pkg/utils/pagination/`、`api/core/`。如发现残留，按 4-6 变更记录 2026-08-25 的统一改名记录处理。
 
 ## 🎨 Go 语言开发规范
 
 ### 1. 代码风格
 
-- **缩进**：使用 2 个空格（与前端保持一致）
+- **缩进**：使用 Tab（`gofmt` 默认），CI 通过 `make fmt-check` 强制
 - **换行**：每行代码长度建议不超过 100 个字符
 - **空行**：
   - 函数之间使用 1 个空行
@@ -130,30 +121,26 @@ backend-service/
 
 ### 3. 错误处理
 
-- **使用标准错误**：
+- **使用 kratos errors**（对齐 `.agents/REVIEW.md §E01`）：
   ```go
   // ✅ 推荐
+  import "github.com/go-kratos/kratos/v2/errors"
+
   func getUser(id int) (*User, error) {
     user, err := repo.FindByID(id)
     if err != nil {
-      return nil, errors.Wrap(err, "find user by id failed")
+      return nil, errors.BadRequest("USER_NOT_FOUND", "用户不存在")
     }
     return user, nil
   }
-  
-  // ❌ 不推荐
-  func getUser(id int) (*User, error) {
-    user, err := repo.FindByID(id)
-    if err != nil {
-      return nil, err
-    }
-    return user, nil
-  }
+
+  // ❌ 不推荐（绕过了错误码与 HTTP 状态对齐）
+  return nil, err
   ```
 
-- **错误包装**：使用 `github.com/pkg/errors` 包进行错误包装
-  - 保留错误链，便于排查问题
-  - 添加上下文信息，提高错误可读性
+- **错误码**：UPPER_SNAKE_CASE，区分 `BadRequest`/`Forbidden`/`NotFound`/`Conflict`，详见 `0-2 §四 安全架构基线` 与 `3-0 §九 统一错误码`
+- **错误码常量**：业务包在 `internal/biz/errcode.go` 或对应 `errors` 子包集中声明，禁止在 service 层散写字符串
+- **data 层错误映射**：使用 `BaseRepo.MapNotFound` / `MapConstraint` 等统一映射，详见 `REVIEW §E03`
 
 - **错误返回**：
   - 函数应返回错误作为最后一个返回值
@@ -200,13 +187,13 @@ backend-service/
 
 ### 1. 服务定义
 
-- **Protobuf 定义**：
+- **Protobuf 定义**（路径与命名以现行 `proto/platform/service/v1/` 为参考）:
   ```protobuf
-  // proto/avmc/admin/v1/i_user.proto
+  // proto/platform/service/v1/user.proto
   syntax = "proto3";
-  
-  package avmc.admin.v1;
-  
+
+  package platform.service.v1;
+
   import "google/api/annotations.proto";
   import "common/conf/base.proto";
   
@@ -263,11 +250,10 @@ backend-service/
   ```bash
   # 使用 buf 生成代码
   make proto
-  
-  # 或直接使用 kratos 命令
-  kratos proto add proto/avmc/admin/v1/i_user.proto
-  kratos proto client proto/avmc/admin/v1
-  kratos proto server proto/avmc/admin/v1
+  # 验证生成物无漂移
+  make generate-check
+  # 契约兼容检查
+  make contract-check
   ```
 
 ### 2. 服务实现
@@ -604,12 +590,15 @@ backend-service/
   - 避免使用动词
   
   ```
-  // ✅ 推荐
-  GET    /api/v1/users           # 获取用户列表
-  POST   /api/v1/users           # 创建用户
-  GET    /api/v1/users/{id}      # 获取用户详情
-  PUT    /api/v1/users/{id}      # 更新用户
-  DELETE /api/v1/users/{id}      # 删除用户
+  // ✅ 推荐（详细规范见 `3-4-跨领域-HTTP-API设计规范.md`）
+  GET    /platform/v1/users                 # 平台控制面：用户列表
+  POST   /platform/v1/users                 # 创建用户
+  GET    /platform/v1/users/{id}            # 获取用户详情
+  PUT    /platform/v1/users/{id}            # 更新用户
+  DELETE /platform/v1/users/{id}            # 删除用户
+  POST   /platform/v1/users/{id}:reset-password  # 自定义动作（冒号）
+  GET    /platform/v1/current-tenant/parameters  # 租户数据面
+  GET    /evie/v1/dictionaries              # 产品服务独立前缀
   
   // ❌ 不推荐
   GET    /api/v1/getUsers        # 使用动词

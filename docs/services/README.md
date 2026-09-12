@@ -8,6 +8,7 @@
 | --- | --- | --- | --- |
 | GEO Engine | planning | GEO 内容工程、知识库、AI 生成、后处理、发布、效果追踪 | `docs/services/geo-content-engine/README.md` |
 | AI Agent Management | planning | 企业智能体、语音接入、身份映射、工具调用、知识问答、任务编排 | `docs/services/ai-agent-management/` |
+| **Evie ASR** | active | 企业级语音识别 + 词库中心 + 文本增强引擎 | `docs/services/evie-platform/README.md` |
 | App Version Management | historical | 历史应用版本管理服务，作为后续产品服务定义参考 | `docs/services/app-version-management/README.md` |
 
 ## 使用规则

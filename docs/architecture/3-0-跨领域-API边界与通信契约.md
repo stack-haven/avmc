@@ -1,11 +1,15 @@
 # API 边界与通信契约
 
 日期：2026-07-22
-状态：📋 目标参考（当前 gRPC+HTTP 规范为实际生效）
+状态：🟡 部分生效（现状 / 目标双轨）
+
+> **使用说明**：本文档同时包含「现状」与「目标」两类内容。默认在生产与 PR 中使用「当前生效」规则；「规划目标」部分用于指导未来拆分，必须在 ADR 与 4-6 变更记录登记后才会生效。
 
 ---
 
 ## 一、API 分层
+
+> 🟡 状态：目标参考。反映业务中台拆分后的最终形态；当前「认证/租户/配额/通知/文件/审计」仍以 gRPC 委托到 `platform/service` 为主。
 
 ```mermaid
 graph TB
@@ -36,6 +40,8 @@ graph TB
 
 ## 二、网关请求头规范
 
+> 🟡 状态：部分生效。当前平台与服务间主要通过 `pkg/auth` + gRPC metadata 传递 `tenant_id` / `user_id`；本节列出的 `X-*` Header 是统一网关落成后的目标契约。
+
 所有通过网关的请求，下游服务可信任以下 Header：
 
 | Header | 说明 | 示例 |
@@ -53,6 +59,8 @@ graph TB
 
 ## 三、认证中心 API
 
+> ⚪ 状态：未实现。`/api/auth/*` 是网关层目标路径；当前登录、Token 刷新、会话管理走 `platform/service` 的 `/platform/v1/auth/*`。
+
 | 方法 | 路径 | 说明 | 调用方 |
 |------|------|------|--------|
 | POST | `/api/auth/login` | 用户登录 | 所有客户端 |
@@ -67,6 +75,8 @@ graph TB
 
 ## 四、租户底座 API
 
+> ⚪ 状态：未实现。`/api/tenants/*` 是业务中台目标路径；当前租户 CRUD 与生命周期走 `platform/service` 的 `/platform/v1/tenants/*`。
+
 | 方法 | 路径 | 说明 | 调用方 |
 |------|------|------|--------|
 | POST | `/api/tenants` | 创建租户 | 业务中台 |
@@ -79,6 +89,8 @@ graph TB
 ---
 
 ## 五、配额引擎 API
+
+> ⚪ 状态：未实现。`/api/billing/*` 是业务中台目标路径；当前配额检查/上报走 `platform/service` 的 gRPC 客户端 + 内部包。
 
 | 方法 | 路径 | 说明 | 调用方 |
 |------|------|------|--------|
@@ -93,6 +105,8 @@ graph TB
 
 ## 六、通知中心 API
 
+> ⚪ 状态：未实现。`/api/notify/*` 是业务中台目标路径；当前通知中心能力在 `platform/service` 内部，跨服务通过 gRPC 调用。
+
 | 方法 | 路径 | 说明 | 调用方 |
 |------|------|------|--------|
 | POST | `/api/notify/events` | 推送事件 | 所有服务 |
@@ -102,6 +116,8 @@ graph TB
 ---
 
 ## 七、文件中心 API
+
+> ⚪ 状态：未实现。`/api/storage/*` 是业务中台目标路径；当前文件中心能力在 `platform/service` 内部，跨服务通过 gRPC 调用。
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
@@ -113,6 +129,8 @@ graph TB
 ---
 
 ## 八、审计日志 API
+
+> ⚪ 状态：未实现。`/api/audit/*` 是业务中台目标路径；当前审计写入与查询均在 `platform/service` 内部。
 
 | 方法 | 路径 | 说明 | 调用方 |
 |------|------|------|--------|
@@ -305,3 +323,18 @@ buf lint                # Proto 规范检查
 buf breaking            # 向后兼容检查
 make contract-check     # proto-lint + generate-check
 ```
+
+## 十二、目标 vs 现状对照表
+
+| 主题 | 目标（规划） | 现状（当前生效） | 跟进 |
+|---|---|---|---|
+| 统一网关 | 网关统一入口，注入 `X-*` Header | gRPC metadata + `pkg/auth` middleware | 业务中台拆分后启动 |
+| 认证中心 | `/api/auth/*` HTTP 入口 | `/platform/v1/auth/*` gRPC + HTTP 合一 | `platform/service` 内完善 |
+| 租户底座 | `/api/tenants/*` | `/platform/v1/tenants/*` | 同上 |
+| 配额引擎 | `/api/billing/*` | `platform/service` gRPC + 内部包 | 业务中台 P1 启动时迁出 |
+| 通知中心 | `/api/notify/*` | `platform/service` gRPC | 业务中台启动时迁出 |
+| 文件中心 | `/api/storage/*` | `platform/service` gRPC | 同上 |
+| 审计 | `/api/audit/*` | `platform/service` gRPC | 同上 |
+| HTTP 规范 | 不变 | `/platform/v1` `/evie/v1` `/ai/v1` 服务前缀 | 持续生效，详见 `3-4` |
+| 错误码 | 不变 | kratos errors + UPPER_SNAKE_CASE | 持续生效 |
+| 契约检查 | 不变 | `make contract-check` | 持续生效 |

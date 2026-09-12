@@ -7,12 +7,14 @@
 1. [.agents/AGENTS.md](.agents/AGENTS.md) — 项目概述、技术栈、开发规则
 2. [.agents/RULES.md](.agents/RULES.md) — 结构与开发规则
 3. [.agents/DESIGN.md](.agents/DESIGN.md) — 产品与 UI 设计规则
-4. `docs/architecture/0-0-架构总览-架构总览.md` — 架构全景
-5. `docs/architecture/0-1-架构总览-平台分层设计.md` — 四层架构定义
-6. `docs/architecture/0-2-架构总览-技术栈与工程基线.md` — 工程基线
-7. `docs/architecture/4-3-治理-能力路线图.md` — 能力总控
-8. `docs/architecture/4-6-治理-开发功能清单.md` — 当前开发状态与断点
-9. `docs/services/README.md`
+4. [`.agents/REVIEW.md`](.agents/REVIEW.md) — Code Review 检查清单（安全/架构/契约/风格/前端联动/交付）
+5. `docs/architecture/0-4-架构总览-工程治理总纲.md` — 平台治理总纲（原则、边界、Agent 决策权限、协作模式）
+6. `docs/architecture/0-0-架构总览-架构总览.md` — 架构全景
+7. `docs/architecture/0-1-架构总览-平台分层设计.md` — 四层架构定义
+8. `docs/architecture/0-2-架构总览-技术栈与工程基线.md` — 工程基线
+9. `docs/architecture/4-3-治理-能力路线图.md` — 能力总控
+10. `docs/architecture/4-6-治理-开发功能清单.md` — 当前开发状态和断点
+11. `docs/services/README.md`
 
 ## 中断后恢复
 
@@ -35,6 +37,9 @@
 **后端 flow:** `proto → api(生成) → service → biz → data → ent/schema`
 
 **前端模式:** `Page + useVbenVxeGrid + useVbenDrawer + useVbenForm`
+
+**Agent 决策权限：** 三档 `autonomous / requires-confirmation / forbidden`，详见 `.agents/AGENTS.md` 与 skill `agent-decision-boundary`。
+**协作模式：** `Explore / Implement / Review`，未确认方案不得进入 Implement。
 
 ## 子仓库
 

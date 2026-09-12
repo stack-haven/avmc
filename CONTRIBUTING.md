@@ -25,8 +25,8 @@
 ### 2. 克隆项目并初始化子模块
 
 ```bash
-git clone --recurse-submodules https://github.com/your-username/saas-base.git
-cd saas-base
+git clone --recurse-submodules https://github.com/your-username/avmc.git
+cd avmc
 ```
 
 ### 3. 创建新的开发分支
