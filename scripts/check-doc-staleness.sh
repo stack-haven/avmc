@@ -32,12 +32,10 @@ FORBIDDEN_PATTERNS=(
   '`platform/admin`'             # 旧文档术语
 )
 
-# 范围：项目自有规范层（不含 skills 内部、不含 evie/lexnorm 的开发说明）
+# 范围：项目自有规范层 + 所有产品服务说明（含 evie/lexnorm 的 development/ 子目录）
+# 2026-09 调整：不再豁免 evie/development/，为防 evie 内部链接再出断链。
 ACTIVE_DOCS=(
-  $(find docs/architecture docs/services -maxdepth 2 -name '*.md' 2>/dev/null \
-    | grep -v 'docs/services/.*/development/' \
-    | grep -v 'docs/services/.*/development')
-  $(find docs/product -name '*.md' 2>/dev/null)
+  $(find docs/architecture docs/services docs/product -name '*.md' 2>/dev/null)
   docs/GETTING_STARTED.md docs/README.md docs/GLOSSARY.md
   .agents/AGENTS.md .agents/RULES.md .agents/DESIGN.md .agents/REVIEW.md
   $(find .agents/memory -name '*.md' 2>/dev/null)
@@ -80,7 +78,7 @@ fi
 # 3) 本地 Markdown 链接完整性
 echo "==> Check 3: 项目自有规范层本地 Markdown 链接必须存在 ..."
 
-# 真实解析相对路径
+# 真实解析相对路径（含 URL 编码，如 %20 → ' '）
 resolve_link() {
   local f="$1" link="$2"
   # 去掉锚点 + query
@@ -96,10 +94,13 @@ resolve_link() {
     *.md) ;;
     *) return ;;
   esac
+  # URL decode（仅处理 %20 与 %23 等常见）
+  local decoded
+  decoded="$(printf '%b' "${pure//%/\\x}")"
   local base dir target
   base="$(cd "$(dirname "$f")" && pwd)"
-  dir="$(dirname "$base/$pure")"
-  target="$(cd "$dir" 2>/dev/null && pwd)/$(basename "$pure")"
+  dir="$(dirname "$base/$decoded")"
+  target="$(cd "$dir" 2>/dev/null && pwd)/$(basename "$decoded")"
   if [ ! -e "$target" ]; then
     echo "  ❌ $f → $link"
   fi
