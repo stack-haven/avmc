@@ -30,6 +30,46 @@ jobs:
       - name: Run doc staleness check
         run: ./scripts/check-doc-staleness.sh
 
+  markdown-links:
+    name: Markdown link check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Run lychee link checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # 仅扫项目自有规范层 + 产品服务定义层；跳过 archive 与子仓库 skills（内有大量外链示例与 LICENSE 引用）
+          args: >
+            --offline
+            --no-progress
+            --exclude-loopback
+            --exclude 'docs/archive/'
+            --exclude 'backend-service/'
+            --exclude 'frontend-service/'
+            --exclude '.agents/skills/'
+            --exclude-mail
+            --exclude-loopback
+            --accept '200..=299,403,429'
+            --timeout 20
+            --max-retries 2
+            --format compact
+            ./README.md
+            ./CLAUDE.md
+            ./CONTRIBUTING.md
+            ./docs
+            ./.agents/AGENTS.md
+            ./.agents/RULES.md
+            ./.agents/DESIGN.md
+            ./.agents/REVIEW.md
+            ./.agents/memory
+            ./scripts
+
   submodule-pointer:
     name: Submodule pointer consistency
     runs-on: ubuntu-latest
