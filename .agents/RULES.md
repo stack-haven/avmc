@@ -15,10 +15,9 @@ ark-tech-platform/
 ├── docs/architecture/        # 当前架构决策、服务边界和平台路线图
 ├── docs/services/            # Ark Product Services 目录和服务资料入口
 ├── docs/product/             # 产品需求、字段、验收标准和迭代规划
-├── docs/vibe-coding/         # 代码规范与架构约定
 ├── docs/archive/             # 历史文档归档，不作为默认实现依据
 ├── backend-service-pkg-bakup/# 备份/参考包，不作为活跃开发目标
-└── .agents/                  # 统一项目配置源（Claude Code + Codex 共用）
+└── .agents/                  # 统一项目配置源（Claude Code + Codex 共用；含 RULES/REVIEW/skills）
 ```
 
 ## 子仓库提交规则
@@ -148,6 +147,31 @@ pkg/auth/
 - **Provider 插件化**：认证/鉴权 Provider 通过 `init()` 自动注册，按名称创建（`authn.NewAuthenticator("jwt", ...)` / `authz.NewAuthorizer("casbin", ...)`），新增协议只需实现接口 + `init()` 注册。
 - **跨服务 Token 转发**：`authn.ForwardAuthToken(ctx)` 原样转发 Authorization（含 `Bearer ` 前缀）到 gRPC metadata，保持单一解析链路。
 
+### 项目特有约定（后端）
+
+以下规则基于 Ark Tech Platform 租户管理/用户部门模块梳理提炼，**优先于通用规范**：
+
+1. **安全三件套（Data 层必守）**：每个数据面方法（List/Get/Create/Update/Delete/其他写操作）必须按顺序执行：
+   - ① `RequireTenantID(ctx)` — 从 context 提取租户 ID，租户隔离第一道防线
+   - ② 业务校验 — 存在性、唯一性、状态合法性、循环引用检测等
+   - ③ 事务包裹（写操作） — 多表变更用 `InTx` 保证原子性
+2. **Proto 类型贯穿**：Service → Biz → Data 接口签名全部使用 `pbCore.Xxx`，转换只在 Data 层做 `ent ↔ proto`
+3. **字段命名**：Proto `snake_case` ↔ Go `PascalCase`（生成代码），手写 Go 用 `camelCase`；`uint32` 做 ID 类型，枚举首个值必为 `*_UNSPECIFIED = 0`
+4. **错误码**：使用 kratos errors `UPPER_SNAKE_CASE`，区分 `BadRequest`/`NotFound`/`Conflict`/`Forbidden`，前端能据此给出差异化反馈
+5. **供应商模式（provider pattern）**：对外部服务商（对象存储、短信、推送、邮件等）统一采用工厂注册模式，与 `pkg/objectstorage`、`pkg/notifier` 同构：
+   - **统一接口层**：`pkg/xxx` 定义唯一 `Client`/`Sender` 接口 + `Message`/类型 + 工厂 `Register`/`NewClient`；不在渠道下再定义独立接口
+   - **两层维度分离**：当存在「渠道（业务维度）→ 提供商（技术维度）」嵌套时，用 `channel` + `provider_type` 两个字段区分，工厂按 **provider_type** 注册，不按 channel（避免后注册覆盖）
+   - **目录结构**：`pkg/xxx/{channel}/{provider}/`（如 `pkg/notifier/sms/aliyun`），每个提供商独立包实现接口 + `init()` 注册
+   - **平台级配置表**：`XxxProvider` 存渠道/提供商/密钥/默认标记/状态，密钥脱敏返回（`secret_configured` 不回传明文），提供连通测试
+   - **resolver**：按业务维度（channel/type）查默认配置 → 读 `provider_type` → `NewClient(provider_type, config)`
+   - 新增提供商只需实现接口 + 注册工厂，**框架零改动**
+6. **公共函数复用（先搜索，再生成）**：新增转换类/工具类辅助函数前，必须先搜索公共包确认是否已有等价实现，不要在各模块内手写重复函数：
+   - 类型转换统一用 `convert.ToPointer[T]`（取指针）、`convert.EmptyToNil[T]`（空值/零值返回 nil）、`convert.ToValue[T]`、`convert.SliceToAny`、`convert.TimeValueToString`、`convert.SliceContains`、`convert.SliceUnique` 等
+   - **禁止**手写 `xxxPtr` / `xxxStringPtr` / `xxxInt32Ptr` 等命名各异的重复指针辅助函数
+   - **语义区分（不可混用）**：纯取指针用 `ToPointer`；空值返回 nil 用 `EmptyToNil`
+   - 公共包缺能力且属跨模块通用场景时，补到对应公共包（附单元测试），不要写进单个业务模块
+   - 复用前先确认签名与语义：`rg "func 函数名" backend-service/pkg`
+
 ## 前端规则
 
 `frontend-service/apps/web-antd-admin` 当前作为 Ark Tech Platform 管理后台前端。它使用 Vue 3、TypeScript、Vite、Vben Admin、Ant Design Vue、Pinia、Vue Router、`@vben/request` 和 pnpm workspace。
@@ -176,6 +200,18 @@ pkg/auth/
 - 视觉与交互要有辨识度与专业感，不做模板化/AI 味的界面（参照 frontend-design skill）。
 - 新增文案同时补 `zh-CN` 与 `en-US` locale；菜单标题用 i18n key，不硬编码字符串。
 - 组件优先复用 Vben 现有业务组件与渲染器（`CellTag`/`CellSwitch` 等），不自造轮子。
+
+### 项目特有约定（前端）
+
+以下规则基于 Ark Tech Platform 租户管理模块重构经验提炼，**优先于通用规范**：
+
+1. **Drawer vs Modal**：CRUD 表单使用 `useVbenDrawer`（侧边抽屉），非 CRUD 独立操作（如生命周期修改、角色配置、管理员维护）使用 `useVbenModal`（居中弹窗）。一个操作一个抽屉/弹窗，不混入多种职责。
+2. **API 层模式**：先定义 namespace 类型（`export namespace XxxApi { interface Xxx {...} }`）和枚举工具函数（如 `normalizeXxx`、`getXxxLabel`、`XxxOptions()`），再导出纯函数。不放组件逻辑进 API 文件。
+3. **data.ts 纯度**：`useFormSchema()`、`useColumns()` 等只包含静态 schema/columns 定义，不接收运行时回调参数。跨组件共享数据（如字典映射）用模块级 `reactive()` Map，由页面组件在数据加载后写入。
+4. **300 行规则**：一个 `.vue` 组件超过 300 行即拆分。list.vue 只做编排组装，复杂面板、模态框、表单各自独立文件。参考 `user/modules/dept-panel.vue` 从 600 行 list.vue 中抽离的模式。
+5. **`$t()` 全覆盖**：所有用户可见文案（标题、按钮、提示、placeholder、空状态、确认框）必须使用 `$t()`，中英文 locale 同步添加。禁止硬编码中英文字符串。
+6. **破坏性操作**：删除、状态变更、密码重置等操作必须 `Modal.confirm` 二次确认，明确展示影响范围。
+7. **字段命名**：Proto `snake_case` ↔ 前端 `camelCase`，遵循既有约定不自行发明。
 
 ## 命名与生成输出
 

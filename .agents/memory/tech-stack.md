@@ -20,7 +20,7 @@ metadata:
 - Node.js >=20.19.0
 - pnpm >=10.0.0（packageManager: pnpm@10.28.1）
 - 后端模块路径: `backend-service`
-- 前端主应用包名: `@vben/admin-antd-avmc`
+- 前端主应用包名: `@vben/web-antd-admin`
 
 ## 开发语言
 - 项目中英文混用，说明优先中文，路径/代码保持英文

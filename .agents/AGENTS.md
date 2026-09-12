@@ -17,10 +17,9 @@ ark-tech-platform/
 ├── docs/architecture/        # 当前架构决策、服务边界和平台路线图
 ├── docs/services/            # Ark Product Services 定义和资料入口
 ├── docs/product/             # 产品需求、字段、验收标准和迭代规划
-├── docs/vibe-coding/         # 代码规范与工程约定
 ├── docs/archive/             # 历史文档归档，不作为默认实现依据
 ├── backend-service-pkg-bakup/# 备份/参考包，不作为活跃开发目标
-└── .agents/                  # 统一项目配置源（Claude Code + Codex 共用）
+└── .agents/                  # 统一项目配置源（Claude Code + Codex 共用；含 RULES/REVIEW/skills）
 ```
 
 ## 必读入口
@@ -49,8 +48,8 @@ ark-tech-platform/
 11. `docs/architecture/4-7-治理-代码功能清单.md` — 代码落点和人工验证状态
 12. 同一后端服务或前端应用中最接近的现有代码
 13. `docs/product/README.md`
-14. `docs/vibe-coding/*/README.md`
-15. `docs/archive/*` 仅用于追溯历史需求来源
+14. `docs/archive/*` 仅用于追溯历史需求来源
+15. `.agents/skills/` 下的对应 skill（avmc-frontend-page / avmc-contract-first-backend / agent-decision-boundary 等）
 
 当前代码、`.agents/`、`docs/architecture/`、`docs/services/` 和 `docs/product/` 是事实来源。
 
@@ -166,8 +165,8 @@ locales/      # zh-CN 和 en-US labels
 ## 文档规则
 
 - 使用 `docs/product`，不使用 `doc/product`。
-- 使用 `docs/vibe-coding`，不使用 `doc/vibe-coding`。
 - 当前事实来源以 `.agents/`、`docs/architecture/`、`docs/services/` 为准。
+- 项目特有规则在 `.agents/RULES.md` §项目特有约定（后端/前端）；通用 Go/Vue 知识以官方文档 + `.agents/skills/kratos-skills` / `vben` 替代。
 - `docs/archive/` 只作历史来源，不作为当前实现依据。
 - 文档说明优先使用中文；技术标识、路径、命令、API 名称保持英文原样。
 - 如果旧产品文档和当前代码冲突，把旧产品文档视为历史资料。
@@ -313,6 +312,6 @@ make contract-check    # proto-lint + generate-check
 ### 纯文档变更
 
 ```bash
-rg "Ark Tech Platform" README.md .agents docs/README.md docs/architecture docs/services docs/product docs/vibe-coding
+rg "Ark Tech Platform" README.md .agents docs/README.md docs/architecture docs/services docs/product
 git diff -- .agents README.md docs
 ```

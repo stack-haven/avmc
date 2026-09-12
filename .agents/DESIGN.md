@@ -184,7 +184,7 @@ locales/      # zh-CN 和 en-US labels
 - **多租户边界** → 后端必须按 scope 应用可见性，前端不传 tenant_id
 - **自然语言化展示** → 后端需在响应中 JOIN 父资源字段（避免前端 N+1）
 
-联动规划模板见 [词库中心交互优化-P0 接口设计](docs/services/evie-platform/development/9-词库中心交互优化-P0接口设计.md)。
+联动规划模板见 [词库中心交互优化-P0 接口设计](../docs/services/evie-platform/development/9-词库中心交互优化-P0接口设计.md)。
 
 ---
 

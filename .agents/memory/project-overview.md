@@ -15,7 +15,7 @@ AVMC (App Version Management Center) 是多项目版本控制、灰度发布和�
 - `backend-service/` — Go + go-kratos 后端（子模块，分支 `codex/ai`）
 - `frontend-service/` — Vue Vben Admin pnpm monorepo（子模块，v5.5.9）
 - `docs/product/` — 当前产品需求文档
-- `docs/vibe-coding/` — 代码规范
+- ~~`docs/vibe-coding/`~~ — 已于 2026-09 删除；项目特有规则见 `.agents/RULES.md` §项目特有约定（后端/前端）
 - `docs/archive/` — 历史归档
 
 ## 核心功能模块

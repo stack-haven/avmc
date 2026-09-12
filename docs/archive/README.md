@@ -11,5 +11,7 @@
 
 - 默认开发任务不读取本目录。
 - 只有需要追溯历史需求来源、字段来源或 UI 设想时才读取。
-- 若归档文档与 `docs/product`、`docs/vibe-coding`、`.codex` 或当前代码冲突，以当前代码和现行文档为准。
+- 若归档文档与 `docs/product`、`.codex` 或当前代码冲突，以当前代码和现行文档为准。
+- `architecture-ark-source/` 是 Ark Engine 原始设计（已于 2026-09 拆入归档）；整合决策背景见本 README §`当前归档` 与 `services-evie-platform-202508-pre-restructure` 说明。
+- `docs/vibe-coding/` 已于 2026-09 全部删除；项目特有规则事实来源为 `.agents/RULES.md` §项目特有约定（后端/前端）。
 

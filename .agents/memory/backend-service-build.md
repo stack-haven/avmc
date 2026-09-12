@@ -10,7 +10,7 @@ metadata:
 
 ## Build System
 
-Each service module under `backend-service/app/` (e.g., `platform/admin`, `ai/service`) has its own Makefile that includes `backend-service/app.mk`.
+Each service module under `backend-service/app/` (e.g., `platform/service`, `ai/service`) has its own Makefile that includes `backend-service/app.mk`.
 
 **Always run make commands from within the service directory**, e.g.:
 ```bash

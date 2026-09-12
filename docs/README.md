@@ -31,8 +31,8 @@ GEO Engine、AI Agent Management、App Version Management 等都属于平台之�
 9. `docs/architecture/4-6-治理-开发功能清单.md`
 10. `docs/architecture/4-7-治理-代码功能清单.md`
 11. `CLAUDE.md`
-12. `docs/vibe-coding/base/README.md`
-13. `docs/vibe-coding/backend/README.md` 或 `docs/vibe-coding/frontend/README.md`
+12. `.agents/RULES.md` §项目特有约定（后端 / 前端）
+13. `.agents/skills/avmc-backend-crud`、`avmc-frontend-page`、`kratos-skills`、`vben` 等 skill
 
 `docs/archive` 只作为历史资料查询，不作为当前实现依据。
 
@@ -45,7 +45,7 @@ docs/
 ├── architecture/             # 当前架构决策、服务边界、冻结清单和平台路线图
 ├── services/                 # Ark Product Services 定义、资料入口和服务归类
 ├── product/                  # 业务产品需求文档入口
-├── vibe-coding/              # 当前开发规范和工程约定
+├── vibe-coding/              # （已于 2026-09 删除：项目特有约定已迁 .agents/RULES.md；通用知识以官方文档 + skill 替代）
 └── archive/                  # 历史文档归档，不作为默认实现依据
 ```
 
@@ -54,10 +54,10 @@ docs/
 - 平台总览：`docs/architecture/0-0-架构总览-架构总览.md`
 - 架构索引：`docs/architecture/README.md`
 - 后端服务边界：`docs/architecture/0-3-架构总览-后端底座架构决策.md`
-- Ark 整合决策：`docs/architecture/4-4-治理-整合决策记录.md`
+- Ark 整合决策：见 `docs/archive/README.md`（4-4 已于 2026-09 删除）
 - 规划与当前断点：`docs/architecture/4-6-治理-开发功能清单.md`
 - 代码实现与验证状态：`docs/architecture/4-7-治理-代码功能清单.md`
 - 产品服务目录：`docs/services/README.md`
-- 后端实现规则：`CLAUDE.md` 与 `docs/vibe-coding/backend/README.md`
-- 前端实现规则：`CLAUDE.md` 与 `docs/vibe-coding/frontend/README.md`
+- 后端实现规则：`CLAUDE.md`、`.agents/RULES.md` §项目特有约定（后端）、`.agents/skills/avmc-contract-first-backend` / `avmc-backend-crud` / `kratos-skills`
+- 前端实现规则：`CLAUDE.md`、`.agents/RULES.md` §项目特有约定（前端）、`.agents/skills/avmc-frontend-page` / `vben`
 - 历史来源：`docs/archive/`

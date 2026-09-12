@@ -25,7 +25,6 @@ ark-tech-platform/
 ├── docs/architecture     # 当前架构决策、服务边界和平台路线图
 ├── docs/services         # Ark Product Services 目录和服务资料入口
 ├── docs/product          # 产品需求、字段、验收标准和迭代规划
-├── docs/vibe-coding      # 代码规范与工程约定
 ├── docs/archive          # 历史文档归档
 ├── .codex                # Codex 代理规则
 └── README.md             # 项目说明文档
@@ -64,7 +63,7 @@ git clone --recurse-submodules https://github.com/stack-haven/avmc.git
 
 | 服务 | 路径 | 状态 | 职责 |
 |------|------|------|------|
-| Ark Platform Foundation 管理后台 | `app/platform/admin` | 活跃 | 租户、认证、用户、角色、菜单、权限、套餐、配置、审计、会话、任务、文件、通知 |
+| Ark Platform Foundation 管理后台 | `app/platform/service` | 活跃 | 租户、认证、用户、角色、菜单、权限、套餐、配置、审计、会话、任务、文件、通知 |
 | AI/chat 服务 | `app/ai/service` | 活跃 | AI 通用能力 |
 | 历史版本服务 | `app/version/service` | 冻结 | 保留已存在雏形，待复审 |
 
@@ -99,10 +98,10 @@ proto -> api(生成) -> internal/service -> internal/biz -> internal/data -> ent
 
 ## 文档导航
 
-- 平台总览：`docs/architecture/00-Ark-Tech-Platform-架构总览.md`
+- 平台总览：`docs/architecture/0-0-架构总览-架构总览.md`
 - 架构决策：`docs/architecture/`
 - 产品服务定义：`docs/services/`
-- 开发规范：`docs/vibe-coding/`
+- 开发规范：`.agents/RULES.md` + `.agents/skills/`
 - 产品需求：`docs/product/`
 - 历史归档：`docs/archive/`
 

@@ -187,8 +187,8 @@ curl -X POST http://localhost:8000/api/v1/init/platform \
 | 了解整体架构 | [`docs/architecture/0-0-架构总览-架构总览.md`](architecture/0-0-架构总览-架构总览.md) |
 | 开发新功能 | [`docs/architecture/4-6-治理-开发功能清单.md`](architecture/4-6-治理-开发功能清单.md)（先看断点） |
 | 接入新产品 | [`docs/architecture/4-1-治理-产品服务模块接入规范.md`](architecture/4-1-治理-产品服务模块接入规范.md) |
-| 编写后端代码 | [`docs/vibe-coding/backend/README.md`](vibe-coding/backend/README.md) |
-| 编写前端页面 | [`docs/vibe-coding/frontend/README.md`](vibe-coding/frontend/README.md) |
+| 编写后端代码 | [`.agents/RULES.md` §项目特有约定（后端）](../.agents/RULES.md) + [`.agents/skills/avmc-contract-first-backend`](../.agents/skills/avmc-contract-first-backend/SKILL.md) |
+| 编写前端页面 | [`.agents/RULES.md` §项目特有约定（前端）](../.agents/RULES.md) + [`.agents/skills/avmc-frontend-page`](../.agents/skills/avmc-frontend-page/SKILL.md) |
 | 运行测试 | [`docs/architecture/4-5-治理-测试策略.md`](architecture/4-5-治理-测试策略.md) |
 | 了解安全设计 | [`docs/architecture/3-2-跨领域-安全架构设计.md`](architecture/3-2-跨领域-安全架构设计.md) |
 
