@@ -4,3 +4,6 @@
 [submodule "backend-service"]
 	path = backend-service
 	url = git@github.com:stack-haven/avmc-backend-service.git
+[submodule "mobile-desktop-service"]
+	path = mobile-desktop-service
+	url = git@github.com:stack-haven/avmc-mobile-desktop-service.git

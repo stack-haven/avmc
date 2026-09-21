@@ -14,6 +14,7 @@ GEO Engine、AI Agent Management、App Version Management 等是平台之上的 
 ark-tech-platform/
 ├── backend-service/          # Go + go-kratos 后端工作区（子仓库）
 ├── frontend-service/         # Vue Vben Admin pnpm monorepo（子仓库）
+├── mobile-desktop-service/   # Flutter/RN/uni-app 多端应用 monorepo（子仓库）
 ├── docs/architecture/        # 当前架构决策、服务边界和平台路线图
 ├── docs/services/            # Ark Product Services 定义和资料入口
 ├── docs/product/             # 产品需求、字段、验收标准和迭代规划
@@ -21,6 +22,22 @@ ark-tech-platform/
 ├── backend-service-pkg-bakup/# 备份/参考包，不作为活跃开发目标
 └── .agents/                  # 统一项目配置源（Claude Code + Codex 共用；含 RULES/REVIEW/skills）
 ```
+
+## 端承载三分天下
+
+Ark Tech Platform 通过三个独立子仓库承载不同的端形态：
+
+| 子仓库 | 端形态 | 技术栈 | 资料入口 |
+|--------|--------|--------|----------|
+| `backend-service` | 服务端 API | Go + go-kratos + Ent + Wire | `backend-service/proto`、`backend-service/app/*` |
+| `frontend-service` | Web 后台（PC 浏览器） | Vue 3 + Vben Admin + Ant Design Vue | `frontend-service/apps/web-antd-admin` |
+| `mobile-desktop-service` | 桌面端 + 移动端 + 小程序端 | Flutter / React Native / uni-app | `docs/services/mobile-desktop/` |
+
+**边界规则：**
+
+- Web 后台功能归 `frontend-service`，不进 mobile-desktop-service
+- 原生 App、小程序、桌面应用归 `mobile-desktop-service`，不进 frontend-service
+- 任何业务 API 契约定义在 `backend-service/proto/`，所有端都从这里生成客户端
 
 ## 必读入口
 
@@ -55,11 +72,11 @@ ark-tech-platform/
 
 ## 子仓库提交规则
 
-`backend-service` 和 `frontend-service` 是独立子仓库。
+`backend-service`、`frontend-service` 和 `mobile-desktop-service` 是独立子仓库。
 
 推荐提交顺序：
 
-1. 在 `backend-service` 或 `frontend-service` 内完成代码提交。
+1. 在 `backend-service`、`frontend-service` 或 `mobile-desktop-service` 内完成代码提交。
 2. 回到根仓库确认对应子仓库指针变化。
 3. 在根仓库提交子仓库指针更新和相关文档。
 
@@ -73,9 +90,10 @@ ark-tech-platform/
 | API | Protobuf + gRPC + HTTP annotations + Buf |
 | ORM | Ent v0.14.5 |
 | DI | Wire v0.7.0 |
-| 前端 | Vue 3 + TypeScript + Vben Admin + Ant Design Vue |
-| 构建 | Vite + pnpm workspace + Turbo |
-| 状态管理 | Pinia |
+| Web 前端 | Vue 3 + TypeScript + Vben Admin + Ant Design Vue |
+| 多端应用 | Flutter / React Native / uni-app（详见 `docs/services/mobile-desktop/SERVICE.md`） |
+| 构建 | Vite + pnpm workspace + Turbo（Web）；Melos / npm workspaces / HBuilderX（多端，各自独立） |
+| 状态管理 | Pinia（Web）；Riverpod / Zustand / Pinia（多端） |
 | 数据库 | MySQL / PostgreSQL |
 | 缓存 | Redis |
 | 认证鉴权 | pkg/auth（JWT/OIDC 本地认证 + Casbin 鉴权 + Redis 会话，详见 `backend-service/pkg/auth/README.md`） |

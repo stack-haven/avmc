@@ -11,6 +11,14 @@
 | **Evie ASR** | active | 企业级语音识别 + 词库中心 + 文本增强引擎 | `docs/services/evie-platform/README.md` |
 | App Version Management | historical | 历史应用版本管理服务，作为后续产品服务定义参考 | `docs/services/app-version-management/README.md` |
 
+## 端应用承载层
+
+| 承载层 | 状态 | 定位 | 资料入口 |
+| --- | --- | --- | --- |
+| **Mobile Desktop Service** | planning | 桌面端 + 移动端 + 小程序端多端应用承载层（Flutter / React Native / uni-app）；不直接实现业务，只承载各产品服务的端产物 | `docs/services/mobile-desktop/README.md` |
+
+> **说明**：mobile-desktop-service 与 frontend-service 平级，都是 Ark Tech Platform 的**承载层**子仓库。区别在于 frontend-service 承载 Web 后台（浏览器端），mobile-desktop-service 承载原生 App、小程序和桌面应用。具体业务逻辑在对应的产品服务（Evie、GEO 等）中实现。
+
 ## 使用规则
 
 - 新增产品服务前，先在本目录增加服务定义，再补产品需求和代码落点。
