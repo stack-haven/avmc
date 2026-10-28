@@ -32,6 +32,7 @@
 |------|------|
 | 后端 | Go 1.24 + go-kratos v2 + Ent + Wire |
 | 前端 | Vue 3 + Vben Admin + Ant Design Vue |
+| 公开站点 | Nuxt 4 + Vue 3 + Tailwind CSS v4（`storefront-service`） |
 | API | Protobuf + gRPC + Buf |
 
 **后端 flow:** `proto → api(生成) → service → biz → data → ent/schema`
@@ -43,7 +44,9 @@
 
 ## 子仓库
 
-`backend-service` 和 `frontend-service` 是独立子仓库。代码先在子仓库提交，再回根仓库更新指针。
+`backend-service`、`frontend-service`、`mobile-desktop-service` 和 `storefront-service` 是独立子仓库。代码先在子仓库提交，再回根仓库更新指针。
+
+> `storefront-service`（Nuxt 4 公开 SSR 站点）远程为 `stack-haven/avmc-storefront-service`，默认分支 `coding/ai`。
 
 ## 约束
 

@@ -15,12 +15,15 @@ ark-tech-platform/
 ├── backend-service/          # Go + go-kratos 后端工作区（子仓库）
 ├── frontend-service/         # Vue Vben Admin pnpm monorepo（子仓库）
 ├── mobile-desktop-service/   # Flutter/RN/uni-app 多端应用 monorepo（子仓库）
+├── storefront-service/       # Nuxt 4 公开 SSR 站点（子仓库）
 ├── docs/architecture/        # 当前架构决策、服务边界和平台路线图
 ├── docs/services/            # Ark Product Services 定义和资料入口
 ├── docs/product/             # 产品需求、字段、验收标准和迭代规划
 ├── docs/archive/             # 历史文档归档，不作为默认实现依据
 └── .agents/                  # 统一项目配置源（Claude Code + Codex 共用；含 RULES/REVIEW/skills）
 ```
+
+> `storefront-service/` 是独立子仓库（默认分支 `coding/ai`），远程 `stack-haven/avmc-storefront-service`，已在根仓库 `.gitmodules` 登记。
 
 ## 端承载三分天下
 
@@ -31,10 +34,12 @@ Ark Tech Platform 通过三个独立子仓库承载不同的端形态：
 | `backend-service` | 服务端 API | Go + go-kratos + Ent + Wire | `backend-service/proto`、`backend-service/app/*` |
 | `frontend-service` | Web 后台（PC 浏览器） | Vue 3 + Vben Admin + Ant Design Vue | `frontend-service/apps/web-antd-admin` |
 | `mobile-desktop-service` | 桌面端 + 移动端 + 小程序端 | Flutter / React Native / uni-app | `docs/services/mobile-desktop/` |
+| `storefront-service` | Web 公开站点（SSR + SEO） | Nuxt 4 + Vue 3 + Tailwind CSS | `docs/services/yomsp-storefront/` |
 
 **边界规则：**
 
 - Web 后台功能归 `frontend-service`，不进 mobile-desktop-service
+- 公开独立站（SSR/SEO）归 `storefront-service`，不塞进 Vben 管理后台 monorepo
 - 原生 App、小程序、桌面应用归 `mobile-desktop-service`，不进 frontend-service
 - 任何业务 API 契约定义在 `backend-service/proto/`，所有端都从这里生成客户端
 
@@ -71,11 +76,13 @@ Ark Tech Platform 通过三个独立子仓库承载不同的端形态：
 
 ## 子仓库提交规则
 
-`backend-service`、`frontend-service` 和 `mobile-desktop-service` 是独立子仓库。
+`backend-service`、`frontend-service`、`mobile-desktop-service` 和 `storefront-service` 是独立子仓库。
+
+> `storefront-service` 与其它三个子仓库等同：独立提交、根仓库只登记指针。
 
 推荐提交顺序：
 
-1. 在 `backend-service`、`frontend-service` 或 `mobile-desktop-service` 内完成代码提交。
+1. 在 `backend-service`、`frontend-service`、`mobile-desktop-service` 或 `storefront-service` 内完成代码提交。
 2. 回到根仓库确认对应子仓库指针变化。
 3. 在根仓库提交子仓库指针更新和相关文档。
 
@@ -90,9 +97,10 @@ Ark Tech Platform 通过三个独立子仓库承载不同的端形态：
 | ORM | Ent v0.14.5 |
 | DI | Wire v0.7.0 |
 | Web 前端 | Vue 3 + TypeScript + Vben Admin + Ant Design Vue |
+| 公开站点 | Nuxt 4 + Vue 3 + TypeScript + Tailwind CSS v4（`storefront-service`，SSR/SEO） |
 | 多端应用 | Flutter / React Native / uni-app（详见 `docs/services/mobile-desktop/SERVICE.md`） |
 | 构建 | Vite + pnpm workspace + Turbo（Web）；Melos / npm workspaces / HBuilderX（多端，各自独立） |
-| 状态管理 | Pinia（Web）；Riverpod / Zustand / Pinia（多端） |
+| 状态管理 | Pinia（Web / 公开站点）；Riverpod / Zustand / Pinia（多端） |
 | 数据库 | MySQL / PostgreSQL |
 | 缓存 | Redis |
 | 认证鉴权 | pkg/auth（JWT/OIDC 本地认证 + Casbin 鉴权 + Redis 会话，详见 `backend-service/pkg/auth/README.md`） |

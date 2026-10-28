@@ -13,6 +13,7 @@ ark-tech-platform/
 ├── backend-service/          # Go + go-kratos 后端工作区（子仓库）
 ├── frontend-service/         # Vue Vben Admin pnpm monorepo（子仓库）
 ├── mobile-desktop-service/   # Flutter/RN/uni-app 多端应用 monorepo（子仓库）
+├── storefront-service/       # Nuxt 4 公开 SSR 站点（子仓库）
 ├── docs/architecture/        # 当前架构决策、服务边界和平台路线图
 ├── docs/services/            # Ark Product Services 目录和服务资料入口
 ├── docs/product/             # 产品需求、字段、验收标准和迭代规划
@@ -29,11 +30,13 @@ Ark Tech Platform 通过三个独立子仓库承载不同的端形态：
 | `backend-service` | 服务端 API | Go + go-kratos + Ent + Wire | `backend-service/proto`、`backend-service/app/*` |
 | `frontend-service` | Web 后台（PC 浏览器） | Vue 3 + Vben Admin + Ant Design Vue | `frontend-service/apps/web-antd-admin` |
 | `mobile-desktop-service` | 桌面端 + 移动端 + 小程序端 | Flutter / React Native / uni-app | `docs/services/mobile-desktop/` |
+| `storefront-service` | Web 公开站点（SSR + SEO） | Nuxt 4 + Vue 3 + Tailwind CSS v4 | `docs/services/yomsp-storefront/` |
 
 **边界规则：**
 
 - Web 后台功能（管理后台 CRUD）归 `frontend-service`，不进 mobile-desktop-service
 - 原生 App、小程序、桌面应用归 `mobile-desktop-service`，不进 frontend-service
+- 公开独立站（SSR/SEO）归 `storefront-service`，不塞进 Vben 后台 monorepo
 - 任何业务 API 契约定义在 `backend-service/proto/`，所有端都从这里生成客户端
 
 ## 子仓库提交规则
@@ -45,6 +48,7 @@ Ark Tech Platform 通过三个独立子仓库承载不同的端形态：
 - 后端代码变更在 `backend-service` 内提交。
 - 前端后台代码变更在 `frontend-service` 内提交。
 - 移动/桌面/小程序端代码变更在 `mobile-desktop-service` 内提交。
+- 公开站点代码变更在 `storefront-service` 内提交。
 - 根仓库只提交文档变更、子仓库指针更新和根级配置变更。
 - 不要只在根仓库提交而忽略子仓库内部提交。
 

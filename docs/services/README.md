@@ -9,6 +9,7 @@
 | GEO Engine | planning | GEO 内容工程、知识库、AI 生成、后处理、发布、效果追踪 | `docs/services/geo-content-engine/README.md` |
 | AI Agent Management | planning | 企业智能体、语音接入、身份映射、工具调用、知识问答、任务编排 | `docs/services/ai-agent-management/` |
 | **Evie ASR** | active | 企业级语音识别 + 词库中心 + 文本增强引擎 | `docs/services/evie-platform/README.md` |
+| **YOMSP Storefront** | planning | 面向俄罗斯市场的爬宠用品**公开独立站**（Nuxt SSR + SEO）；当前阶段后端不开发，以隔离 Mock 驱动前端 | `docs/services/yomsp-storefront/README.md` |
 | App Version Management | historical | 历史应用版本管理服务，作为后续产品服务定义参考 | `docs/services/app-version-management/README.md` |
 
 ## 端应用承载层
@@ -16,8 +17,11 @@
 | 承载层 | 状态 | 定位 | 资料入口 |
 | --- | --- | --- | --- |
 | **Mobile Desktop Service** | planning | 桌面端 + 移动端 + 小程序端多端应用承载层（Flutter / React Native / uni-app）；不直接实现业务，只承载各产品服务的端产物 | `docs/services/mobile-desktop/README.md` |
+| **YOMSP Storefront** | planning | 公开 Web 站点承载（Nuxt SSR + SEO）；代码计划落在新建子仓库 `storefront-service`（待确认，见 `docs/services/yomsp-storefront/decisions/0001-frontend-code-placement.md`） | `docs/services/yomsp-storefront/04-frontend-architecture.md` |
 
 > **说明**：mobile-desktop-service 与 frontend-service 平级，都是 Ark Tech Platform 的**承载层**子仓库。区别在于 frontend-service 承载 Web 后台（浏览器端），mobile-desktop-service 承载原生 App、小程序和桌面应用。具体业务逻辑在对应的产品服务（Evie、GEO 等）中实现。
+>
+> **待确认**：YOMSP 的公开 SSR 站点不属于上述三种形态。计划新建 `storefront-service` 作为**公开站点承载**子仓库（见 `.agents/AGENTS.md` 与 `docs/services/yomsp-storefront/decisions/0001-frontend-code-placement.md`）；批准前不改动仓库结构。
 
 ## 使用规则
 

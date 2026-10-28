@@ -6,6 +6,7 @@
 
 - `product-202501`：2025 年 1 月形成的需求、需求分析、项目规划、产品功能设计、UI 原型和 UI 功能说明。
 - `services-evie-platform-202508-pre-restructure`：Evie 语音智能引擎服务在 2026-08-25 M0-M11 重构前的资料（以「字典/纠错/热词」三件套为设计中心）。当前实现以 [8-词库中心与文本增强引擎开发计划](../services/evie-platform/development/8-词库中心与文本增强引擎开发计划.md) 为准。
+- `product-yomsp/`：YOMSP 俄罗斯爬宠用品独立站**原始单文件规范 V1.0**（一次性生成的 1208 行总纲）。已于 2026-10-28 按主题拆分为文档集，当前事实来源为 [docs/services/yomsp-storefront/](../services/yomsp-storefront/README.md)；本归档仅用于追溯原始表述。
 
 ## 使用规则
 

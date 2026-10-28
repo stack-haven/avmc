@@ -7,3 +7,6 @@
 [submodule "mobile-desktop-service"]
 	path = mobile-desktop-service
 	url = git@github.com:stack-haven/avmc-mobile-desktop-service.git
+[submodule "storefront-service"]
+	path = storefront-service
+	url = git@github.com:stack-haven/avmc-storefront-service.git
