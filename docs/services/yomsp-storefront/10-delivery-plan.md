@@ -11,7 +11,7 @@
 |---|---|---|---|
 | Gate 0 | 仓库审查与事实清单 | ✅ 完成（2026-10-28） | 见 [04 §1](04-frontend-architecture.md#1-gate-0--仓库审查事实2026-10-28) |
 | Gate 1 | 技术基线与数据契约 | ✅ 完成（2026-10-28） | 决策与执行结果见 [04 §9](04-frontend-architecture.md#9-gate-1-决策记录-已确认并执行)；代码仓库 `storefront-service`（子仓库，已在根仓库 `.gitmodules` 登记） |
-| Gate 2 | 设计系统与应用骨架 | 🔜 下一步 | Tokens 初稿已落，待建基础组件 + `/style-guide` |
+| Gate 2 | 设计系统与应用骨架 | 🟡 部分完成（2026-10-28） | Tokens、14 个基础组件、`useOverlay`、`/style-guide` 已完成并实测；**360/768/1440 浏览器视觉验证待 Gate 3 引入 Playwright 后补** |
 | Gate 3 | Mock Repository 与核心公开页面 | ⬜ 未开始 | 本阶段主体 |
 | Gate 4 | 首页运营配置原型 | ⬜ 未开始 | — |
 | Gate 5 | Go API 集成 | ⏸ 暂缓（**本阶段明确不做**） | 后端未开发 |

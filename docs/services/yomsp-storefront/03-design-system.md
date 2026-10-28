@@ -87,7 +87,20 @@
 - 只有获得使用权的图片才可进入生产；来源与授权记录进入 `docs/assets.md`（站点仓库内维护）；
 - 商品图必须对应真实商品；概念图必须标注为示意图。
 
-## 7. 设计系统验收清单
+## 7. 落地状态（2026-10-28）
+
+| 项 | 状态 | 位置 |
+|---|---|---|
+| Design Tokens | ✅ 已落地（数值为初稿，待视觉评审） | `storefront-service/app/assets/css/main.css`（Tailwind v4 `@theme`） |
+| 第一层基础组件（14 个） | ✅ 已实现 | `storefront-service/app/components/base/` |
+| 覆盖层焦点管理 | ✅ `useOverlay`（Esc / Tab 循环 / 焦点归还 / 滚动锁） | `storefront-service/app/composables/useOverlay.ts` |
+| `/style-guide` | ✅ 覆盖 Tokens + 全部组件与状态 | `storefront-service/app/pages/style-guide.vue` |
+| 第二层业务组件 | ⬜ Gate 3 | `app/components/{product,category,habitat,configurator,content,sections}` |
+| 浏览器视觉 / 响应式验证 | ⬜ 待 Playwright（Gate 3） | 见 `docs/services/yomsp-storefront/11-open-items.md` L-9 |
+
+> 实现细节与偏离说明记录在 `storefront-service/docs/architecture.md`，不在此重复。
+
+## 8. 设计系统验收清单
 
 - [ ] `/style-guide` 覆盖全部 Tokens 与三层组件
 - [ ] 每个交互组件有 6 种状态展示
