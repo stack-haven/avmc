@@ -96,7 +96,9 @@
 | 多语言文案 | ✅ UI 文案全部走 `i18n/locales/*.json`（ru + zh） | `storefront-service/i18n/locales/` |
 | 第一层基础组件（14 个） | ✅ 已实现 | `storefront-service/app/components/base/` |
 | 覆盖层焦点管理 | ✅ `useOverlay`（Esc / Tab 循环 / 焦点归还 / 滚动锁） | `storefront-service/app/composables/useOverlay.ts` |
-| `/style-guide` | ✅ 覆盖 Tokens + 全部组件与状态 | `storefront-service/app/pages/style-guide.vue` |
+| `/style-guide` | ✅ 覆盖 Tokens（含夜间色系/字体）+ 全部组件与状态 | `storefront-service/app/pages/style-guide.vue` |
+| 动效系统 | ✅ `v-reveal` 指令 + `@theme` 关键帧；`.js` 门控保证无 JS 可见 | `storefront-service/app/plugins/reveal.ts`、`main.css` |
+| 语言切换 | ✅ 页脚下拉 listbox（键盘可达）；头部不放 | `storefront-service/app/components/layout/LocaleSwitcher.vue` |
 | 第二层业务组件 | ⬜ Gate 3 | `app/components/{product,category,habitat,configurator,content,sections}` |
 | 浏览器视觉 / 响应式验证 | ⬜ 待 Playwright（Gate 3） | 见 `docs/services/yomsp-storefront/11-open-items.md` L-9 |
 
