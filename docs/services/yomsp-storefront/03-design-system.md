@@ -34,7 +34,7 @@
 
 | 分类 | Token |
 |---|---|
-| 颜色 | `color-brand` `color-brand-strong` `color-background` `color-surface` `color-text` `color-muted` `color-border` `color-success` `color-warning` `color-danger` |
+| 颜色 | `color-brand` `color-brand-strong` `color-brand-soft` `color-accent` `color-accent-ink` `color-background` `color-surface` `color-surface-muted` `color-text` `color-muted` `color-border` `color-border-strong` `color-success` `color-warning` `color-danger` `color-info` |
 | 字体 | `font-body` `font-heading` |
 | 圆角 | `radius-sm` `radius-md` `radius-lg` `radius-xl` |
 | 阴影 | `shadow-card` |
@@ -91,7 +91,9 @@
 
 | 项 | 状态 | 位置 |
 |---|---|---|
-| Design Tokens | ✅ 已落地（数值为初稿，待视觉评审） | `storefront-service/app/assets/css/main.css`（Tailwind v4 `@theme`） |
+| Design Tokens | ✅ 已按 Logo 取色定稿：`#0A4A44`（brand）/ `#B8C818`（accent）/ `#FAF8F4`（背景） | `storefront-service/app/assets/css/main.css`（Tailwind v4 `@theme`） |
+| 品牌 Logo | ✅ Logo 派生 webp(640/1280) / favicon / apple-touch / OG 图 | `storefront-service/public/images/brand/` |
+| 多语言文案 | ✅ UI 文案全部走 `i18n/locales/*.json`（ru + zh） | `storefront-service/i18n/locales/` |
 | 第一层基础组件（14 个） | ✅ 已实现 | `storefront-service/app/components/base/` |
 | 覆盖层焦点管理 | ✅ `useOverlay`（Esc / Tab 循环 / 焦点归还 / 滚动锁） | `storefront-service/app/composables/useOverlay.ts` |
 | `/style-guide` | ✅ 覆盖 Tokens + 全部组件与状态 | `storefront-service/app/pages/style-guide.vue` |

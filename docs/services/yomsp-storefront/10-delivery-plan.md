@@ -15,7 +15,7 @@
 | Gate 3 | Mock Repository 与核心公开页面 | ✅ 完成（2026-10-28） | 6 个 Mock Repository + 7 个页面；58 单测 / 10 E2E / 产物零 Mock 断言通过 |
 | Gate 4 | 首页运营配置原型 | 🟡 基础版已随 Gate 3 落地 | 启用/排序/本地发布可用；字段级 schema 校验与预览 token 待补 |
 | Gate 5 | Go API 集成 | ⏸ 暂缓（**本阶段明确不做**） | 后端未开发 |
-| Gate 6 | SEO/GEO 技术验收 | ⬜ 未开始 | 与 Gate 3/4 同步做基础部分 |
+| Gate 6 | SEO/GEO 技术验收 | 🟡 基础项已落地 | canonical/hreflang/og 已按语言输出；sitemap/robots 待补 |
 | Gate 7 | 质量与交付 | ⬜ 未开始 | — |
 
 > 与规范原文的差异：Gate 5（Go API 集成）在本阶段**不执行**，以 Mock 为主交付；`ApiXxxRepository` 只留骨架。

@@ -44,6 +44,8 @@
 | 状态 | Composition API 为主；Pinia + `@pinia/nuxt` | 4.1.0 / 1.0.3 | `@pinia/nuxt` peer 明确要求 `pinia ^4.1.0` |
 | 测试 | Vitest + `@nuxt/test-utils` | 5.0.5 / 4.3.4 | `@nuxt/test-utils` peer 支持 `vitest ^5`、`nuxt ^4` |
 | Lint | ESLint + `@nuxt/eslint` | **10.13.0** / 1.17.0 | `@nuxt/eslint-config` 内部 `@eslint/js@10` 与 `eslint-plugin-unicorn@73` 要求 `eslint ^10`，故用 10 而非 9 |
+| 多语言 | `@nuxtjs/i18n` | 10.6.0（vue-i18n 11.4.x） | 官方模块；`prefix_except_default`，默认 `ru`，`zh` 走 `/zh/**` |
+| E2E | `@playwright/test` | 1.64.1（Chromium） | 响应式 / SSR / 404 / i18n 回归 |
 | 包管理 | pnpm（独立 lockfile） | 9.12.0 | 与平台其他前端子仓库一致 |
 
 **兼容性验证方式**：逐包 `npm view <pkg> engines/peerDependencies` 交叉核对 + `pnpm install` peer 告警审阅。
@@ -54,7 +56,8 @@
 ### 2.1 不引入的东西（第一版）
 
 - 不引入第二套 UI 组件库（Ant Design Vue / Element Plus 等）——公开站点自建基础组件；
-- 不引入 i18n 框架（第一版**仅俄语**，不输出无效 hreflang）；
+- ~~不引入 i18n 框架~~ → **已引入**（2026-10-29 用户要求）：默认 `ru` + `zh` 语言包，
+  UI 文案全部走 locale 文件，`hreflang` 按语言输出（见 §9.3）；
 - 不引入 3D 引擎；
 - 不做 Turbo monorepo（单应用足够，共享契约走 `backend-service/proto` 生成）。
 
@@ -303,6 +306,18 @@ export default defineNuxtPlugin(() => {
 
 ✅ 已完成：远程 `stack-haven/avmc-storefront-service`（默认分支 `coding/ai`）已创建并推送；
 根仓库 `.gitmodules` 已登记，`.agents/AGENTS.md` / `RULES.md` / `CLAUDE.md` 结构表已同步。
+
+### 9.3 多语言（2026-10-29 新增）
+
+| 项 | 结论 |
+|---|---|
+| 框架 | `@nuxtjs/i18n` 10.6.0，`strategy: prefix_except_default` |
+| 语言 | `ru`（默认，无前缀）、`zh`（`/zh/**`） |
+| 文案边界 | **UI 走 locale 文件**；商品/指南等**内容来自数据源，不翻译**（翻译内容 = 伪造内容） |
+| SEO | `usePageSeo` 统一生成 title/description/canonical（当前语言）/hreflang（ru-RU、zh-CN、x-default）/og/JSON-LD |
+| 域名来源 | 只用 `NUXT_PUBLIC_SITE_URL`；**不用** i18n 的 `baseUrl`，避免 canonical 与 hreflang 域名不一致 |
+| 守卫 | `pnpm check:i18n` 断言两语言 key 一致 + 代码引用 key 必须存在 |
+| 待办 | 内容本地化需后端本地化字段支持（`11-open-items.md` L-17） |
 
 ### 9.2 执行期发现的偏差（已修正）
 
