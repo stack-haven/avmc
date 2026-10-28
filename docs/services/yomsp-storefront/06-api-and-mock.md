@@ -228,11 +228,14 @@ interface Page<T> {
 1. **数据层**：每个 Mock 实体带 `isDemo: true` 标记；`app/components/layout/DemoBanner.vue` 在 `NUXT_PUBLIC_DEMO_MODE=true` 时全站可见（已实现）。
 2. **展示层**：价格旁展示 `≈` 或"示例价格"提示；商品卡/方案卡显示 Demo 徽标；`/cart` 页面固定提示"演示功能，不会创建真实订单或发起支付"。
 
-### 5.3 生产隔离
+### 5.3 生产隔离（✅ 已实现，2026-10-28）
 
-- 生产 build 默认**不允许**意外加载 Mock；
-- Mock 模块通过动态 import + `import.meta.dev` 守卫隔离，避免进入主 bundle；
-- CI 增加构建产物检查：生产产物中不得包含 `fixtures` / `mock-repository` 标识；
+- **构建期常量** `__STOREFRONT_INCLUDE_MOCKS__`（`vite.define`）：
+  默认生产构建为 `false`，打包器整段消除 Mock 分支 —— 产物中**不存在** Mock 代码，
+  而不是「有但不调用」（仅靠运行时开关仍会产出一个含 Mock 的独立 chunk）；
+- 运行时 `demoMode` 作为第二道闸：即使演示构建，生产环境也必须显式开启；
+- `pnpm check:demo` 扫描 `.output/` 全部 js/mjs，断言不含 `DEMO-` SKU、`yomsp:demo:*`
+  键名与 `Mock*Repository` 类名（CI 可用）；
 - `.env.example` 中 `NUXT_PUBLIC_DEMO_MODE=false` 为生产默认值。
 
 ### 5.4 Mock 数据内容原则（避免真实性违规）
