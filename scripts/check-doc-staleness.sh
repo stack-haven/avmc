@@ -84,15 +84,17 @@ resolve_link() {
   # 去掉锚点 + query
   local pure="${link%%#*}"
   pure="${pure%%\?*}"
-  [ -z "$pure" ] && return
+  # 注意：所有提前返回必须显式 return 0，
+  # 裸 return 会继承前一命令退出码，在 set -e 下导致调用方静默退出
+  [ -z "$pure" ] && return 0
   # 跳过协议链接
   case "$pure" in
-    http*|https*|mailto:*) return ;;
+    http*|https*|mailto:*) return 0 ;;
   esac
   # 跳过非 .md 文件（LICENSE、PNG 等资源文件）
   case "$pure" in
     *.md) ;;
-    *) return ;;
+    *) return 0 ;;
   esac
   # URL decode（仅处理 %20 与 %23 等常见）
   local decoded
@@ -104,6 +106,9 @@ resolve_link() {
   if [ ! -e "$target" ]; then
     echo "  ❌ $f → $link"
   fi
+  # 显式 return 0：避免末尾 [ ! -e ] 在目标存在时返回 1，
+  # 触发调用方 out=$(resolve_link ...) 在 set -e 下静默提前退出
+  return 0
 }
 
 link_fail=0

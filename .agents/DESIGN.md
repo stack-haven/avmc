@@ -60,6 +60,13 @@ locales/      # zh-CN 和 en-US labels
 </Page>
 ```
 
+### 组件复用规则（不得自造组件）
+
+- 页面容器用 `Page`（`@vben/common-ui`）；列表用 `useVbenVxeGrid`；表单用 `useVbenForm`；抽屉/模态用 `useVbenDrawer`/`useVbenModal`；仪表盘/工作台用 `@vben/common-ui` 现成的 `Workbench*`/`Analysis*` 组件。
+- 明细/指标展示用 ant-design-vue 的 `Card`/`Descriptions`/`Table`/`Tag` 等；**不要新建自定义组件、不要重写 Vben 已有能力**（`src/components/` 目前为空，应保持）。
+- 弹窗/详情内嵌的子表可以用 ant-design-vue `Table`；**主列表页必须用 `useVbenVxeGrid`**。
+- 子表/趋势组件若内部用 `v-html`（如 `WorkbenchTrends`），传入的外部文本必须先转义，避免 XSS。
+
 ## 交互规则
 
 - 列表页应包含最常用的搜索维度和状态筛选。
@@ -72,8 +79,8 @@ locales/      # zh-CN 和 en-US labels
 
 ## 导航与权限
 
-- 新增管理后台路由放在 `src/router/routes/modules`。
-- 菜单标题使用 i18n key，不要硬编码可见字符串。
+- 管理后台**页面由后端动态菜单承载**（`/platform/v1/auth/menus`，由 `backend-service/app/platform/service/cmd/mock` 的 seed 注册菜单/按钮）。`src/router/routes/modules` 下的静态业务路由已于 2026-10-22（G9）收敛删除，新增页面应同时在 seed 注册菜单，不要再新建静态路由模块。
+- 快捷入口/普通导航使用真实菜单路径；菜单标题使用 i18n key，不要硬编码可见字符串。
 - 图标使用与现有 route 一致的 Iconify/lucide 风格。
 - 后端支持时，租户、角色、产品服务权限应体现在表格操作和 route/menu metadata 中。
 - 不要在 UI 中暴露后端契约无法执行的操作。

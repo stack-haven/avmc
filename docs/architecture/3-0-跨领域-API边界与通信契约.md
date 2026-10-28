@@ -224,16 +224,18 @@ flowchart LR
 服务前缀:      /{service-name}/{version}     # /platform/v1, /evie/v1, /ai/v1
 平台控制面:    /platform/v1/{resource}                  # List/Get/Create/Update/Delete
 用户级数据面:  /platform/v1/my/{resource}                # 当前登录用户：我的设备、我的通知、我的会话
-租户级数据面:  /platform/v1/current-tenant/{resource}   # 当前租户：参数、有效菜单
+租户级数据面:  /platform/v1/{resource}/current           # 当前租户：参数等（后缀式，2026-10-22 对齐实现）
 自定义操作:    /platform/v1/{resource}/{id}:{action}    # 冒号分隔，禁止斜杠
 
 示例:
-  GET    /platform/v1/parameters                              # List（控制面）
-  POST   /platform/v1/parameters                              # Create（控制面）
+  GET    /platform/v1/parameters/definitions                  # List（控制面：参数定义）
+  POST   /platform/v1/parameters/definitions                  # Create（控制面）
   GET    /platform/v1/my/notifications                        # List（用户级数据面）
-  GET    /platform/v1/current-tenant/parameters               # List（租户级数据面）
+  GET    /platform/v1/parameters/current                      # List（租户级数据面）
   POST   /platform/v1/async-tasks/{id}:cancel                 # 自定义操作（冒号）
-  POST   /platform/v1/resource-quotas/{key}:consume           # 自定义操作（冒号）
+
+历史备注：早期规划的 `/current-tenant/{resource}` 前缀式与 `/resource-quotas/{key}:consume`
+均未落地（proto 零使用）；租户级新端点统一用 `/current` 后缀式。
 
 产品服务（如 evie）独立服务前缀示例:
   GET    /evie/v1/dictionaries                                 # 词库列表
@@ -245,7 +247,7 @@ flowchart LR
 - 服务前缀 `/{service-name}/{version}/`：平台服务用 `/platform/v1/`；产品服务按服务名独立（如 `/evie/v1/`、`/ai/v1/`）
 - 自定义动作用 `:` 分隔（AIP-136），禁止 `/{id}/{verb}` 斜杠形式
 - 子资源（有独立 ID/生命周期）才用 `/` 分隔（AIP-122）
-- `my/*`（当前用户）与 `current-tenant/*`（当前租户）语义不同，不可混用
+- `my/*`（当前用户）与 `*/current`（当前租户）语义不同，不可混用；登录用户有效菜单走 `/platform/v1/auth/menus`
 
 ### 分页
 

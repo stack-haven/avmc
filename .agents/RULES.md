@@ -17,7 +17,6 @@ ark-tech-platform/
 ├── docs/services/            # Ark Product Services 目录和服务资料入口
 ├── docs/product/             # 产品需求、字段、验收标准和迭代规划
 ├── docs/archive/             # 历史文档归档，不作为默认实现依据
-├── backend-service-pkg-bakup/# 备份/参考包，不作为活跃开发目标
 └── .agents/                  # 统一项目配置源（Claude Code + Codex 共用；含 RULES/REVIEW/skills）
 ```
 
@@ -248,7 +247,7 @@ pkg/auth/
   - 服务前缀 `/{service-name}/{version}`：平台控制面 `/platform/v1`，产品服务 `/evie/v1`、`/ai/v1` 等
   - 平台控制面 `/platform/v1/{resource}`
   - 用户级数据面 `/platform/v1/my/{resource}`
-  - 租户级数据面 `/platform/v1/current-tenant/{resource}`
+  - 租户级数据面 `/platform/v1/{resource}/current`（后缀式；旧规划的 `/current-tenant/` 前缀式从未落地，2026-10-22 废弃）
   - 自定义动作 `/platform/v1/{resource}/{id}:{verb}`（冒号分隔，禁止斜杠）
 - **分页**: 全部使用 `pagination.PagingRequest/PagingResponse`，默认 page_size=20
 - **错误码**: kratos errors + UPPER_SNAKE_CASE（`PARAMETER_KEY_INVALID`）

@@ -180,19 +180,20 @@ rpc DeleteFileObject(...) returns (...) {
 
 **两种数据面语义，必须区分：**
 
-| 类型 | 前缀 | 语义 | RPC 命名 | 示例 |
+| 类型 | 路径风格 | 语义 | RPC 命名 | 示例（实现实测） |
 |------|------|------|---------|------|
-| **用户级** | `/my/` | 当前登录用户自己的资源 | `ListMy{Resources}` | `/platform/v1/my/devices`、`/platform/v1/my/notifications` |
-| **租户级** | `/current-tenant/` | 当前租户的共享资源 | `ListCurrentTenant{Resources}` | `/platform/v1/current-tenant/parameters` |
+| **用户级** | `/my/{resources}` | 当前登录用户自己的资源 | `ListMy{Resources}` | `/platform/v1/my/devices`、`/platform/v1/my/notifications` |
+| **租户级** | `/{resources}/current` 后缀式 | 当前租户的共享资源 | `ListCurrentTenant{Resources}` | `/platform/v1/parameters/current`、`/platform/v1/parameters/current/{key}` |
 
-**规则：**
+**规则（2026-10-22 修正，对齐实现）：**
 - `my/*` = 当前用户（user-scoped）：我的设备、我的通知、我的会话
-- `current-tenant/*` = 当前租户（tenant-scoped）：当前租户的参数、有效菜单
+- 租户级数据面 = 资源路径 + `/current` 后缀（tenant-scoped）：当前租户参数等；RPC 名仍用 `CurrentTenant` 前缀
 - 二者不可混用：当前租户的参数不能用 `/my/parameters`
+- 登录用户的有效菜单统一走 `/platform/v1/auth/menus`（已经租户+角色+套餐过滤）
 
-**现状问题：**
-- RPC 命名混用：`ListMyDevices`（✅ 用户级）vs `ListCurrentTenantParameters`（✅ 租户级）——语义本不同，但需在文档明确
-- 文档 3-0 只写了 `current-tenant`，遗漏了 `my`，需补充
+**历史备注：**
+- 早期规划的 `/current-tenant/{resource}` 前缀风格**从未落地**（proto 零使用），2026-10-22 从硬规则中移除；新增租户级端点统一用 `/current` 后缀式
+- `GetTenantEffectiveMenus` / `GetCurrentTenantEffectiveMenus` / `GetCurrentTenantCapabilities` 为孤儿消息（已定义未挂 RPC），立项时需补齐 RPC + 实现 + 前端消费方
 
 ---
 
@@ -253,7 +254,7 @@ rpc CreateFileUploadSession(CreateFileUploadSessionRequest) returns (...) {
 | 4 | 单数资源名 `/user` | 不符合 AIP | `/users` |
 | 5 | 驼峰路径 `/tenantMenuGroup` | 不符合 AIP | `/tenant-menu-permission-groups` |
 | 6 | 动作伪装子资源 | 语义混乱 | 用 `:` 自定义方法 |
-| 7 | `my` 与 `current-tenant` 混用 | 语义混淆 | 按用户级/租户级区分 |
+| 7 | `my` 与租户级路径混用 | 语义混淆 | 用户级 `/my/*`；租户级 `/{resources}/current` 后缀式 |
 
 ---
 
@@ -369,7 +370,7 @@ cd backend-service && make http-convention-check
 
 | # | 决策点 | 建议 | 影响 |
 |---|--------|------|------|
-| 1 | `my` vs `current-tenant` 是否都保留？ | 保留两者，明确区分用户级/租户级 | 文档澄清 |
+| 1 | 用户级/租户级路径风格 | 用户级 `/my/*`；租户级 `/{resources}/current` 后缀式（`/current-tenant/` 前缀式从未落地，2026-10-22 废弃） | 已落定 |
 | 2 | Update 用 PUT 还是 PATCH？ | PUT（保持现状） | 无变更 |
 | 3 | status-update 从 PUT 改 POST？ | 是（有副作用，AIP-136） | 前端 method 变更 |
 | 4 | 是否允许破坏性变更（直接切换路径）？ | 需确认是否有生产调用方 | 迁移策略 |

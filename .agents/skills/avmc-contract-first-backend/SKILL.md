@@ -20,7 +20,6 @@ description: 按照契约优先方式分析、实现和审查 Ark Tech Platform 
 开始前必须读取 `docs/architecture/4-7-治理-代码功能清单.md`，在清单中找到或追加本次要修改的功能行。如果清单中的功能描述与实际需求不符，先与用户确认调整清单，再开始开发。开发完成后将对应功能行状态更新为 `[x]` 并填写源码追溯列。
 
 硬约束：
-- 不得将 `backend-service-pkg-bakup` 作为活跃实现目标
 - 不得手工修改 `backend-service/api`、`internal/conf` 或 `internal/data/ent/gen` 中的生成文件
 - `backend-service/app/platform/service` 只承接平台基础能力；业务模块应先确认服务边界再决定落点
 

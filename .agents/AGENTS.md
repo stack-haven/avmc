@@ -19,7 +19,6 @@ ark-tech-platform/
 ├── docs/services/            # Ark Product Services 定义和资料入口
 ├── docs/product/             # 产品需求、字段、验收标准和迭代规划
 ├── docs/archive/             # 历史文档归档，不作为默认实现依据
-├── backend-service-pkg-bakup/# 备份/参考包，不作为活跃开发目标
 └── .agents/                  # 统一项目配置源（Claude Code + Codex 共用；含 RULES/REVIEW/skills）
 ```
 
@@ -269,7 +268,7 @@ locales/      # zh-CN 和 en-US labels
   - 服务前缀 `/{service-name}/{version}`：平台 `/platform/v1`、产品服务 `/evie/v1`、`/ai/v1` 等
   - 平台控制面 `/platform/v1/{resource}`
   - 用户级数据面 `/platform/v1/my/{resource}`
-  - 租户级数据面 `/platform/v1/current-tenant/{resource}`
+  - 租户级数据面 `/platform/v1/{resource}/current`（后缀式；旧规划 `/current-tenant/` 前缀式已废弃）
 - **分页**: 统一使用 `pagination.PagingRequest/PagingResponse`
 - **错误码**: kratos errors UPPER_SNAKE_CASE（如 `PARAMETER_KEY_INVALID`）
 - **枚举**: 首个值必须 `*_UNSPECIFIED = 0`
@@ -293,7 +292,6 @@ locales/      # zh-CN 和 en-US labels
 
 ## 默认避免修改的区域
 
-- `backend-service-pkg-bakup`
 - `frontend-service/apps/web-antd`
 - `frontend-service/apps/web-ele`
 - `frontend-service/apps/web-naive`
@@ -333,3 +331,17 @@ make contract-check    # proto-lint + generate-check
 rg "Ark Tech Platform" README.md .agents docs/README.md docs/architecture docs/services docs/product
 git diff -- .agents README.md docs
 ```
+## CodeGraph 使用规则
+
+对于涉及多个模块、公共服务、跨层调用或重构的任务：
+
+1. 先使用代码图谱定位相关符号、调用方、下游依赖及影响范围。
+2. 再阅读相关源码，核实图谱返回的路径、实现和调用关系。
+3. 识别动态注册、反射、配置驱动、数据库及事件总线等静态图谱可能遗漏的依赖。
+4. 修改前列出计划修改的文件、兼容性风险和验证方案。
+5. 修改后运行相关测试、类型检查或构建，并检查实际 diff。
+6. 图谱不可用或索引过期时，退回常规代码搜索；不要编造查询结果。
+7. 不要为了建立图谱读取或索引 .env、密钥、凭证和其他敏感文件。
+8. 默认只读分析；实际修改仍遵循用户授权和项目现有工作流。
+
+对于简单、局部的修改，不强制执行完整图谱分析。
