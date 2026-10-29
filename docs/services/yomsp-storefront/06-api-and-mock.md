@@ -183,9 +183,9 @@ POST /api/v1/storefront/configurator/validate
 | `HomepageRepository` | 首页 Section 配置 + Draft/Preview/Publish（localStorage） | `MockHomepageRepository` |
 | `ConfiguratorRepository` | 标准模块 + 兼容性校验 | `MockConfiguratorRepository` |
 
-- 开发阶段实现 `MockXxxRepository`；接后端后实现 `ApiXxxRepository`。
+- 当前阶段只有 `ApiXxxRepository`（指向同域 Nitro 演示接口）；接真实后端时仅更换 base URL。
 - 页面只依赖接口，不依赖具体实现。
-- 切换通过环境配置或依赖注入（`app/plugins/repositories.ts`），**不能散落在页面里的 `if (demo)` 判断**。
+- 切换通过 `app/services/api/api-client.ts` 的 base 配置完成，**不能散落在页面里的 `if (demo)` 判断**。
 
 ### 4.1 方法签名建议（Mock 与 Api 必须一致）
 
@@ -217,9 +217,11 @@ interface Page<T> {
 
 ## 5. Mock 数据要求
 
-### 5.1 放置与隔离
+### 5.1 放置与隔离（✅ 2026-10-29 已按接口层落地）
 
-- Mock 数据放在 `app/services/mock/fixtures/`；
+- Mock 数据放在 **`server/data/`**（Nitro 演示接口的数据源，借鉴 vben backend-mock），
+  以 `{ru, zh, en}` 存储并由 `/api/storefront/*?locale=` 按语言解析输出；
+  客户端不再持有任何 Mock 实现，Repository 一律走 HTTP 客户端；
 - **不生成**虚假的评价、评分、销量、促销倒计时或库存紧张提示；
 - 图片若为占位图**必须明确标识**（文件名 + alt 含"示例"），不得用占位图冒充真实商品图。
 
