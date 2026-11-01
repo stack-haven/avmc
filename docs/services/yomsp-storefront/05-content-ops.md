@@ -129,3 +129,26 @@ type SectionType =
 - [ ] `fallbackPolicy` 三种策略行为可验证
 - [ ] 组件层零 `localStorage` 调用（用 grep 断言）
 - [ ] Demo 配置可一键重置
+
+## 内容区工作流与定位（2026-11，方案 B 合并后）
+
+### 定位对照（防漂移，PR review 检查项）
+
+| 维度 | buying-guides（任务型） | species-intro / health-care（知识型） |
+|---|---|---|
+| 回答 | 怎么挑 / 怎么做 | 是什么 / 为什么 / 长期怎么养 |
+| 模板侧重 | 步骤、清单、商品 CTA 前置 | 目录、引用块、物种 chips、参考文献 |
+| 强关联 | 商品 | 物种 |
+
+### 生产工作流（后端就绪前）
+
+1. 内容以种子数据形式落在 `server/data/content.ts`（三语 + 来源引用 + 状态字段）；
+2. `/admin/content` 原型验证字段设计（草稿存 localStorage，不影响公开站）；
+3. 后端就绪后：§F 字段契约（storefront-service/docs/feature-requirements-review-knowledge-species.md）
+   作为建表与接口输入，前端 Repository 零改动切换。
+
+### 写作规范（GEO）
+
+- excerpt = 首段即答案（40–60 词），可被搜索引擎/AI 直接摘录；
+- h2 用问题句式；每篇 ≥1 条 `sourceReferences`（三语标题 + 访问日期）；
+- 护理类内容默认带核实免责声明（`settings.showCareDisclaimer`）。

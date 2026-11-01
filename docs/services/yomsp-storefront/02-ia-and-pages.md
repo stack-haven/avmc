@@ -14,8 +14,10 @@
 | 1 | Каталог | `/catalog` | 商品目录 |
 | 2 | Среды обитания | `/habitats` | 环境方案 / 成品方案 |
 | 3 | Конфигуратор | `/configurator` | 环境设计器 |
-| 4 | Гиды | `/guides` | 指南 / 文章 |
-| 5 | О бренде | `/about` | **只有存在真实内容时才上线**，否则不显示该入口 |
+| 4 | База знаний | `/journal` | 知识库（文章/指南合并，方案 B） |
+| 5 | Виды | `/species` | 物种档案 = 零思考选购 hub |
+| 6 | О бренде | `/about` | **只有存在真实内容时才上线**，否则不显示该入口 |
+
 
 ### 1.1 Header 组成
 
@@ -184,6 +186,8 @@
 | `/habitats/:slug` | Habitat, Product | `HabitatBundleCard` | 方案名 + 适用场景 |
 | `/configurator` | Product（模块）, Configurator rules | `ConfiguratorModuleCard`, `ConfiguratorCanvas2D` | 介绍内容可索引，交互态 noindex |
 | `/cart` | Cart store | — | `noindex` |
-| `/guides/:slug` | Guide | `GuideCard` | 具体问题/主题 |
+| `/journal/:slug` | Article | `JournalCard`/`ContentBlocks` | 知识型/任务型文章（Read 模式） |
+| `/species/:slug` | Species | 必备清单/阅读路径/参数侧栏 | 从动物出发的决策 hub |
+| `/admin/content` | Content draft | 字段原型表单 | `noindex` + Demo 标注 |
 | `/admin/homepage` | Homepage（draft） | Section 编辑器 | `noindex` + 鉴权 |
 | `/style-guide` | — | 全部基础组件 | `noindex`（默认） |

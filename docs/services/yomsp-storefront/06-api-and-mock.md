@@ -155,6 +155,11 @@ GET  /api/v1/storefront/habitats
 GET  /api/v1/storefront/habitats/{slug}
 GET  /api/v1/storefront/guides
 GET  /api/v1/storefront/guides/{slug}
+GET  /api/v1/storefront/journal?category=&tag=&species=&page=
+GET  /api/v1/storefront/journal/{slug}        # 服务端 join：relatedArticles/relatedProducts/settings
+GET  /api/v1/storefront/species?group=         # 服务端 join：essentials/readingPath/relatedArticles
+GET  /api/v1/storefront/species/{slug}
+GET  /api/v1/storefront/content-settings
 GET  /api/v1/storefront/configurator/modules
 POST /api/v1/storefront/configurator/validate
 ```

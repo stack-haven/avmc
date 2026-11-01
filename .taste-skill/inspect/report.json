@@ -1,0 +1,2330 @@
+{
+ "url": "http://localhost:3998/",
+ "at": "2026-10-30T16:15:20.567Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 6,
+   "filled": [
+    1,
+    0.53,
+    0.55,
+    0.63,
+    0.51,
+    0.69
+   ],
+   "motion": {
+    "elements": 38,
+    "css": 7,
+    "transitions": 30,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 5275,
+     "screens": 5.9,
+     "words": 590,
+     "img": 14,
+     "video": 0,
+     "canvas": 0,
+     "svg": 15,
+     "sections": 8,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 12,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "habitat-desert.jpg",
+      "terrarium-exo.jpg",
+      "terrarium-mesh.jpg",
+      "terrarium-06.jpg",
+      "habitat-desert.jpg",
+      "habitat-desert.jpg",
+      "habitat-desert.jpg",
+      "habitat-tropical.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [
+      "✦"
+     ],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Соберите среду обитания под конкретную задачу",
+     "words": 6,
+     "chars": 45,
+     "lines": 4,
+     "size": 52.8,
+     "vw": 3.7,
+     "font": "Unbounded Variable",
+     "weight": 600,
+     "tracking": -0.015,
+     "leading": 1.08,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.45,
+     "top": 266,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Соберите среду обитания под конкретную задачу",
+     "words": 6,
+     "lines": 4,
+     "size": 52.8,
+     "font": "Unbounded Variable"
+    },
+    "headings": [
+     {
+      "text": "Соберите среду обитания под конкретную задачу",
+      "words": 6,
+      "chars": 45,
+      "lines": 4,
+      "size": 52.8,
+      "vw": 3.7,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.08,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.45,
+      "top": 266,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Собрать террариум",
+      "words": 2,
+      "chars": 17,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.34,
+      "top": 1104,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Смотреть каталог",
+      "words": 2,
+      "chars": 16,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.34,
+      "top": 1105,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Категории",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.15,
+      "top": 1577,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Из каталога",
+      "words": 2,
+      "chars": 11,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.17,
+      "top": 2104,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Готовые наборы",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.22,
+      "top": 3241,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Конфигуратор: стандартные модули вместо обещаний",
+      "words": 5,
+      "chars": 48,
+      "lines": 2,
+      "size": 36,
+      "vw": 2.5,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.47,
+      "top": 4006,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Гиды",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 30,
+      "vw": 2.1,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.08,
+      "top": 4436,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 8,
+     "maxLines": 4,
+     "over2Lines": 1,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Manrope Variable",
+       "share": 0.81,
+       "mono": false
+      },
+      {
+       "family": "Unbounded Variable",
+       "share": 0.19,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      18,
+      30,
+      36,
+      53
+     ],
+     "sizeCount": 7,
+     "notLoaded": [],
+     "body": {
+      "font": "Manrope Variable",
+      "size": 14,
+      "leading": 1.43,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 4.8
+     },
+     "measureChars": 55,
+     "max": {
+      "size": 52.8,
+      "vw": 3.7,
+      "font": "Unbounded Variable",
+      "text": "Соберите среду обитания под конкретную з"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 29,
+     "microLabelShare": 0.041,
+     "microSamples": [
+      "YOMSP · terrarium studio",
+      "01",
+      "02",
+      "Террариумы",
+      "✦",
+      "Субстраты"
+     ],
+     "upperShare": 0.04,
+     "centerShare": 0.15,
+     "smallText": 48
+    },
+    "eyebrows": [
+     {
+      "text": "YOMSP · terrarium studio",
+      "above": "Соберите среду обитания под конкретную з",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": true,
+      "size": 12,
+      "top": 212
+     },
+     {
+      "text": "01",
+      "above": "Собрать террариум",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 1072
+     },
+     {
+      "text": "02",
+      "above": "Смотреть каталог",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 1073
+     },
+     {
+      "text": "Catalog",
+      "above": "Категории",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 1549
+     },
+     {
+      "text": "Selection",
+      "above": "Из каталога",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 2076
+     },
+     {
+      "text": "Habitats",
+      "above": "Готовые наборы",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 3213
+     },
+     {
+      "text": "Configurator",
+      "above": "Конфигуратор: стандартные модули вместо ",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 3974
+     },
+     {
+      "text": "Guides",
+      "above": "Гиды",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 4408
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 14,
+      "top": 820
+     },
+     {
+      "text": "02",
+      "size": 14,
+      "top": 820
+     },
+     {
+      "text": "03",
+      "size": 14,
+      "top": 820
+     },
+     {
+      "text": "01",
+      "size": 12,
+      "top": 1072
+     },
+     {
+      "text": "02",
+      "size": 12,
+      "top": 1073
+     }
+    ],
+    "color": {
+     "bodyBg": "#faf8f4",
+     "bodyBgHsl": {
+      "h": 40,
+      "s": 0.37,
+      "l": 0.97
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#071f1c",
+       "top": 100,
+       "hsl": {
+        "h": 173,
+        "s": 0.63,
+        "l": 0.07
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#6b746e",
+       "share": 0.61
+      },
+      {
+       "color": "#1f2421",
+       "share": 0.18
+      },
+      {
+       "color": "#9db4ad",
+       "share": 0.1
+      },
+      {
+       "color": "#e8f0ec",
+       "share": 0.06
+      },
+      {
+       "color": "#2e7d5b",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#b8c818",
+      "hsl": {
+       "h": 65,
+       "s": 0.79,
+       "l": 0.44
+      },
+      "fg": "#101a08"
+     },
+     "lowContrast": [
+      {
+       "text": "Каталог",
+       "ratio": 1.1,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#e8f0ec",
+       "bg": "#faf8f4"
+      },
+      {
+       "text": "Среды обитания",
+       "ratio": 1.1,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#e8f0ec",
+       "bg": "#faf8f4"
+      },
+      {
+       "text": "Конфигуратор",
+       "ratio": 1.1,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#e8f0ec",
+       "bg": "#faf8f4"
+      },
+      {
+       "text": "Гиды",
+       "ratio": 1.1,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#e8f0ec",
+       "bg": "#faf8f4"
+      },
+      {
+       "text": "Корзина (демо)",
+       "ratio": 1.1,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#e8f0ec",
+       "bg": "#faf8f4"
+      },
+      {
+       "text": "пример цены",
+       "ratio": 4.2,
+       "need": 4.5,
+       "size": 12,
+       "fg": "#6b746e",
+       "bg": "#f3f0ea"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 7,
+     "inHero": 3,
+     "radius": "pill",
+     "height": 54,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Корзина (демо)",
+      "Собрать террариум",
+      "Смотреть каталог"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 15,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "div.overflow-hidden.rounded-xl → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "article.group.relative → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "article.group.relative → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "article.group.relative → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0"
+     ],
+     "gradients": 7,
+     "scrims": 0,
+     "gradientSamples": [
+      "section.grain.aurora → radial-gradient(832px 480px at 12% -10%, rgba(10, 74, 68, 0.55), rgba(0, 0, 0, 0) 60%), radial-gradient(640px ",
+      "div.pointer-events-none.absolute → linear-gradient(in oklab, rgba(0, 0, 0, 0) 0%, rgb(250, 248, 244) 100%)",
+      "article.group.relative → radial-gradient(832px 480px at 12% -10%, rgba(10, 74, 68, 0.55), rgba(0, 0, 0, 0) 60%), radial-gradient(640px ",
+      "span.pointer-events-none.absolute → linear-gradient(to top, oklab(0.605188 0.04815 0.0695462 / 0.25) 0%, oklab(0.793569 -0.0757455 0.158901 / 0.1)"
+     ],
+     "gradientText": 0,
+     "hairlines": 3,
+     "hairlineSamples": [
+      "section.border-y.border-border 1440px",
+      "div.marquee-mask.mb-12 1440px",
+      "div.mt-12.flex 1160px"
+     ],
+     "outlinedBoxes": 35,
+     "dashed": 0,
+     "blurred": 2,
+     "roundedBoxes": 42,
+     "boxRadius": 18,
+     "squareMedia": 0,
+     "roundedMedia": 12,
+     "mediaRadius": 10,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.11
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": true,
+     "height": 71,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "manrope variable",
+     "unbounded variable"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 5275,
+    "margins": {
+     "left": 140,
+     "right": 140
+    },
+    "sections": [
+     {
+      "sel": "main#main.flex-1",
+      "tag": "main",
+      "top": 100,
+      "height": 4790,
+      "words": 548,
+      "media": 12,
+      "middle": 94,
+      "heading": {
+       "text": "Соберите среду обитания под конкретную задачу",
+       "size": 53,
+       "tag": "h1"
+      },
+      "left": 90,
+      "right": 0,
+      "textLeft": 90,
+      "textRight": 0,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.grain.aurora",
+      "tag": "footer",
+      "top": 4970,
+      "height": 305,
+      "words": 28,
+      "media": 0,
+      "middle": 320,
+      "heading": null,
+      "left": 140,
+      "right": 140,
+      "textLeft": 140,
+      "textRight": 140,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Соберите среду обитания под конкретную задачу",
+      "size": 53,
+      "top": 266,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 156,
+      "n": 4
+     },
+     {
+      "x": 140,
+      "n": 2
+     },
+     {
+      "x": 196,
+      "n": 2
+     },
+     {
+      "x": 180,
+      "n": 1
+     },
+     {
+      "x": 771,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 10,
+    "bodySize": 14,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.13,
+    "voidBox": {
+     "x": 0,
+     "y": 660,
+     "w": 1440,
+     "h": 120
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 8,
+   "filled": [
+    1,
+    0.77,
+    0.67,
+    0.92,
+    0.64,
+    0.56,
+    0.74,
+    0.78
+   ],
+   "motion": {
+    "elements": 38,
+    "css": 7,
+    "transitions": 30,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 7654,
+     "screens": 7.5,
+     "words": 590,
+     "img": 14,
+     "video": 0,
+     "canvas": 0,
+     "svg": 15,
+     "sections": 8,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 12,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "habitat-desert.jpg",
+      "terrarium-exo.jpg",
+      "terrarium-mesh.jpg",
+      "terrarium-06.jpg",
+      "habitat-desert.jpg",
+      "habitat-desert.jpg",
+      "habitat-desert.jpg",
+      "habitat-tropical.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [
+      "✦"
+     ],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Соберите среду обитания под конкретную задачу",
+     "words": 6,
+     "chars": 45,
+     "lines": 3,
+     "size": 48,
+     "vw": 6.3,
+     "font": "Unbounded Variable",
+     "weight": 600,
+     "tracking": -0.015,
+     "leading": 1.08,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.92,
+     "top": 254,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Соберите среду обитания под конкретную задачу",
+     "words": 6,
+     "lines": 3,
+     "size": 48,
+     "font": "Unbounded Variable"
+    },
+    "headings": [
+     {
+      "text": "Соберите среду обитания под конкретную задачу",
+      "words": 6,
+      "chars": 45,
+      "lines": 3,
+      "size": 48,
+      "vw": 6.3,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.08,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 254,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Собрать террариум",
+      "words": 2,
+      "chars": 17,
+      "lines": 2,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.34,
+      "top": 1597,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Смотреть каталог",
+      "words": 2,
+      "chars": 16,
+      "lines": 2,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.34,
+      "top": 1598,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Категории",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.28,
+      "top": 2128,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Из каталога",
+      "words": 2,
+      "chars": 11,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.32,
+      "top": 2776,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Готовые наборы",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.42,
+      "top": 4954,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Конфигуратор: стандартные модули вместо обещаний",
+      "words": 5,
+      "chars": 48,
+      "lines": 3,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 6196,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Гиды",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.14,
+      "top": 6697,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 8,
+     "maxLines": 3,
+     "over2Lines": 2,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Manrope Variable",
+       "share": 0.81,
+       "mono": false
+      },
+      {
+       "family": "Unbounded Variable",
+       "share": 0.19,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      18,
+      30,
+      36,
+      48
+     ],
+     "sizeCount": 7,
+     "notLoaded": [],
+     "body": {
+      "font": "Manrope Variable",
+      "size": 14,
+      "leading": 1.43,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 4.8
+     },
+     "measureChars": 40,
+     "max": {
+      "size": 48,
+      "vw": 6.3,
+      "font": "Unbounded Variable",
+      "text": "Соберите среду обитания под конкретную з"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 29,
+     "microLabelShare": 0.041,
+     "microSamples": [
+      "YOMSP · terrarium studio",
+      "01",
+      "02",
+      "Террариумы",
+      "✦",
+      "Субстраты"
+     ],
+     "upperShare": 0.04,
+     "centerShare": 0.15,
+     "smallText": 48
+    },
+    "eyebrows": [
+     {
+      "text": "YOMSP · terrarium studio",
+      "above": "Соберите среду обитания под конкретную з",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": true,
+      "size": 12,
+      "top": 200
+     },
+     {
+      "text": "01",
+      "above": "Собрать террариум",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 1565
+     },
+     {
+      "text": "02",
+      "above": "Смотреть каталог",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 1566
+     },
+     {
+      "text": "Catalog",
+      "above": "Категории",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 2100
+     },
+     {
+      "text": "Selection",
+      "above": "Из каталога",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 2748
+     },
+     {
+      "text": "Habitats",
+      "above": "Готовые наборы",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 4926
+     },
+     {
+      "text": "Configurator",
+      "above": "Конфигуратор: стандартные модули вместо ",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 6164
+     },
+     {
+      "text": "Guides",
+      "above": "Гиды",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 6669
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 14,
+      "top": 1213
+     },
+     {
+      "text": "02",
+      "size": 14,
+      "top": 1213
+     },
+     {
+      "text": "03",
+      "size": 14,
+      "top": 1332
+     },
+     {
+      "text": "01",
+      "size": 12,
+      "top": 1565
+     },
+     {
+      "text": "02",
+      "size": 12,
+      "top": 1566
+     }
+    ],
+    "color": {
+     "bodyBg": "#faf8f4",
+     "bodyBgHsl": {
+      "h": 40,
+      "s": 0.37,
+      "l": 0.97
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#071f1c",
+       "top": 120,
+       "hsl": {
+        "h": 173,
+        "s": 0.63,
+        "l": 0.07
+       }
+      },
+      {
+       "color": "#f3f0ea",
+       "top": 623,
+       "hsl": {
+        "h": 40,
+        "s": 0.27,
+        "l": 0.94
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#6b746e",
+       "share": 0.61
+      },
+      {
+       "color": "#1f2421",
+       "share": 0.18
+      },
+      {
+       "color": "#9db4ad",
+       "share": 0.1
+      },
+      {
+       "color": "#e8f0ec",
+       "share": 0.06
+      },
+      {
+       "color": "#2e7d5b",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#b8c818",
+      "hsl": {
+       "h": 65,
+       "s": 0.79,
+       "l": 0.44
+      },
+      "fg": "#101a08"
+     },
+     "lowContrast": [
+      {
+       "text": "Каталог",
+       "ratio": 1.1,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#e8f0ec",
+       "bg": "#faf8f4"
+      },
+      {
+       "text": "Среды обитания",
+       "ratio": 1.1,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#e8f0ec",
+       "bg": "#faf8f4"
+      },
+      {
+       "text": "Конфигуратор",
+       "ratio": 1.1,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#e8f0ec",
+       "bg": "#faf8f4"
+      },
+      {
+       "text": "Гиды",
+       "ratio": 1.1,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#e8f0ec",
+       "bg": "#faf8f4"
+      },
+      {
+       "text": "Корзина (демо)",
+       "ratio": 1.1,
+       "need": 4.5,
+       "size": 14,
+       "fg": "#e8f0ec",
+       "bg": "#faf8f4"
+      },
+      {
+       "text": "пример цены",
+       "ratio": 4.2,
+       "need": 4.5,
+       "size": 12,
+       "fg": "#6b746e",
+       "bg": "#f3f0ea"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 7,
+     "inHero": 3,
+     "radius": "pill",
+     "height": 54,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Корзина (демо)",
+      "Собрать террариум",
+      "Смотреть каталог"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 15,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "div.overflow-hidden.rounded-xl → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "article.group.relative → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "article.group.relative → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "article.group.relative → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0"
+     ],
+     "gradients": 7,
+     "scrims": 0,
+     "gradientSamples": [
+      "section.grain.aurora → radial-gradient(832px 480px at 12% -10%, rgba(10, 74, 68, 0.55), rgba(0, 0, 0, 0) 60%), radial-gradient(640px ",
+      "div.pointer-events-none.absolute → linear-gradient(in oklab, rgba(0, 0, 0, 0) 0%, rgb(250, 248, 244) 100%)",
+      "article.group.relative → radial-gradient(832px 480px at 12% -10%, rgba(10, 74, 68, 0.55), rgba(0, 0, 0, 0) 60%), radial-gradient(640px ",
+      "span.pointer-events-none.absolute → linear-gradient(to top, oklab(0.605188 0.04815 0.0695462 / 0.25) 0%, oklab(0.793569 -0.0757455 0.158901 / 0.1)"
+     ],
+     "gradientText": 0,
+     "hairlines": 3,
+     "hairlineSamples": [
+      "section.border-y.border-border 768px",
+      "div.marquee-mask.mb-12 768px",
+      "div.mt-12.flex 704px"
+     ],
+     "outlinedBoxes": 35,
+     "dashed": 0,
+     "blurred": 2,
+     "roundedBoxes": 42,
+     "boxRadius": 18,
+     "squareMedia": 0,
+     "roundedMedia": 12,
+     "mediaRadius": 10,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.36
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": true,
+     "height": 91,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "manrope variable",
+     "unbounded variable"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 7654,
+    "margins": {
+     "left": 32,
+     "right": 46
+    },
+    "sections": [
+     {
+      "sel": "main#main.flex-1",
+      "tag": "main",
+      "top": 120,
+      "height": 7114,
+      "words": 545,
+      "media": 12,
+      "middle": 7,
+      "heading": {
+       "text": "Соберите среду обитания под конкретную задачу",
+       "size": 48,
+       "tag": "h1"
+      },
+      "left": 0,
+      "right": 34,
+      "textLeft": 0,
+      "textRight": 54,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.grain.aurora",
+      "tag": "footer",
+      "top": 7314,
+      "height": 340,
+      "words": 28,
+      "media": 0,
+      "middle": 130,
+      "heading": null,
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Соберите среду обитания под конкретную задачу",
+      "size": 48,
+      "top": 254,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 48,
+      "n": 4
+     },
+     {
+      "x": 32,
+      "n": 2
+     },
+     {
+      "x": 88,
+      "n": 2
+     },
+     {
+      "x": 72,
+      "n": 1
+     },
+     {
+      "x": 435,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 10,
+    "bodySize": 14,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    1,
+    0.92,
+    0.51,
+    0.58,
+    0.92,
+    0.92,
+    0.92,
+    0.92,
+    0.66,
+    0.86,
+    0.85,
+    0.63
+   ],
+   "motion": {
+    "elements": 38,
+    "css": 7,
+    "transitions": 30,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 11123,
+     "screens": 13.2,
+     "words": 584,
+     "img": 14,
+     "video": 0,
+     "canvas": 0,
+     "svg": 15,
+     "sections": 8,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 12,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "habitat-desert.jpg",
+      "terrarium-exo.jpg",
+      "terrarium-mesh.jpg",
+      "terrarium-06.jpg",
+      "habitat-desert.jpg",
+      "habitat-desert.jpg",
+      "habitat-desert.jpg",
+      "habitat-tropical.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [
+      "✦"
+     ],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Соберите среду обитания под конкретную задачу",
+     "words": 6,
+     "chars": 45,
+     "lines": 5,
+     "size": 40,
+     "vw": 10.3,
+     "font": "Unbounded Variable",
+     "weight": 600,
+     "tracking": -0.015,
+     "leading": 1.12,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.9,
+     "top": 251,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Соберите среду обитания под конкретную задачу",
+     "words": 6,
+     "lines": 5,
+     "size": 40,
+     "font": "Unbounded Variable"
+    },
+    "headings": [
+     {
+      "text": "Соберите среду обитания под конкретную задачу",
+      "words": 6,
+      "chars": 45,
+      "lines": 5,
+      "size": 40,
+      "vw": 10.3,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 251,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Собрать террариум",
+      "words": 2,
+      "chars": 17,
+      "lines": 2,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.33,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.73,
+      "top": 1609,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Смотреть каталог",
+      "words": 2,
+      "chars": 16,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.33,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.73,
+      "top": 1918,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Категории",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.33,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.45,
+      "top": 2368,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Из каталога",
+      "words": 2,
+      "chars": 11,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.33,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.51,
+      "top": 3221,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Готовые наборы",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.33,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.66,
+      "top": 7279,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Конфигуратор: стандартные модули вместо обещаний",
+      "words": 5,
+      "chars": 48,
+      "lines": 5,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.73,
+      "top": 9014,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Гиды",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Unbounded Variable",
+      "weight": 600,
+      "tracking": -0.015,
+      "leading": 1.33,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.24,
+      "top": 9570,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 8,
+     "maxLines": 5,
+     "over2Lines": 2,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Manrope Variable",
+       "share": 0.8,
+       "mono": false
+      },
+      {
+       "family": "Unbounded Variable",
+       "share": 0.2,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      24,
+      30,
+      40
+     ],
+     "sizeCount": 6,
+     "notLoaded": [],
+     "body": {
+      "font": "Manrope Variable",
+      "size": 14,
+      "leading": 1.43,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 4.8
+     },
+     "measureChars": 50,
+     "max": {
+      "size": 40,
+      "vw": 10.3,
+      "font": "Unbounded Variable",
+      "text": "Соберите среду обитания под конкретную з"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 29,
+     "microLabelShare": 0.042,
+     "microSamples": [
+      "YOMSP · terrarium studio",
+      "01",
+      "02",
+      "Террариумы",
+      "✦",
+      "Субстраты"
+     ],
+     "upperShare": 0.04,
+     "centerShare": 0.15,
+     "smallText": 48
+    },
+    "eyebrows": [
+     {
+      "text": "YOMSP · terrarium studio",
+      "above": "Соберите среду обитания под конкретную з",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": true,
+      "size": 12,
+      "top": 197
+     },
+     {
+      "text": "01",
+      "above": "Собрать террариум",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 1577
+     },
+     {
+      "text": "02",
+      "above": "Смотреть каталог",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 1886
+     },
+     {
+      "text": "Catalog",
+      "above": "Категории",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 2340
+     },
+     {
+      "text": "Selection",
+      "above": "Из каталога",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 3194
+     },
+     {
+      "text": "Habitats",
+      "above": "Готовые наборы",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 7251
+     },
+     {
+      "text": "Configurator",
+      "above": "Конфигуратор: стандартные модули вместо ",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 8982
+     },
+     {
+      "text": "Guides",
+      "above": "Гиды",
+      "upper": true,
+      "tracked": true,
+      "mono": false,
+      "pill": false,
+      "size": 12,
+      "top": 9542
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 14,
+      "top": 1128
+     },
+     {
+      "text": "02",
+      "size": 14,
+      "top": 1248
+     },
+     {
+      "text": "03",
+      "size": 14,
+      "top": 1369
+     },
+     {
+      "text": "01",
+      "size": 12,
+      "top": 1577
+     },
+     {
+      "text": "02",
+      "size": 12,
+      "top": 1886
+     }
+    ],
+    "color": {
+     "bodyBg": "#faf8f4",
+     "bodyBgHsl": {
+      "h": 40,
+      "s": 0.37,
+      "l": 0.97
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#071f1c",
+       "top": 117,
+       "hsl": {
+        "h": 173,
+        "s": 0.63,
+        "l": 0.07
+       }
+      },
+      {
+       "color": "#ffffff",
+       "top": 1087,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#6b746e",
+       "share": 0.62
+      },
+      {
+       "color": "#1f2421",
+       "share": 0.18
+      },
+      {
+       "color": "#9db4ad",
+       "share": 0.1
+      },
+      {
+       "color": "#e8f0ec",
+       "share": 0.05
+      },
+      {
+       "color": "#2e7d5b",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#b8c818",
+      "hsl": {
+       "h": 65,
+       "s": 0.79,
+       "l": 0.44
+      },
+      "fg": "#101a08"
+     },
+     "lowContrast": [
+      {
+       "text": "пример цены",
+       "ratio": 4.2,
+       "need": 4.5,
+       "size": 12,
+       "fg": "#6b746e",
+       "bg": "#f3f0ea"
+      },
+      {
+       "text": "пример цены",
+       "ratio": 4.2,
+       "need": 4.5,
+       "size": 12,
+       "fg": "#6b746e",
+       "bg": "#f3f0ea"
+      },
+      {
+       "text": "пример цены",
+       "ratio": 4.2,
+       "need": 4.5,
+       "size": 12,
+       "fg": "#6b746e",
+       "bg": "#f3f0ea"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 6,
+     "inHero": 2,
+     "radius": "pill",
+     "height": 54,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Собрать террариум",
+      "Смотреть каталог"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 15,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "div.overflow-hidden.rounded-xl → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "article.group.relative → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "article.group.relative → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+      "article.group.relative → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0"
+     ],
+     "gradients": 7,
+     "scrims": 0,
+     "gradientSamples": [
+      "section.grain.aurora → radial-gradient(832px 480px at 12% -10%, rgba(10, 74, 68, 0.55), rgba(0, 0, 0, 0) 60%), radial-gradient(640px ",
+      "div.pointer-events-none.absolute → linear-gradient(in oklab, rgba(0, 0, 0, 0) 0%, rgb(250, 248, 244) 100%)",
+      "article.group.relative → radial-gradient(832px 480px at 12% -10%, rgba(10, 74, 68, 0.55), rgba(0, 0, 0, 0) 60%), radial-gradient(640px ",
+      "span.pointer-events-none.absolute → linear-gradient(to top, oklab(0.605188 0.04815 0.0695462 / 0.25) 0%, oklab(0.793569 -0.0757455 0.158901 / 0.1)"
+     ],
+     "gradientText": 0,
+     "hairlines": 5,
+     "hairlineSamples": [
+      "section.border-y.border-border 390px",
+      "div.group.flex 350px",
+      "div.group.flex 350px",
+      "div.marquee-mask.mb-12 390px",
+      "div.mt-12.flex 350px"
+     ],
+     "outlinedBoxes": 35,
+     "dashed": 0,
+     "blurred": 2,
+     "roundedBoxes": 42,
+     "boxRadius": 18,
+     "squareMedia": 0,
+     "roundedMedia": 12,
+     "mediaRadius": 10,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 2,
+     "fixed": true,
+     "height": 73,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "manrope variable",
+     "unbounded variable"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 11123,
+    "margins": {
+     "left": 20,
+     "right": 23
+    },
+    "sections": [
+     {
+      "sel": "main#main.flex-1",
+      "tag": "main",
+      "top": 117,
+      "height": 10335,
+      "words": 525,
+      "media": 12,
+      "middle": 0,
+      "heading": {
+       "text": "Соберите среду обитания под конкретную задачу",
+       "size": 40,
+       "tag": "h1"
+      },
+      "left": 20,
+      "right": 0,
+      "textLeft": 20,
+      "textRight": 0,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.grain.aurora",
+      "tag": "footer",
+      "top": 10532,
+      "height": 591,
+      "words": 28,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 20,
+      "right": 37,
+      "textLeft": 20,
+      "textRight": 37,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Соберите среду обитания под конкретную задачу",
+      "size": 40,
+      "top": 251,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 36,
+      "n": 4
+     },
+     {
+      "x": 52,
+      "n": 4
+     },
+     {
+      "x": 20,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 10,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "headline-lines",
+   "width": 1440,
+   "message": "1 headline(s) wrap past two lines at 1440px: \"Соберите среду обитания под конкретную задачу\" → 4 lines (6 words, 52.8px)",
+   "fix": "Cut words first (a headline is a title, not a sentence). Then give it a wider measure. Lower the size only as a last resort and never below the scale you chose. A real statement paragraph belongs in a <p> or <blockquote> at 36px or less."
+  },
+  {
+   "level": "FAIL",
+   "id": "eyebrow",
+   "width": 1440,
+   "message": "8 eyebrow/kicker label(s) above headings: \"YOMSP · terrarium studio\" (pill) above \"Соберите среду обитания под конкретную з\"; \"01\" above \"Собрать террариум\"; \"02\" above \"Смотреть каталог\"; \"Catalog\" above \"Категории\"; \"Selection\" above \"Из каталога\"",
+   "fix": "Delete them. If the label carried real information, fold it into the headline or the supporting sentence.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "numbering",
+   "width": 1440,
+   "message": "Decorative index numbers: \"01\", \"02\", \"03\", \"01\", \"02\"",
+   "fix": "Remove them. If order truly matters, write it into the words (\"First, …\") or use a real <ol>.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "micro-label",
+   "width": 1440,
+   "message": "29 tiny uppercase letter-spaced labels (e.g. \"YOMSP · terrarium studio\", \"01\", \"02\", \"Террариумы\").",
+   "fix": "Use sentence-case text at a readable size, or delete the label.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "emoji",
+   "width": 1440,
+   "message": "Emoji in the page: ✦",
+   "fix": "Remove. Use words or real imagery.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "gradient",
+   "width": 1440,
+   "message": "7 gradient fill(s): section.grain.aurora → radial-gradient(832px 480px at 12% -10%, rgba(10, 74, 68, 0.55), rgba(0, 0, 0, 0) 60%), radial-gradient(640px  | div.pointer-events-none.absolute → linear-gradient(in oklab, rgba(0, 0, 0, 0) 0%, rgb(250, 248, 244) 100%) | article.group.relative → radial-gradient(832px 480px at 12% -10%, rgba(10, 74, 68, 0.55), rgba(0, 0, 0, 0) 60%), radial-gradient(640px ",
+   "fix": "Use a flat colour or a real image. The only gradient allowed by default is a neutral scrim over a photo for legibility.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "shadow",
+   "width": 1440,
+   "message": "15 box-shadow(s) on elements at rest: div.overflow-hidden.rounded-xl → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0 | article.group.relative → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0 | article.group.relative → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+   "fix": "Remove. Separate surfaces with a tone step or space. Shadows are for things that really float (menus, dialogs, sticky bars).",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "hairline",
+   "width": 1440,
+   "message": "3 thin rule(s)/divider line(s): section.border-y.border-border 1440px | div.marquee-mask.mb-12 1440px | div.mt-12.flex 1160px",
+   "fix": "Delete. Separate with space, a tone change, or scale. Lines are only for real tables and form fields.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "outlined-box",
+   "width": 1440,
+   "message": "35 boxes drawn with a 1px outline.",
+   "fix": "Define a surface by its fill (one tone step from the page) or leave the content unboxed.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "glass",
+   "width": 1440,
+   "message": "2 backdrop-blur surfaces.",
+   "fix": "One blurred sticky bar at most; glass cards are a tell.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "palette-cream",
+   "width": 1440,
+   "message": "Yellow-cream background (page background #faf8f4).",
+   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "contrast",
+   "width": 1440,
+   "message": "Unreadable text: \"Каталог\" 1.1:1 (#e8f0ec on #faf8f4); \"Среды обитания\" 1.1:1 (#e8f0ec on #faf8f4); \"Конфигуратор\" 1.1:1 (#e8f0ec on #faf8f4); \"Гиды\" 1.1:1 (#e8f0ec on #faf8f4)",
+   "fix": "Raise contrast to at least 4.5:1 for text, 3:1 for large display.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "body-size",
+   "width": 1440,
+   "message": "Body text is 14px (the size most of the running text is set in).",
+   "fix": "Body copy 16–20px. Map small sizes from blueprints onto your body step.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "grey-body",
+   "width": 1440,
+   "message": "The running text is a soft grey on its ground (4.8:1).",
+   "fix": "Set body copy in the full ink (7:1 or more). Keep the muted ink for secondary notes; pages read thin and unfinished when everything is grey.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "FAIL",
+   "id": "small-text",
+   "width": 1440,
+   "message": "48 text blocks under 13px.",
+   "fix": "Nothing meant to be read goes below 13px.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "focal-point",
+   "width": 1440,
+   "message": "The first screen has no dominant element: the largest type is 52.8px (3.7vw) and no single picture holds a third of the viewport.",
+   "fix": "Make one thing lead: the headline at display size, or one large picture. A grid of many small pictures is not one thing; in blind tests jurors marked a first screen without a headline down every time. On the strongest studied sites the largest type has a median of 8.4vw."
+  },
+  {
+   "level": "FAIL",
+   "id": "headline-lines",
+   "width": 768,
+   "message": "2 headline(s) wrap past two lines at 768px: \"Соберите среду обитания под конкретную задачу\" → 3 lines (6 words, 48px); \"Конфигуратор: стандартные модули вместо обещаний\" → 3 lines (5 words, 36px)",
+   "fix": "Cut words first (a headline is a title, not a sentence). Then give it a wider measure. Lower the size only as a last resort and never below the scale you chose. A real statement paragraph belongs in a <p> or <blockquote> at 32px or less."
+  },
+  {
+   "level": "FAIL",
+   "id": "headline-lines",
+   "width": 390,
+   "message": "2 headline(s) wrap past two lines at 390px: \"Соберите среду обитания под конкретную задачу\" → 5 lines (6 words, 40px); \"Конфигуратор: стандартные модули вместо обещаний\" → 5 lines (5 words, 30px)",
+   "fix": "Cut words first (a headline is a title, not a sentence). Then give it a wider measure. Lower the size only as a last resort and never below the scale you chose. A real statement paragraph belongs in a <p> or <blockquote> at 24px or less."
+  },
+  {
+   "level": "WARN",
+   "id": "contrast",
+   "width": 390,
+   "message": "Low-contrast text: \"пример цены\" 4.2:1 needs 4.5:1; \"пример цены\" 4.2:1 needs 4.5:1; \"пример цены\" 4.2:1 needs 4.5:1",
+   "fix": "Darken or lighten the text colour."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/jayden/Development/Code/Object/stack-haven/avmc/.taste-skill/inspect/desktop-fold.jpg",
+   "pages": [
+    "/Users/jayden/Development/Code/Object/stack-haven/avmc/.taste-skill/inspect/desktop-page-01.jpg",
+    "/Users/jayden/Development/Code/Object/stack-haven/avmc/.taste-skill/inspect/desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/jayden/Development/Code/Object/stack-haven/avmc/.taste-skill/inspect/tablet-fold.jpg",
+   "pages": [
+    "/Users/jayden/Development/Code/Object/stack-haven/avmc/.taste-skill/inspect/tablet-page-01.jpg",
+    "/Users/jayden/Development/Code/Object/stack-haven/avmc/.taste-skill/inspect/tablet-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/jayden/Development/Code/Object/stack-haven/avmc/.taste-skill/inspect/mobile-fold.jpg",
+   "pages": [
+    "/Users/jayden/Development/Code/Object/stack-haven/avmc/.taste-skill/inspect/mobile-page-01.jpg",
+    "/Users/jayden/Development/Code/Object/stack-haven/avmc/.taste-skill/inspect/mobile-page-02.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

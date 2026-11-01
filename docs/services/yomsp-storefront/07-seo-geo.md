@@ -162,3 +162,12 @@
 Nuxt 官方文档（rendering modes、routeRules、data fetching、SEO metadata、deployment）；Vue 官方文档（Composition API、SSR）；Google Search Central（JavaScript SEO、Product structured data、sitemap）；Yandex Webmaster（商品结构化数据、Sitemap、验证工具）。
 
 > 不得凭记忆臆造搜索引擎规则；结构化数据只帮助机器理解页面，不保证排名、富结果或 AI 引用。
+
+## 内容区 SEO/GEO 落地（2026-11）
+
+- `/sitemap.xml`：静态页 + 内容页（demo 构建编入内容 URL；生产构建接后端后由后端/构建期注入），
+  每个 URL 带三语 `xhtml:link` alternate + `x-default`，内容页带 `lastmod`。
+- `/robots.txt`：server route 治理；demo 构建 `Disallow: /`，生产放开并指向 sitemap。
+- JSON-LD：文章页 Article + FAQPage（字段真实才输出）+ BreadcrumbList；物种页 BreadcrumbList。
+- 写作规范：excerpt 首段即答案（40–60 词）；h2 问题句式；每篇 ≥1 来源引用（`sourceReferences`，三语标题）。
+- 内链：文章↔物种↔商品↔方案 交叉链接矩阵（见 storefront-service/docs/feature-plan-knowledge-species.md §3.3）。
