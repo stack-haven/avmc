@@ -71,5 +71,8 @@
 | L-25 | `/guides/*` → `/journal/*` 生产 301 清单（demo 期直接替换） | 待办 |
 | L-26 | 管理后台原型字段 → 后端真实接口的平移清单（§F 契约为输入） | 待办 |
 | L-27 | 15 个新物种的**已核验照片**：`bearded-dragon / crested-gecko / gargoyle-gecko / african-fat-tailed-gecko / ball-python / corn-snake / california-kingsnake / kenyan-sand-boa / blue-tongue-skink / uromastyx / horsfield-tortoise / hermanns-tortoise / red-eared-slider / whites-tree-frog / pacman-frog`（逐一过 contact sheet，命名 `public/images/demo/species/{slug}.jpg`，换图只改数据） | 待办 |
+| L-36 | 交易/身份/隐私前端演示债清偿（后端阶段 E1–E6）：localStorage 演示存储 → 服务端会话/订单；演示验证码 0000 → 真实通道；本地导出/删除 → 数据主体请求 API | 待办 |
+| L-37 | 法务文本定稿：privacy/terms/delivery 三语演示稿 → 律师定稿（含 152-ФЗ 通知义务、54-ФЗ 财政化归属、退货规则） | 待办 |
+| L-38 | 支付与承运商选型（Q4/Q9）：PSP 与物流 API 商务确认后接入；前端已留 provider 可插拔形状 | 待办 |
 | L-29 | 物种的运营后台编辑：`/admin/content` 目前只覆盖文章/分类/设置，物种（含 essentials 排序与护理参数）需在 §F 契约中补 Species 实体表单 | 待办 |
 | L-28 | 物种调研结论的外部来源核验：`docs/research-species-expansion.md` 的排序与护理参数需用可引用来源替换 `example.invalid` 占位（与 L-20 合并审） | 待办 |

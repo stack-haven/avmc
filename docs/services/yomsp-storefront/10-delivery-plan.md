@@ -182,6 +182,18 @@ taste-skill 新页 = 基线 2 FAIL 或已记录可辩护项；hallmark 33 FAIL �
 taste-skill `/` `/species` `/journal` `/catalog` = 2 FAIL 基线，`/species/[slug]` = 4 FAIL 基线；hallmark 33 FAIL 不增。
 未完成：15 个新物种照片（L-27）、调研结论外部来源核验（L-28）。
 
+## 交易/身份/隐私 前端先行（2026-11，用户确认先前端后后端）
+
+| 项 | 内容 | 状态 |
+|---|---|---|
+| F1 | 14 个新页面（登录/注册/找回/结账/成功/账户×4/查单/隐私/条款/配送/Cookie） | ✅ |
+| F2 | 门禁 G1–G8 与隐私规则 R1/R5/R10/R11 前端落地（同意留痕、采集点提示、Cookie 分类、导出/删除） | ✅ |
+| F3 | 演示存储 store×3 + composable 切换缝×3；演示边界（无支付、无「支付成功」、待支付状态） | ✅ |
+| F4 | E2E commerce-privacy 9 例；门禁 unit 45 / E2E 57 / check:demo 282 / i18n 487 key | ✅ |
+| F5 | 设计流水线：taste 工具页可辩护基线登记；hallmark 33 不增 | ✅ |
+
+需求与规则源：`docs/services/site-platform/03-commerce-identity-privacy-requirements.md`（含 Q1–Q12 待批复）。
+
 ## 首页重排（方案 B，2026-11 人工验收反馈第二轮）
 
 > 触发：物种模块上移后整体协调度变差；用户要求①信任条回到物种选择之上②物种作为重点展示③只重排不改内容。

@@ -299,6 +299,27 @@ OutboxEvent(id, site_id, topic, payload, created_at, processed_at)   // 邮件/�
 
 ---
 
+## 9A. 前端先行实施记录（2026-11，用户确认「先前端、验收后再统一后端」）
+
+> 本轮只动 `storefront-service`：以 demo 语义（localStorage + 演示文案）落地全部前端能力，
+> 后端阶段（E1–E6）仅替换实现，页面与文案零改动。
+
+| 项 | 内容 | 状态 |
+|---|---|---|
+| F1 | 门禁落地 G1–G8：结账前零采集（E2E 断言浏览页无 email/password 输入）；登录提示仅出现在结账/账户；游客可继续 | ✅ |
+| F2 | 新页面 14 个：login / register / reset / checkout / checkout/success / account×4 / track / privacy / terms / delivery / cookies | ✅ |
+| F3 | 隐私规则落地：采集点提示组件 `CheckoutPrivacyNotice`；同意默认不勾选且为提交前置；同意留痕（目的+版本+来源页）；Cookie 分类条（非阻塞、可管理、可撤回）；导出/删除/撤回在 `/account/profile` | ✅ |
+| F4 | 演示边界守住：不发起支付、不显示「支付成功」；订单状态止于「待支付（演示）」；免登录查单 = 单号 + 手机末四位 | ✅ |
+| F5 | 演示存储三 store（account/orders/consents）+ 三个 composable 作为切换缝（useAuth/useOrders/useConsents） | ✅ |
+| F6 | 设计流水线：taste-skill 新页 = 工具页可辩护基线（form/法务页无照片、弱动效为刻意）；hallmark 33 不增；Cookie 条去 hairline；法务页 h1 移动端降档 | ✅ |
+| F7 | 门禁：typecheck/lint/unit 45/E2E 57（新增 9 例 commerce-privacy）/check:demo 282/i18n 487 key 三语 | ✅ |
+
+**演示默认值**（后端阶段以 Q1–Q12 批复为准覆盖）：Q2=B 游客可下单；Q3=B 单号+末四位查单；
+Q10=A 本地购物车 + 登录后归集（演示为同设备归集）；支付/承运商仅展示不接通。
+
+**已知前端债（后端阶段清偿）**：演示存储为 localStorage（换设备不跟随）；
+验证码为演示码 0000；导出为本地 JSON；删除为本地匿名化。
+
 ## 10. 阶段计划（与 `01` 的 P0–P7 关系）
 
 | 阶段 | 内容 | 依赖 | 出口门禁 |
