@@ -19,7 +19,8 @@
 
 - 不做通用 CMS 全家桶（工作流引擎、插件市场、可视化页面搭建器、媒体库管理套件）；
 - 不做 EAV 万能实体表（`entity(type, attrs jsonb)` 那种），见 §3.1 护栏；
-- 不做交易（订单/支付/库存/优惠），只留 seam；
+- ~~不做交易（订单/支付/库存/优惠），只留 seam~~ → 交易/身份/隐私已进入需求梳理（见 `03`），
+  本期范围 = 账户 + 购物车/结账/订单 + 履约跟踪 + 隐私合规；库存中心/促销引擎仍不做；
 - 不做 AI 生成（GEO Engine 的职责）；
 - 不做多语言翻译工作流（只做多语言**存储与校验**）。
 
@@ -274,13 +275,13 @@ admin 侧：每个资源 CRUD + `:publish` / `:unpublish` / `:reorder` / `:verif
 | D7 | 发布模型：draft 行 + `PublishVersion` 快照 + 指针切换（不做逐条审批流） | ✅ | 产品 |
 | D8 | 内容合规门禁：`review_status` 决定公开可见性（默认 `verified` 才公开，可按站点放宽） | ✅ | 产品 + 法务 |
 | D9 | preset 校验为唯一校验源：`config_schema`(JSON Schema) 落库，protovalidate 做字段级校验 | ✅ | 架构师 |
-| D10 | 首期不做 commerce，仅留 Outbox/Idempotency seam | ✅ | 产品 |
+| D10 | ~~首期不做 commerce，仅留 Outbox/Idempotency seam~~ → 已升级为在范围，需求与决策点见 `03` §9（Q1–Q12） | 需重新确认 | 产品 + 架构师 |
 
 ---
 
 ## 9. 预留 seam（后续阶段，不实现）
 
-- **交易**：`PriceList`/`Cart`/`Order` 独立表组与新 service 面；价格已用 `minor + currency`，无需改现有字段；
+- **交易**：已进入本期范围，模型见 `03` §6（Customer/Address/Order/OrderItem/OrderEvent/Shipment/ConsentRecord/OutboxEvent）；
 - **库存**：`InventoryItem` 表 + 发布时校验；
 - **会员/多语言 URL 策略**：站点级配置项；
 - **搜索**：先 PG trigram/GIN；超阈值再上 ES，通过 Outbox 同步（写入侧不变）；

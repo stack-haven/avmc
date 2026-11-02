@@ -9,6 +9,10 @@
 图例：**P** = 公开读（匿名、可 CDN、只读已发布）｜**A** = 运营（JWT + 权限点 + 审计）｜
 **‖** = 需服务端 join/聚合（前端当前是客户端拼接）
 
+> **范围扩展（2026-11）**：交易 / 身份 / 隐私域的接口（C1–C32）不在本文件，
+> 见 [03-commerce-identity-privacy-requirements.md](03-commerce-identity-privacy-requirements.md) §5。
+> 本文件仍是**内容与目录域**的唯一基线。
+
 ---
 
 ## 1. 公开读接口（storefront 面）

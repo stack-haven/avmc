@@ -30,6 +30,7 @@
 |---|---|
 | [01-architecture-design.md](01-architecture-design.md) | 领域模型、通用化策略、API 分层、发布版本、演化规则、阶段计划、决策点 |
 | [02-frontend-api-inventory.md](02-frontend-api-inventory.md) | 前端功能所需接口清单（开发前基线：18 公开读 + 27 运营 + 4 非 API 依赖，含 parity 验收标准与 6 个待确认形状项） |
+| [03-commerce-identity-privacy-requirements.md](03-commerce-identity-privacy-requirements.md) | 交易/身份/隐私需求与规则（匿名优先、唯一登录门禁点、数据分层采集表、12 条隐私硬规则、Q1–Q12 决策点） |
 | [../yomsp-storefront/12-backend-api-plan.md](../yomsp-storefront/12-backend-api-plan.md) | YOMSP 站点接入与 parity 切换细则（已标注被本设计吸收） |
 
 ## 依赖声明（`docs/services/README.md` 使用规则要求）
@@ -42,6 +43,9 @@
 | 平台基础能力 | 操作审计 | 所有写操作记录（不自建审计表） |
 | 平台基础能力 | 套餐与配额 | 站点数、内容条目数、媒体容量计量 |
 | 平台基础能力 | 通知中心 / Webhook | 租户暂停、注销时清理站点数据 |
+| 平台基础能力 | 身份与会话（`auth.proto`：Register/LoginByPhoneCode/RefreshToken/Profile） | 公开顾客身份归属见 `03` Q1（A：平台扩消费端身份域 / B：产品自建但复用签名工具） |
+| 平台基础能力 | 通知中心（sms/email provider） | 验证码、订单与物流通知，不自建短信/邮件通道 |
+| 外部集成 | 支付 PSP、物流承运商 | 见 `03` §7，尚未选型（Q4/Q9） |
 | 业务中台 | 无 | 当前不依赖任何业务中台能力 |
 
 ## 首个消费方
