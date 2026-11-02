@@ -181,3 +181,17 @@ taste-skill 新页 = 基线 2 FAIL 或已记录可辩护项；hallmark 33 FAIL �
 门禁：typecheck/lint/unit(45)/E2E(47)/check:demo(232)/check:i18n 全绿；
 taste-skill `/` `/species` `/journal` `/catalog` = 2 FAIL 基线，`/species/[slug]` = 4 FAIL 基线；hallmark 33 FAIL 不增。
 未完成：15 个新物种照片（L-27）、调研结论外部来源核验（L-28）。
+
+## 首页重排（方案 B，2026-11 人工验收反馈第二轮）
+
+> 触发：物种模块上移后整体协调度变差；用户要求①信任条回到物种选择之上②物种作为重点展示③只重排不改内容。
+
+| 项 | 内容 | 状态 |
+|---|---|---|
+| O1 | 体验诊断 7 条（入口三重叠加/位置重量错配/信任夹心/卖什么太晚/节奏断裂/提及倒挂/移动过长） | ✅ 见对话记录 |
+| O2 | 新顺序：hero → **trust(night)** → **species 重点带** → categories → featured → habitats → **entry_cards 下移** → configurator → journal | ✅ 仅改 `sortOrder` |
+| O3 | 深色同步：信任条新增 `config.tone: 'night'`（运营可配），与 hero/物种带共用 night 画布，开场章不被浅色切断 | ✅ |
+| O4 | 物种带呈现：桌面 3×3 tile、移动 2 列紧凑行（名字两行不截断）；去装饰编号；scrim 仅照片 tile | ✅ |
+| O5 | 夜间纹理资产 `scale-pattern-night.svg` + `scale-bg-night` utility（平铺，不拉伸） | ✅ |
+| O6 | `SectionRenderer` 输出 `data-section`，E2E 以章节序列断言顺序与同画布（computed backgroundColor 相等） | ✅ |
+| O7 | 门禁：unit 45 / E2E 48 / check:demo 230 / i18n / taste `/` = 基线 2 FAIL / hallmark 33 不增 | ✅ |

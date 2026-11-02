@@ -38,19 +38,23 @@
 
 1. Header
 2. Hero 主视觉（`home.hero`）
-3. 物种选择入口（`home.species_strip`）— 紧跟 hero：先回答「我养的是什么」
-   - 9 个精选物种（缩略图 + 名称 + 学名 + 难度），全量 19 种见 `/species`
-   - 无已核验照片的物种显示鳞片纹理缩略图，不借位近缘物种照片
-4. 可证实服务信息条（`home.trust_strip`）— 未核验的配送/退换承诺**不展示**
-5. 双入口卡片（`home.entry_cards`）
+3. 可证实服务信息条（`home.trust_strip`，`config.tone: 'night'`）— 深色开场章第一拍；
+   未核验的配送/退换承诺**不展示**
+4. 物种重点带（`home.species_strip`）— 深色开场章第二拍，与 hero/信任条同画布：
+   - 桌面 3×3 tile、移动 2 列紧凑行；9 个精选物种，全量 19 种见 `/species`
+   - 无已核验照片的物种显示夜间鳞片纹理 tile，不借位近缘物种照片
+5. 热门分类（`home.popular_categories`）— 浅色商业章开始
+6. 精选商品（`home.featured_products`）
+7. 环境方案（`home.habitat_bundles`）
+8. 双入口卡片（`home.entry_cards`）— 引导章：逛完未决定者的两条引导路
    - A：`Собрать террариум`（设计我的饲养环境）→ 面向新手与组合用户
    - B：`Смотреть каталог`（浏览全部商品 / 专业选购）→ 面向直接选购用户
-6. 热门分类（`home.popular_categories`）
-7. 精选商品（`home.featured_products`）
-8. 环境方案（`home.habitat_bundles`）
 9. 设计器推广 Banner（`home.configurator_banner`）
 10. 知识库（`home.buying_guides` → journal 文章）
 11. Footer
+
+> 顺序即章节：深色开场（2–4）→ 浅色商业（5–7）→ 深色引导（8–9 之间由 banner 承担）→ 浅色知识（10）。
+> 重排只动 `sortOrder` 与呈现重量，不改任何文案/数据（方案 B，2026-11 人工验收反馈）。
 
 ### 2.1 Hero 要求
 
