@@ -67,6 +67,9 @@
 | L-21 | `llms.txt` / AI 引擎专用入口评估 | 待办 |
 | L-22 | 站内全文搜索 | 待办 |
 | L-23 | RSS/Atom（settings.enableRss 开关已预留） | 待办 |
-| L-24 | 物种扩充：新物种照片必须走 contact sheet 核验门禁 | 待办 |
+| L-24 | 物种扩充：新物种照片必须走 contact sheet 核验门禁 | 待办（已扩至 19 种，15 种待补照片） |
 | L-25 | `/guides/*` → `/journal/*` 生产 301 清单（demo 期直接替换） | 待办 |
 | L-26 | 管理后台原型字段 → 后端真实接口的平移清单（§F 契约为输入） | 待办 |
+| L-27 | 15 个新物种的**已核验照片**：`bearded-dragon / crested-gecko / gargoyle-gecko / african-fat-tailed-gecko / ball-python / corn-snake / california-kingsnake / kenyan-sand-boa / blue-tongue-skink / uromastyx / horsfield-tortoise / hermanns-tortoise / red-eared-slider / whites-tree-frog / pacman-frog`（逐一过 contact sheet，命名 `public/images/demo/species/{slug}.jpg`，换图只改数据） | 待办 |
+| L-29 | 物种的运营后台编辑：`/admin/content` 目前只覆盖文章/分类/设置，物种（含 essentials 排序与护理参数）需在 §F 契约中补 Species 实体表单 | 待办 |
+| L-28 | 物种调研结论的外部来源核验：`docs/research-species-expansion.md` 的排序与护理参数需用可引用来源替换 `example.invalid` 占位（与 L-20 合并审） | 待办 |

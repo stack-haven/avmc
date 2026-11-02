@@ -258,18 +258,24 @@ interface Page<T> {
 
 | 实体 | 数量 | 说明 |
 |---|---|---|
-| Category | 6–8 | 覆盖饲养箱、底材、躲避、攀爬、照明、加热、水盆、配件 |
-| Product | 24–36 | 每分类 3–5 个；含 1–2 个 `availability: 'inquiry'`、1 个 `out_of_stock`、1 个多变体 |
-| HabitatBundle | 4–6 | 含 1 个 `priceStatus: 'inquiry'`、1 个 `requires_review` 模块 |
-| GuideArticle | 6–8 | 覆盖新手/尺寸/通风/材质/组合/维护主题（内容标注"示例内容"） |
-| HomepageSection | 8 | 与 8 个 Slot 一一对应，含 1 个 `disabled` 用于验证兜底 |
+| Category | 8 | 饲养箱、底材、躲避、攀爬、照明、加热、水盆、工具 |
+| Product | 35 | `p-001…p-035`；含 `inquiry` / `out_of_stock` / `preorder` / `unknown`，覆盖 4 类 availability |
+| HabitatBundle | 9 | `h-001…h-009`；含 `inquiry` 与 `requires_review` 模块 |
+| Article | 24 | 6 篇迁移指南 + 18 篇知识库文章（`a-001…a-018`），三语 |
+| Species | 19 | 5 类群（守宫/蜥蜴/蛇/龟/蛙）；4 种有已核验照片，15 种走设计化占位 |
+| SpeciesGroup | 5 | `geckos / lizards / snakes / turtles / frogs` |
+| HomepageSection | 9 | 与 9 个 Slot 一一对应，含 1 个 `disabled` 用于验证兜底 |
+
+数据模块（2026-10-24 扩容后）：`catalog.ts` + `catalog-expansion.ts`、`content.ts` + `content-expansion.ts`、
+`species.ts` + `species-expansion.ts`、`bundles.ts`、`authoring.ts`（作者便利层，两处内容文件共用）。
+扩展数据一律走独立模块再合并导出，避免单文件膨胀到不可 review。
 
 ## 7. 本阶段不做（明确边界）
 
 - 不新增 `backend-service` 代码、proto、Ent schema、迁移；
 - 不写真实的 `ApiXxxRepository` 网络实现（只留骨架与类型）；
 - 不实现购物车下单、支付、账户、订单；
-- 不实现真实搜索（搜索入口先隐藏）；
+- ~~不实现真实搜索（搜索入口先隐藏）~~ → 已实现服务端搜索与 facet 筛选（见 `/catalog`）；
 - 不实现富文本编辑器（指南内容用结构化 Markdown/MDC + 人工校对）。
 
 ## 8. 验收要点

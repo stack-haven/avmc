@@ -16,6 +16,7 @@
 ```ts
 type HomeSlotKey =
   | 'home.hero'
+  | 'home.species_strip'
   | 'home.trust_strip'
   | 'home.entry_cards'
   | 'home.popular_categories'
@@ -49,6 +50,7 @@ type SectionType =
 | Slot | 允许的 sectionType |
 |---|---|
 | `home.hero` | `hero_banner` |
+| `home.species_strip` | `species_strip` |
 | `home.trust_strip` | `trust_strip` |
 | `home.entry_cards` | `entry_cards` |
 | `home.popular_categories` | `category_grid` |
@@ -142,7 +144,8 @@ type SectionType =
 
 ### 生产工作流（后端就绪前）
 
-1. 内容以种子数据形式落在 `server/data/content.ts`（三语 + 来源引用 + 状态字段）；
+1. 内容以种子数据形式落在 `server/data/content.ts` + `content-expansion.ts`（三语 + 来源引用 + 状态字段）；
+   物种同理：`species.ts` + `species-expansion.ts`（19 种 / 5 类群，见 `docs/research-species-expansion.md`）；
 2. `/admin/content` 原型验证字段设计（草稿存 localStorage，不影响公开站）；
 3. 后端就绪后：§F 字段契约（storefront-service/docs/feature-requirements-review-knowledge-species.md）
    作为建表与接口输入，前端 Repository 零改动切换。
@@ -152,3 +155,12 @@ type SectionType =
 - excerpt = 首段即答案（40–60 词），可被搜索引擎/AI 直接摘录；
 - h2 用问题句式；每篇 ≥1 条 `sourceReferences`（三语标题 + 访问日期）；
 - 护理类内容默认带核实免责声明（`settings.showCareDisclaimer`）。
+
+### 物种内容纪律（扩容后）
+
+- **先有支撑，再上物种**：新增物种必须同时具备 ① 4 个以上必备槽位且每槽指向真实商品、
+  ② ≥2 条真实存在的阅读路径文章、③ 至少 1 个成品方案，否则不上线（单测 `species-data.spec.ts` 守门）；
+- **参数即承诺**：温度/湿度/UVB 区间属护理建议，`sourceReferences` 不可为空，演示期统一占位并在页面标注；
+- **照片不借位**：缺核验照片的物种走设计化占位（纹理缩略图 + `species.photoPending`），
+  绝不用近缘物种照片顶替（L-24 / L-27）；
+- **一个物种一个决策路径**：必备清单顺序 = 采购顺序，readingPath 顺序 = 阅读顺序，两者都不按字母/日期排序。

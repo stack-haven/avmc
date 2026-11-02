@@ -38,16 +38,19 @@
 
 1. Header
 2. Hero 主视觉（`home.hero`）
-3. 可证实服务信息条（`home.trust_strip`）— 未核验的配送/退换承诺**不展示**
-4. 双入口卡片（`home.entry_cards`）
+3. 物种选择入口（`home.species_strip`）— 紧跟 hero：先回答「我养的是什么」
+   - 9 个精选物种（缩略图 + 名称 + 学名 + 难度），全量 19 种见 `/species`
+   - 无已核验照片的物种显示鳞片纹理缩略图，不借位近缘物种照片
+4. 可证实服务信息条（`home.trust_strip`）— 未核验的配送/退换承诺**不展示**
+5. 双入口卡片（`home.entry_cards`）
    - A：`Собрать террариум`（设计我的饲养环境）→ 面向新手与组合用户
    - B：`Смотреть каталог`（浏览全部商品 / 专业选购）→ 面向直接选购用户
-5. 热门分类（`home.popular_categories`）
-6. 精选商品（`home.featured_products`）
-7. 环境方案（`home.habitat_bundles`）
-8. 设计器推广 Banner（`home.configurator_banner`）
-9. 选购指南（`home.buying_guides`）
-10. Footer
+6. 热门分类（`home.popular_categories`）
+7. 精选商品（`home.featured_products`）
+8. 环境方案（`home.habitat_bundles`）
+9. 设计器推广 Banner（`home.configurator_banner`）
+10. 知识库（`home.buying_guides` → journal 文章）
+11. Footer
 
 ### 2.1 Hero 要求
 
@@ -187,6 +190,7 @@
 | `/configurator` | Product（模块）, Configurator rules | `ConfiguratorModuleCard`, `ConfiguratorCanvas2D` | 介绍内容可索引，交互态 noindex |
 | `/cart` | Cart store | — | `noindex` |
 | `/journal/:slug` | Article | `JournalCard`/`ContentBlocks` | 知识型/任务型文章（Read 模式） |
+| `/species` | Species | 5 类群 / 19 种的选择索引 | 按类群分流，不做图鉴 |
 | `/species/:slug` | Species | 必备清单/阅读路径/参数侧栏 | 从动物出发的决策 hub |
 | `/admin/content` | Content draft | 字段原型表单 | `noindex` + Demo 标注 |
 | `/admin/homepage` | Homepage（draft） | Section 编辑器 | `noindex` + 鉴权 |
