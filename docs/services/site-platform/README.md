@@ -29,6 +29,7 @@
 | 文档 | 内容 |
 |---|---|
 | [01-architecture-design.md](01-architecture-design.md) | 领域模型、通用化策略、API 分层、发布版本、演化规则、阶段计划、决策点 |
+| [02-frontend-api-inventory.md](02-frontend-api-inventory.md) | 前端功能所需接口清单（开发前基线：18 公开读 + 27 运营 + 4 非 API 依赖，含 parity 验收标准与 6 个待确认形状项） |
 | [../yomsp-storefront/12-backend-api-plan.md](../yomsp-storefront/12-backend-api-plan.md) | YOMSP 站点接入与 parity 切换细则（已标注被本设计吸收） |
 
 ## 依赖声明（`docs/services/README.md` 使用规则要求）
